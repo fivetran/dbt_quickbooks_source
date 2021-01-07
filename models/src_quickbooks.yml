@@ -1,0 +1,673 @@
+version: 2
+ 
+sources:
+  - name: quickbooks
+    schema: "{{ var('quickbooks_schema', 'quickbooks') }}"
+    database: "{{ var('quickbooks_database', target.database) }}"
+    loader: fivetran
+    loaded_at_field: _fivetran_synced
+    freshness:
+      warn_after: {count: 48, period: hour}
+      error_after: {count: 72, period: hour}
+
+    tables:
+      - name: account
+        description: >
+          Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary 
+          amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue 
+          (income), expenses, or equity.
+        columns:
+          - name: id
+            description: Unique identifier for an account.
+          - name: account_number
+            description: User-defined account number intended to identify the account within the Chart of Accounts.
+          - name: sub_account
+            description: Specifies whether this object represents a parent (false) or a subaccount (true).
+          - name: parent_account_id
+            description: User entered description for the account.
+          - name: name
+            description: User recognizable name for the Account.
+          - name: account_type
+            description: A detailed account classification that specifies the use of this account. The type is based on the Classification.
+          - name: account_sub_type
+            description: The account sub-type classification and is based on the AccountType value.
+          - name: classification
+            description: The classification of an account. Not supported for non-posting accounts. Valid values include Asset, Equity, Expense, Liability, Revenue.
+          - name: balance
+            description: Specifies the balance amount for the current Account.
+          - name: balance_with_sub_accounts
+            description: Specifies the balance amount for the current Account sub accounts.
+
+      - name: address
+        description: Table containing address details.
+        columns:
+          - name: id
+            description: Unique identifier for an address.
+          - name: city
+            description: The city which the address is located.
+          - name: country
+            description: The country which the addess is located.
+          - name: line_1
+            description: The address_line_1 associated with the address.
+          - name: line_2
+            description: The address_line_2 associated with the address (if applicable).
+          - name: postal_code
+            description: The postal code which the address is located.       
+
+      - name: bill_line
+        descrition: Table containing distinct line items from bills within the `bill` table.
+        columns:
+          - name: bill_id
+            description: The unique identifier of the parent bill record.
+          - name: account_expense_account_id
+            description: The id of the account being expensed from the bill.
+          - name: account_expense_billable_status
+            description: The status of the bill line item expense.
+          - name: account_expense_tax_code_id
+            description: The tax code id associated with the bill.
+          - name: amount
+            description: Monetary amount of the bill line item.
+          - name: description
+            description: Description of the bill line item.
+
+      - name: bill_linked_txn
+        descrition: Mapping table containing bill payment transactions linked to a bill.
+        columns:
+          - name: bill_id
+            description: The unique identifier of the bill record.
+          - name: index
+            description: Index count of records from a single bill record associated with payment ids.
+          - name: bill_payment_id
+            description: The unique identifier of the bill payment id record.
+
+      - name: bill_payment_line
+        descrition: Table containing inidvidual line items of a bill payment, which are recorded within the `bill_payment` table.
+        columns:
+          - name: bill_payment_id
+            description: The unique identifier of the bill payment record.
+          - name: index
+            description: Index count of payments associated with the parent bill payment record.
+          - name: amount
+            description: Monetary amount of the bill payment.
+          - name: bill_id
+            description: Unique identifier of the bill record associated with the bill payment.
+          - name: journal_entry_id
+            description: Unique identifier of the journal entry record associated with the bill payment.
+
+      - name: bill_payment
+        description: Table containing payment transactions bills that the business owner receives from a vendor for goods or services purchased from the vendor.
+        columns:
+          - name: id
+            description: Unique identifier of the bill payment.
+          - name: check_bank_account_id
+            description: Account id of the account which the bill payment is credited. Only applicable if bill payment `pay_type` is of type check.
+          - name: check_print_status
+            description: Status of the check which was used as payment for the bill. Only applicable if bill payment `pay_type` is of type Check.
+          - name: credit_card_account_id
+            description: Account id of the account which the bill is credited. Only applicable if bill payment `pay_type` is of type CreditCard.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by CurrencyRef. Applicable if multicurrency is enabled for the company.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: department_id
+            description: Reference to a Department object specifying the location of the transaction.
+          - name: pay_type
+            description: The payment type. Valid values include Check, CreditCard
+          - name: total_amount
+            description: Indicates the total amount associated with this payment. This includes the total of all the payments from the payment line details.
+          - name: transaction_date
+            description: Timestamp of the day the transaction tool place.
+          - name: vendor_id
+            description: Reference to the vendor for this transaction.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: bill
+        description: Table containing AP transactions representing a request-for-payment from a third party for goods/services rendered, received, or both.
+        columns:
+          - name: id
+            description: Unique identifier of the bill record.
+          - name: balance
+            description: The balance reflecting any payments made against the transaction.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: due_date
+            description: Timestamp of the date which the bill is due.
+          - name: transaction_date
+            description: Timestamp of the date when the bill transaction occured.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+          - name: payable_account_id
+            description: Account id of the account which the bill is credited.
+          - name: private_note
+            description: User entered, organization-private note about the transaction.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: credit_memo_line
+        description: Table containing individual records of credit memos.
+        columns:
+          - name: credit_memo_id
+            description: Unique identifier of the credit memo record.
+          - name: index
+            description: Index count of records from a credit memo record.
+          - name: amount
+            description: Monetary amount of the credit memo line.
+          - name: sales_item_account_id
+            description: Account reference for an item credit memo record.
+          - name: sales_item_item_id
+            description: Item reference for an item credit memo record.
+          - name: discount_account_id
+            description: Account reference for a discount credit memo record.
+          - name: discount_class_id
+            description: Class reference for a discount credit memo record.
+
+      - name: credit_memo
+        description: Table containing credit memo records. A credit memo is a refund or credit of payment or part of a payment for goods or services that have been sold.
+        columns:
+          - name: id
+            description: Unique identifier for a credit memo.
+          - name: balance
+            description: The balance reflecting any payments made against the transaction.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date when the credit memo occurred.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: currency
+        description: Table containing all currencies which the company records within transactions.
+        columns:
+          - name: id
+            description: Unique identifier of the currency.
+          - name: name
+            description: Full name of the currency.
+
+      - name: customer
+        description: Table containing customers of which are consumers of the service or product that your business offers.
+        columns:
+          - name: id
+            description: Unique identifier of the customer.
+          - name: active
+            description: Boolean indicating whether is currently enabled for use by QuickBooks. 
+          - name: balance
+            description: Specifies the open balance amount or the amount unpaid by the customer.
+          - name: balance_with_jobs
+            description: Cumulative open balance amount for the Customer (or Job) and all its sub-jobs.
+          - name: bill_with_parent
+            description: Boolean indicating whether this Customer object is billed with its parent.
+          - name: company_name
+            description: Full name of the company.
+          - name: currency_id
+            description: Reference to the currency in which all amounts associated with this customer are expressed.
+          - name: display_name
+            description: Name of the customer which is displayed.
+          - name: taxable
+            description: Boolean indicating whether the customer is taxable.
+
+      - name: deposit_line
+        description: Table containing individual line items comprising the deposit.
+        columns:
+          - name: deposit_id
+            description: Unique identifier of the deposit record.
+          - name: index
+            description: Index count of records associated with the deposit record.
+          - name: amount
+            description: Monetary amount of the deposit line record.
+          - name: deposit_account_id
+            description: Account id of the account which the deposit is credited.
+          - name: deposit_customer_id
+            description: Customer id of the customer which the deposit is credited.
+
+      - name: deposit
+        description: Table containing records of transactions that record on or more deposits of a customer payment or a new direct deposit.
+        columns:
+          - name: id
+            description: Unique identifier of the deposit.
+          - name: account_id
+            description: Identifies the account to be used for this deposit.
+          - name: created_at
+            description: Timestamp of the date which the deposit was created.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed. 
+          - name: total_amount
+            description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
+          - name: transaction_date
+            description: Timestamp of the date which the deposit transaction occured.
+          - name: transaction_status
+            description: Status of the deposit transaction.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: invoice_line
+        description: Table containing individual records from invoices.
+        columns:
+          - name: invoice_id
+            description: Unique identifier of the invoice record.
+          - name: index
+            description: Index count of records associated with the invoice record.
+          - name: amount
+            description: Monetary amount of the invoice line record.
+          - name: sales_item_account_id
+            description: Account reference for an item invoice record.
+          - name: sales_item_item_id
+            description: Item reference for an item invoice record.
+          - name: discount_account_id
+            description: Account reference for a discount invoice record.
+          - name: discount_class_id
+            description: Class reference for a discount invoice record.
+
+      - name: invoice
+        description: Table containing invoice records. An Invoice represents a sales form where the customer pays for a product or service later.
+        columns:
+          - name: id
+            description: Unique identifier of the invoice.
+          - name: balance
+            description: The balance reflecting any payments made against the transaction.
+          - name: total_amount
+            description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed. 
+          - name: deposit_to_account_id
+            description: Identifies the account to be used for this invoice.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date which the deposit transaction occured.
+          - name: customer_id
+            description: Customer reference in associated with the invoice.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: item
+        description: Table containing item records. An item is a thing that your company buys, sells, or re-sells, such as products and services.
+        columns:
+          - name: id
+            description: Unique identifier of the item.
+          - name: active
+            description: Boolean indicating whether the object is currently enabled for use by QuickBooks.
+          - name: created_at
+            description: Timestamp of the date when the item was created within QuickBooks.
+          - name: income_account_id
+            description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item. 
+          - name: name
+            description: Full name of the item.
+          - name: purchase_cost
+            description: Amount paid when buying or ordering the item, as expressed in the home currency.
+          - name: taxable
+            description: Boolean indicating whether the item is taxable.
+          - name: type
+            description: Classification that specifies the use of this item.
+          - name: unit_price
+            description: The monetary value of the service or product, as expressed in the home currency.
+
+      - name: journal_entry_line
+        description: Table containing individual line items of a transaction associated with a journal entry.
+        columns:
+          - name: journal_entry_id
+            description: Unique identifier of the journal entry record.
+          - name: index
+            description: Index count of records associated with the journal entry record.
+          - name: account_id
+            description: Account id of the account which the journal entry is credited.
+          - name: amount
+            description: Monetary amount of the journal entry line.
+          - name: customer_id
+            description: Customer id of the customer which the journal entry is credited.
+          - name: description
+            description: User defined description of the journal entry line.
+          - name: posting_type
+            description: Indicates whether this JournalEntry line is a debit or credit. Valid values are Credit and Debit
+          - name: vendor_id
+            description: Reference to the vendor for this journal entry.
+
+      - name: journal_entry
+        description: Table containing journal entry transactions.
+        columns:
+          - name: id
+            description: Unique identifier of the journal entry.
+          - name: adjustment
+            description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
+          - name: created_at
+            description: Timestamp of the date when the journal entry was created.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: doc_number
+            description: Reference number for the transaction.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+          - name: private_note
+            description: User entered, organization-private note about the transaction.
+          - name: total_amount
+            description: The value of this field will always be set to zero.
+          - name: transaction_date
+            description: Timestamp of the date when the journal entry was transacted.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: payment_line
+        description: Table containing individual line items recorded within a payment.
+        columns:
+          - name: payment_id
+            description: Unique identifier of the payment record.
+          - name: index
+            description: Index count of records associated with the payment record.
+          - name: amount
+            description: Monetary amount of the payment line.
+          - name: journal_entry_id
+            description: Journal entry reference associated with the payment.
+          - name: deposit_id
+            description: Deposit reference associated with the payment.
+          - name: invoice_id
+            description: Invoice reference associated with the payment.
+          - name: credit_memo_id
+            description: credit memo reference associated with the payment.
+
+      - name: payment_method
+        description: Table containing the method of payment for received goods.
+        columns:
+          - name: id
+            description: Unique identifier of the payment method.
+          - name: active
+            description: Boolean indicating whether the payment method is active.
+          - name: created_at
+            description: Timestamp of the date when the payment method was created.
+          - name: name
+            description: User recognizable name for the payment method. 
+          - name: type
+            description: Defines the type of payment. Valid values include CREDIT_CARD or NON_CREDIT_CARD.
+
+      - name: payment
+        description: Table containing all payment records. The payment can be applied for a particular customer against multiple Invoices and Credit Memos. It can also be created without any Invoice or Credit Memo, by just specifying an amount.
+        columns:
+          - name: id
+            description: Unique identifier of the payment.
+          - name: unapplied_amount
+            description: Indicates the amount that has not been applied to pay amounts owed for sales transactions.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: receivable_account_id
+            description: Identifies the account for a obtaining a receivable from this payment.
+          - name: deposit_to_account_id
+            description: Identifies the account to be used for this payment.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date when the payment occurred.
+          - name: customer_id
+            description: Reference to a customer or job.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: purchase_line
+        description: Table containing individual line items of a transaction associated with a purchase.
+        columns:
+          - name: purchase_id
+            description: Unique identifier of the purchase record.
+          - name: index
+            description: Index count of records associated with the purchase record.
+          - name: account_expense_account_id
+            description: Account id of the account which the purchase is credited.
+          - name: account_expense_billable_status
+            description: Status of the purchase billable.
+          - name: account_expense_tax_code_id
+            description: Tax code reference associated to the purchase.
+          - name: amount
+            description: Monetary amount of the purchase.
+          - name: description
+            description: User defined description of the purchase line.
+
+      - name: purchase_order_line
+        description: Table containing individual records within a purchase order.
+        columns:
+          - name: purchase_order_id
+            description: Unique identifier of the purchase order record.
+          - name: index
+            description: Index count of records associated with the purchase order record.
+          - name: amount
+            description: Monetary amount of the purchase order.
+          - name: account_expense_account_id
+            description: Account reference for the purchase order expense.
+          - name: account_expense_customer_id
+            description: Customer reference for the purchase order expense.
+          - name: item_expense_item_id
+            description: Item reference for the item on the purchase order.
+          - name: item_expense_customer_id
+            description: Customer reference for the item on the purchase order.
+
+      - name: purchase_order
+        description: Table containing a record of all purchase orders. A purchase order is a non-posting transaction representing a request to purchase goods or services from a third party.
+        columns:
+          - name: id
+            description: Unique identifier of the purchase order.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: payable_account_id
+            description: Reference to the account 
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date the purchase order occurred.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: purchase
+        description: Table containing records of purchase expenses.
+        columns:
+          - name: id
+            description: Unique identifier of the purchase.
+          - name: account_id
+            description: Specifies the account reference to which this purchase is applied based on the PaymentType.
+          - name: created_at
+            description: Timestamp of the date when the purchase was created.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: payment_type
+            description: Payment type of the purchase. Type can be Cash, Check, or CreditCard.
+          - name: vendor_id
+            description: Reference to the vendor for the purchase.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: refund_receipt_line
+        description: Table containing individual line items of a refund transactions.
+        columns:
+          - name: refund_id
+            description: Unique identifier of the refund record.
+          - name: index
+            description: Index count of records associated with the refund record.
+          - name: amount
+            description: Monetary amount of the refund line.
+          - name: description
+            description: User defined description of the refund line.
+          - name: sales_item_account_id
+            description: Account id of the account which the refund is credited.
+          - name: sales_item_item_id
+            description: Item id of the refunded item.
+          - name: sales_item_tax_code_id
+            description: Tax code id of the tax code associated with the refund.
+
+      - name: refund_receipt
+        description: Table containing refunds to the customer for a product or service that was provided.
+        columns:
+          - name: id
+            description: Unique identifier of the refund.
+          - name: balance
+            description: The balance reflecting any payments made against the transaction.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: deposit_to_account_id
+            description: Account from which payment money is refunded. 
+          - name: created_at
+            description: Timestamp of the date when the refund was created.
+          - name: customer_id
+            description: Customer id of the customer credited with the refund.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date in which the refund occurred.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: sales_receipt_line
+        description: Table containing individual line items of a sales transactions.
+        columns:
+          - name: sales_receipt_id
+            description: Unique identifier of the sales record.
+          - name: index
+            description: Index count of records associated with the sales record.
+          - name: amount
+            description: Monetary amount of the sales line.
+          - name: sales_item_account_id
+            description: Account id of the account credited with the sales line.
+          - name: sales_item_item_id
+            description: Item id of the item sold in the sale line.
+          - name: sales_item_tax_code_id
+            description: Tax code id of the tax code associated with the sales line.
+          - name: sales_item_quantity
+            description: Total quantity of items included in the sales line.
+          - name: sales_item_unit_price
+            description: Unit price of the item included on the sales line.
+
+      - name: sales_receipt
+        description: Table containing sales receipts that are given to a customer. A sales receipt, payment is received as part of the sale of goods and services. The sales receipt specifies a deposit account where the customer's payment is deposited.
+        columns:
+          - name: id
+            description: Unique identifier of the sales receipt.
+          - name: balance
+            description: The balance reflecting any payments made against the transaction.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: deposit_to_account_id
+            description: Account to which payment money is deposited.
+          - name: created_at
+            description: Timestamp of the date when the sales was created.
+          - name: customer_id
+            description: Customer id of the sold to customer.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: transaction_date
+            description: Timestamp of the date which the sale occurred.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: term
+        description: Table contianing the terms under which a sale is made, typically expressed in the form of days due after the goods are received. 
+        columns:
+          - name: id
+            description: Unique identifier of the term.
+          - name: active
+            description: Boolean indicating whether the term is active.
+          - name: created_at
+            description: Timestamp of the date when the term was created.
+          - name: discount_days
+            description: Discount applies if paid within this number of days. Used only when due_days is specified.
+          - name: discount_percent
+            description: Discount percentage available against an amount if paid within the days specified by discount_days.
+          - name: due_days
+            description: Number of days from delivery of goods or services until the payment is due. Required if day_of_month_due not present.
+          - name: day_of_month_due
+            description: Payment must be received by this day of the month. Used only if due_days is not specified. Required if due_days not present
+          - name: name
+            description: User recognizable name for the term. For example, Net 30.
+          - name: type
+            description: Type of the Sales Term. Valid values include STANDARD--Used if DueDays is not null. DATE_DRIVEN--Used if DueDays is null.
+
+      - name: transfer
+        description: Table containing records of transfers. A Transfer represents a transaction where funds are moved between two accounts from the company's QuickBooks chart of accounts.
+        columns:
+          - name: id
+            description: Unique identified of the transfer.
+          - name: amount
+            description: Monetary amount of the transfer.
+          - name: from_account_id
+            description: Account id of the account which the transfer is from.
+          - name: to_account_id
+            description: Account id of the account which the transfer is to.
+          - name: transaction_date
+            description: Timestamp of the date which the transfer occurred.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: vendor_credit_line
+        description: Table containing individual vendor credit line items.
+        columns:
+          - name: vendor_credit_id
+            description: Unique identifier of the vendor credit record.
+          - name: index
+            description: Index count of records associated with the vendor credit record.
+          - name: account_expense_account_id
+            description: Account id of the account credited for the vendor credit line.
+          - name: account_expense_billable_status
+            description: Status of the billable related to the vendor credit line.
+          - name: account_expense_tax_code_id
+            description: Tax code id of the tax code associated with the vendor credit line.
+          - name: amount
+            description: Monetary amount of the vendor credit line.
+          - name: description
+            description: Description of the vendor credit line.
+
+      - name: vendor_credit
+        description: Table containing all vendor credit records. A vendor credit is an accounts payable transaction that represents a refund or credit of payment for goods or services.
+        columns:
+          - name: id
+            description: Unique identifier of the vendor credit.
+          - name: balance
+            description: The current amount of the vendor credit reflecting any adjustments to the original credit amount.
+          - name: total_amount
+            description: Indicates the total credit amount, determined by taking the total of all all lines of the transaction.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: created_at
+            description: Timestamp of the date the vendor credit was created.
+          - name: payable_account_id
+            description: Specifies to which AP account the bill is credited.
+          - name: private_note
+            description: User entered, organization-private note about the transaction.
+          - name: transaction_date
+            description: The date entered by the user when this transaction occurred.
+          - name: vendor_id
+            description: Reference to the vendor for this transaction.
+          - name: _fiventran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+      - name: vendor
+        description: Table containing all vendor records. A vendor is the seller from whom your company purchases any service or product.
+        columns:
+          - name: id
+            description: Unique identifier of the vendor.
+          - name: account_number
+            description: Name or number of the account associated with this vendor.
+          - name: active
+            description: Boolean indicating whether the vendor is active.
+          - name: balance
+            description: Specifies the open balance amount or the amount unpaid by the customer.
+          - name: company_name
+            description: The name of the company associated with the person or organization.
+          - name: created_at
+            description: Timestamp of the date when the vendor was created.
+          - name: currency_id
+            description: Reference to the currency in which all amounts associated with this vendor are expressed.
+          - name: display_name
+            description: The name of the vendor as displayed. Must be unique across all Vendor, Customer, and Employee objects.
+          - name: vendor_1099
+            description: Boolean indicating whether this vendor is an independent contractor; someone who is given a 1099-MISC form at the end of the year.

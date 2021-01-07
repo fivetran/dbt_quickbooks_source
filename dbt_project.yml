@@ -1,0 +1,69 @@
+name: 'quickbooks_source'
+version: '0.1.0'
+config-version: 2 
+
+models: 
+  quickbooks_source:
+    materialized: table
+    tmp:
+      materialized: view
+
+vars:
+  quickbooks_source:
+    account:              "{{ source('quickbooks','account') }}"
+    address:              "{{ source('quickbooks','address') }}"
+    bill_line:            "{{ source('quickbooks','bill_line') }}"
+    bill_linked_txn:      "{{ source('quickbooks','bill_linked_txn') }}"
+    bill_payment_line:    "{{ source('quickbooks','bill_payment_line') }}"
+    bill_payment:         "{{ source('quickbooks','bill_payment') }}"
+    bill:                 "{{ source('quickbooks','bill') }}"
+    credit_memo_line:     "{{ source('quickbooks','credit_memo_line') }}"
+    credit_memo:          "{{ source('quickbooks','credit_memo') }}"
+    currency:             "{{ source('quickbooks','currency') }}"
+    customer:             "{{ source('quickbooks','customer') }}"
+    deposit_line:         "{{ source('quickbooks','deposit_line') }}"
+    deposit:              "{{ source('quickbooks','deposit') }}"
+    invoice_line:         "{{ source('quickbooks','invoice_line') }}"
+    invoice:              "{{ source('quickbooks','invoice') }}"
+    item:                 "{{ source('quickbooks','item') }}"
+    journal_entry_line:   "{{ source('quickbooks','journal_entry_line') }}"
+    journal_entry:        "{{ source('quickbooks','journal_entry') }}"
+    payment_line:         "{{ source('quickbooks','payment_line') }}"
+    payment_method:       "{{ source('quickbooks','payment_method') }}"
+    payment:              "{{ source('quickbooks','payment') }}"
+    purchase_line:        "{{ source('quickbooks','purchase_line') }}"
+    purchase_order_line:  "{{ source('quickbooks','purchase_order_line') }}"
+    purchase_order:       "{{ source('quickbooks','purchase_order') }}"
+    purchase:             "{{ source('quickbooks','purchase') }}"
+    refund_receipt_line:  "{{ source('quickbooks','refund_receipt_line') }}"
+    refund_receipt:       "{{ source('quickbooks','refund_receipt') }}"
+    sales_receipt_line:   "{{ source('quickbooks','sales_receipt_line') }}"
+    sales_receipt:        "{{ source('quickbooks','sales_receipt') }}"
+    term:                 "{{ source('quickbooks','term') }}"
+    transfer:             "{{ source('quickbooks','transfer') }}"
+    vendor_credit_line:   "{{ source('quickbooks','vendor_credit_line') }}"
+    vendor_credit:        "{{ source('quickbooks','vendor_credit') }}"
+    vendor:               "{{ source('quickbooks','vendor') }}"
+    
+    #Need to consider if passthrough columns make sense upstream
+    #custom field allowed tables = CREDIT_MEMO, ESTIMATE, INVOICE, PURCHASE_ORDER, REFUND_RECEIPT, and SALES_RECEIPT
+
+    #Variables if your company utilizes the below parent and child transactional tables.
+    using_bill: True
+    using_bill_payment: True
+    using_credit_memo: False
+    using_deposit: True
+    using_invoice: False
+    using_journal_entry: True
+    using_payment: False
+    using_purchase: True
+    using_purchase_order: False
+    using_refund_receipt: True
+    using_sales_receipt: True
+    using_transfer: True
+    using_vendor_credit: True
+
+
+clean-targets:
+    - target
+    - dbt_modules
