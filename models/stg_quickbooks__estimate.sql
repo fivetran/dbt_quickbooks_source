@@ -7,7 +7,7 @@ with base as (
     from {{ ref('stg_quickbooks__estimate_tmp') }}
 
 ),
-
+ 
 fields as (
 
     select
@@ -40,6 +40,7 @@ final as (
         due_date,
         total_amount,
         transaction_date,
+        transaction_status,
         _fivetran_deleted
     from fields
 )

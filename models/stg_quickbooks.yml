@@ -364,6 +364,8 @@ models:
         description: Total amount of all line items included in the estimate.
       - name: transaction_date
         description: Timestamp of the date which the estimate occurred.
+      - name: transaction_status
+        description: Current status of the estimate.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -503,6 +505,15 @@ models:
         description: Timestamp of the date which the deposit transaction occurred.
       - name: customer_id
         description: Customer reference is associated with the invoice.
+      - name: billing_address_id,
+        description: Reference to the address where the invoice is billed.
+      - name: shipping_address_id
+        description: Reference to the address where the invoice is to be shipped.
+      - name: delivery_type
+        description: How the invoice is delivered to the customer.
+      - name: due_date
+        description: Timestamp of the date which the invoice payment is due.
+      - name: _fivetran_deleted
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 

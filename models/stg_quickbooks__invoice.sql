@@ -40,6 +40,10 @@ final as (
         exchange_rate,
         transaction_date,
         customer_id,
+        billing_address_id,
+        shipping_address_id,
+        delivery_type,
+        due_date,
         _fivetran_deleted
     from fields
 )
