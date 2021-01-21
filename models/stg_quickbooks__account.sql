@@ -34,7 +34,13 @@ final as (
         account_sub_type,
         classification,
         balance,
-        balance_with_sub_accounts
+        balance_with_sub_accounts,
+        active as is_active,
+        created_at,
+        currency_id,
+        description,
+        fully_qualified_name,
+        updated_at
 
     from base
 )

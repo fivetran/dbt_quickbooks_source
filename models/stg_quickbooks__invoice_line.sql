@@ -1,4 +1,4 @@
---To enable this model, set the using_invoice variable within your dbt_project.yml file to True.
+--To disable this model, set the using_invoice variable within your dbt_project.yml file to False.
 {{ config(enabled=var('using_invoice', True)) }}
 
 with base as (
@@ -36,9 +36,17 @@ final as (
         amount,
         sales_item_account_id,
         sales_item_item_id,
-        deposit_account_id,
-        deposit_class_id
-
+        sales_item_class_id,
+        sales_item_quantity,
+        sales_item_unit_price,
+        discount_account_id,
+        discount_class_id,
+        description,
+        quantity,
+        bundle_quantity,
+        bundle_id,
+        account_id,
+        item_id
     from fields
 )
 

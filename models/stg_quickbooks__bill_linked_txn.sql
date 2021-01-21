@@ -34,7 +34,6 @@ final as (
         bill_id,
         index,
         bill_payment_id
-        
     from fields
 )
 

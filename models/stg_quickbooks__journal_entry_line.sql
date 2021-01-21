@@ -36,10 +36,12 @@ final as (
         account_id,
         amount,
         customer_id,
+        department_id,
+        class_id,
         description,
+        billable_status,
         posting_type,
         vendor_id
-
     from fields
 )
 

@@ -37,6 +37,8 @@ final as (
         deposit_to_account_id,
         created_at,
         customer_id,
+        department_id,
+        class_id,
         currency_id,
         exchange_rate,
         transaction_date,

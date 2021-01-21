@@ -35,10 +35,12 @@ final as (
         index,
         amount,
         description,
+        discount_account_id,
         sales_item_account_id,
         sales_item_item_id,
+        sales_item_quantity,
+        sales_item_unit_price,
         sales_item_tax_code_id
-
     from fields
 )
 

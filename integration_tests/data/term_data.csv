@@ -1,5 +1,0 @@
-id,_fivetran_synced,active,created_at,day_of_month_due,discount_day_of_month,discount_days,discount_percent,due_days,due_next_month_days,name,sync_token,type,updated_at
-2,2020-06-23 3:58:56,true,2020-03-25 19:24:40,,,0,,15,,44c5ecf2faecfc88764ba0b40cb7f371,0,STANDARD,2020-03-25 19:24:40
-4,2020-06-23 3:58:56,true,2020-03-25 19:24:40,,,0,,60,,8ed5ef9c813d60beb8f6109f237de66f,0,STANDARD,2020-03-25 19:24:40
-3,2020-06-23 3:58:56,true,2020-03-25 19:24:40,,,0,,30,,f0b1421921a9f718d9729109fd1a6df5,0,STANDARD,2020-03-25 19:24:40
-1,2020-06-23 3:58:56,true,2020-03-25 19:24:40,,,0,,0,,f82594a8e60564fc95b9d69c2a0ec254,0,STANDARD,2020-03-25 19:24:40

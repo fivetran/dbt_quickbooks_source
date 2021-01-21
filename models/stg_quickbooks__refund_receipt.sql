@@ -34,14 +34,15 @@ final as (
         id as refund_id,
         balance,
         total_amount,
+        class_id,
         deposit_to_account_id,
         created_at,
+        department_id,
         customer_id,
         currency_id,
         exchange_rate,
         transaction_date,
         _fivetran_deleted
-
     from fields
 )
 

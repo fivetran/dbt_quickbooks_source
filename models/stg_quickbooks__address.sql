@@ -1,4 +1,3 @@
-
 with base as (
 
     select * 
@@ -35,7 +34,6 @@ final as (
         line_1 as address_1,
         line_2 as address_2,
         postal_code
-        
     from fields
 )
 

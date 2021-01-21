@@ -1,4 +1,3 @@
-
 with base as (
 
     select * 
@@ -35,10 +34,10 @@ final as (
         balance_with_jobs,
         bill_with_parent,
         company_name,
+        fully_qualified_name,
         currency_id,
         display_name,
         taxable
-        
     from fields
 )
 

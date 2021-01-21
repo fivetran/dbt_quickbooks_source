@@ -35,8 +35,11 @@ final as (
         index,
         amount,
         bill_id,
-        journal_entry_id
-        
+        deposit_id,
+        expense_id,
+        journal_entry_id,
+        linked_bill_payment_id,
+        vendor_credit_id
     from fields
 )
 

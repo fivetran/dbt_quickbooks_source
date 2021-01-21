@@ -18,21 +18,28 @@ vars:
     bill_payment_line:    "{{ ref('bill_payment_line_data') }}"
     bill_payment:         "{{ ref('bill_payment_data') }}"
     bill:                 "{{ ref('bill_data') }}"
-    currency:             "{{ ref('currency_data') }}"
+    credit_memo:          "{{ ref('credit_memo_data') }}"
+    credit_memo_line:     "{{ ref('credit_memo_line_data') }}"
     customer:             "{{ ref('customer_data') }}"
+    department:           "{{ ref('department_data') }}"
     deposit_line:         "{{ ref('deposit_line_data') }}"
     deposit:              "{{ ref('deposit_data') }}"
+    invoice:              "{{ ref('invoice_data') }}"
+    invoice_line:         "{{ ref('invoice_line_data') }}"
+    invoice_line_bundle:  "{{ ref('invoice_line_bundle_data') }}"
     item:                 "{{ ref('item_data') }}"
     journal_entry_line:   "{{ ref('journal_entry_line_data') }}"
     journal_entry:        "{{ ref('journal_entry_data') }}"
-    payment_method:       "{{ ref('payment_method_data') }}"
+    payment:              "{{ ref('payment_data') }}"
+    payment_line:         "{{ ref('payment_line_data') }}"
     purchase_line:        "{{ ref('purchase_line_data') }}"
     purchase:             "{{ ref('purchase_data') }}"
+    purchase_order:       "{{ ref('purchase_order_data') }}"
+    purchase_order_line:  "{{ ref('purchase_order_line_data') }}"
     refund_receipt_line:  "{{ ref('refund_receipt_line_data') }}"
     refund_receipt:       "{{ ref('refund_receipt_data') }}"
     sales_receipt_line:   "{{ ref('sales_receipt_line_data') }}"
     sales_receipt:        "{{ ref('sales_receipt_data') }}"
-    term:                 "{{ ref('term_data') }}"
     transfer:             "{{ ref('transfer_data') }}"    
     vendor_credit_line:   "{{ ref('vendor_credit_line_data') }}"
     vendor_credit:        "{{ ref('vendor_credit_data') }}"
@@ -48,21 +55,29 @@ seeds:
       bill_payment_line_data:
       bill_payment_data:
       bill_data:
-      currency_data:
+      credit_memo_data:
+      credit_memo_line_data:
       customer_data:
+      department_data:
+      department_data:
       deposit_line_data:
       deposit_data:
+      incoice_data:
+      invoice_line_data:
+      invoice_line_bundle_data:
       item_data:
       journal_entry_line_data:
       journal_entry_data:
-      payment_method_data:
+      payment_data:
+      payment_line_data:
       purchase_line_data:
       purchase_data:
+      purchase_order_data:
+      purchase_order_line_data:
       refund_receipt_line_data:
       refund_receipt_data:
       sales_receipt_line_data:
       sales_receipt_data:
-      term_data:
       transfer_data:      
       vendor_credit_line_data:
       vendor_credit_data:

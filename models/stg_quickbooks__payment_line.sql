@@ -1,4 +1,4 @@
---To enable this model, set the using_payment variable within your dbt_project.yml file to True.
+--To disable this model, set the using_payment variable within your dbt_project.yml file to False.
 {{ config(enabled=var('using_payment', True)) }}
 
 with base as (
@@ -38,7 +38,6 @@ final as (
         deposit_id,
         invoice_id,
         credit_memo_id
-
     from fields
 )
 

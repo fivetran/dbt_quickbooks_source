@@ -37,7 +37,6 @@ final as (
         to_account_id,
         transaction_date,
         _fivetran_deleted
-        
     from fields
 )
 

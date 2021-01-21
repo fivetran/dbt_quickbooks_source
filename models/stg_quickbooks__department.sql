@@ -1,8 +1,10 @@
+--To disable this model, set the using_department variable within your dbt_project.yml file to False.
+{{ config(enabled=var('using_department', True)) }}
 
 with base as (
 
     select * 
-    from {{ ref('stg_quickbooks__currency_tmp') }}
+    from {{ ref('stg_quickbooks__department_tmp') }}
 
 ),
 
@@ -18,8 +20,8 @@ fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__currency_tmp')),
-                staging_columns=get_currency_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__department_tmp')),
+                staging_columns=get_department_columns()
             )
         }}
         
@@ -29,11 +31,16 @@ fields as (
 final as (
     
     select 
-        id as currency_id,
-        name
-        
+        id as department_id,
+        active as is_active,
+        created_at,
+        updated_at,
+        fully_qualified_name,
+        name,
+        sub_department as is_sub_department,
+        parent_department_id
     from fields
 )
 
-select * 
+select *
 from final

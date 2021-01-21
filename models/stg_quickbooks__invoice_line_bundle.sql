@@ -1,8 +1,10 @@
+--To disable this model, set the using_invoice_bundle variable within your dbt_project.yml file to False.
+{{ config(enabled=var('using_invoice_bundle', True)) }}
 
 with base as (
 
     select * 
-    from {{ ref('stg_quickbooks__term_tmp') }}
+    from {{ ref('stg_quickbooks__invoice_line_bundle_tmp') }}
 
 ),
 
@@ -15,11 +17,10 @@ fields as (
         in the source (source_columns from dbt_salesforce_source/macros/).
         For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
         */
-
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__term_tmp')),
-                staging_columns=get_term_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__invoice_line_bundle_tmp')),
+                staging_columns=get_invoice_line_bundle_columns()
             )
         }}
         
@@ -29,16 +30,17 @@ fields as (
 final as (
     
     select 
-        id as term_id,
-        active as is_active,
-        created_at,
-        discount_days,
-        discount_percent,
-        due_days,
-        day_of_month_due,
-        name,
-        type
-
+        invoice_id,
+        index,
+        class_id,
+        description,
+        amount,
+        sales_item_item_id,
+        item_id,
+        quantity,
+        sales_item_quantity,
+        account_id,
+        unit_price
     from fields
 )
 

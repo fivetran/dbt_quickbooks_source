@@ -34,9 +34,10 @@ final as (
         deposit_id,
         index,
         amount,
+        description,
         deposit_account_id,
+        deposit_class_id,
         deposit_customer_id
-
     from fields
 )
 

@@ -27,20 +27,22 @@ fields as (
         
     from base
 ),
-
+ 
 final as (
     
     select 
         id as bill_id,
         balance,
         currency_id,
+        department_id,
         due_date as due_date_at,
         transaction_date,
         exchange_rate,
         payable_account_id,
+        total_amount,
+        vendor_id,
         private_note,
         _fivetran_deleted
-
     from fields
 )
 

@@ -41,7 +41,6 @@ final as (
         total_amount,
         transaction_date,
         _fivetran_deleted
-        
     from fields
 )
 

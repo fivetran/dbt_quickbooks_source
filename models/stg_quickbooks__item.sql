@@ -1,4 +1,3 @@
-
 with base as (
 
     select * 
@@ -33,12 +32,13 @@ final as (
         active as is_active,
         created_at,
         income_account_id,
+        asset_account_id,
+        expense_account_id,
         name,
         purchase_cost,
         taxable,
         type,
-        unit_price
-        
+        unit_price  
     from fields
 )
 

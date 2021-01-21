@@ -1,4 +1,4 @@
---To enable this model, set the using_purchase_order variable within your dbt_project.yml file to True.
+--To disable this model, set the using_purchase_order variable within your dbt_project.yml file to False.
 {{ config(enabled=var('using_purchase_order', True)) }}
 
 with base as (
@@ -38,7 +38,6 @@ final as (
         account_expense_customer_id,
         item_expense_item_id,
         item_expense_customer_id
-
     from fields
 )
 

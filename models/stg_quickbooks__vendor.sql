@@ -1,4 +1,3 @@
-
 with base as (
 
     select * 
@@ -38,7 +37,6 @@ final as (
         currency_id,
         display_name,
         vendor_1099 as is_vendor_1099
-        
     from fields
 )
 

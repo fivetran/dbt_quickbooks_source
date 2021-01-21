@@ -38,6 +38,7 @@ final as (
         exchange_rate,
         created_at,
         payable_account_id,
+        department_id,
         private_note,
         transaction_date,
         vendor_id,

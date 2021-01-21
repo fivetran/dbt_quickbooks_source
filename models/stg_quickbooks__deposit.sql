@@ -35,6 +35,7 @@ final as (
         account_id,
         created_at,
         currency_id,
+        department_id,
         total_amount,
         transaction_date,
         transaction_status,

@@ -43,19 +43,20 @@ tables upstream respectively.
 ...
 vars:
   quickbooks_source:
-    using_bill: True
-    using_bill_payment: True
-    using_credit_memo: False
-    using_deposit: True
-    using_invoice: False
-    using_journal_entry: True
-    using_payment: False
-    using_purchase: True
-    using_purchase_order: False
+    using_bill:           True
+    using_bill_payment:   True
+    using_credit_memo:    True
+    using_department:     True
+    using_deposit:        True
+    using_invoice:        True
+    using_journal_entry:  True
+    using_payment:        True
+    using_purchase:       True
+    using_purchase_order: True
     using_refund_receipt: True
-    using_sales_receipt: True
-    using_transfer: True
-    using_vendor_credit: True
+    using_sales_receipt:  True
+    using_transfer:       True
+    using_vendor_credit:  True
 ```
 
 ## Contributions

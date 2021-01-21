@@ -29,16 +29,20 @@ fields as (
 ),
 
 final as (
-    
+     
     select 
         id as purchase_id,
         account_id,
         created_at,
         currency_id,
         exchange_rate,
+        credit,
         total_amount,
         payment_type,
+        department_id,
+        customer_id,
         vendor_id,
+        transaction_date,
         _fivetran_deleted
     from fields
 )
