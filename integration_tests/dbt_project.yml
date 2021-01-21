@@ -24,9 +24,12 @@ vars:
     department:           "{{ ref('department_data') }}"
     deposit_line:         "{{ ref('deposit_line_data') }}"
     deposit:              "{{ ref('deposit_data') }}"
+    estimate:             "{{ ref('estimate_data') }}"
+    estimate_line:        "{{ ref('estimate_line_data') }}"
     invoice:              "{{ ref('invoice_data') }}"
     invoice_line:         "{{ ref('invoice_line_data') }}"
     invoice_line_bundle:  "{{ ref('invoice_line_bundle_data') }}"
+    invoice_linked_txn:   "{{ ref('invoice_linked_txn_data') }}"
     item:                 "{{ ref('item_data') }}"
     journal_entry_line:   "{{ ref('journal_entry_line_data') }}"
     journal_entry:        "{{ ref('journal_entry_data') }}"
@@ -62,9 +65,12 @@ seeds:
       department_data:
       deposit_line_data:
       deposit_data:
+      estimate_data:
+      estimate_line_data:
       incoice_data:
       invoice_line_data:
       invoice_line_bundle_data:
+      invoice_linked_txn_data:
       item_data:
       journal_entry_line_data:
       journal_entry_data:

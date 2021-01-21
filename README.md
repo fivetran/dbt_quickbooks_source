@@ -31,10 +31,10 @@ vars:
     quickbooks_schema: your_schema_name
 ```
 
-This package takes into consideration that not every QuickBooks user utilizes the same transactional tables. As such, each transactional object 
-(combination of parent and child transaction tables) is set up as a variable within the `dbt_project.yml` file to either be enabled or disabled. 
-See below for this packages default QuickBooks configuration of transactional objects. If your use case is different, you can simply change the 
-variable of the transactional object(s) within your own `dbt_project.yml` file to `true` or `false` which enables and disables the transactional 
+This package takes into consideration that not every QuickBooks account utilizes the same transactional tables. As such, each transactional object 
+(combination of parent and child transaction tables) is declared as a variable within the `dbt_project.yml` file to either be enabled or disabled. 
+See below for this package's default QuickBooks configuration of transactional objects. If your use case is different, you may simply change the 
+variable of the transactional object(s) within your own `dbt_project.yml` file as `true` or `false` to enable or disable the transactional 
 tables upstream respectively.
 
 ```yml
@@ -48,7 +48,9 @@ vars:
     using_credit_memo:    True
     using_department:     True
     using_deposit:        True
+    using_estimate:       True
     using_invoice:        True
+    using_invoice_bundle: True
     using_journal_entry:  True
     using_payment:        True
     using_purchase:       True

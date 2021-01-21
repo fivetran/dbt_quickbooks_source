@@ -15,7 +15,7 @@ models:
       - name: account_number
         description: User-defined account number intended to identify the account within the Chart of Accounts.
       - name: is_sub_account
-        description: Specifies whether this object represents a parent (false) or a subaccount (true).
+        description: Specifies whether this object represents a parent (false) or a sub_account (true).
       - name: parent_account_id
         description: User entered description for the account.
       - name: name
@@ -57,7 +57,7 @@ models:
       - name: city
         description: The city which the address is located.
       - name: country
-        description: The country which the addess is located.
+        description: The country which the address is located.
       - name: address_1
         description: The address_line_1 associated with the address.
       - name: address_2
@@ -110,7 +110,7 @@ models:
           - not_null
 
   - name: stg_quickbooks__bill_payment_line
-    descrition: Table containing inidvidual line items of a bill payment, which are recorded within the `stg_quickbooks__bill_payment` table.
+    descrition: Table containing individual line items of a bill payment, which are recorded within the `stg_quickbooks__bill_payment` table.
     columns:
       - name: bill_payment_id
         description: The unique identifier of the bill payment record.
@@ -158,7 +158,7 @@ models:
       - name: total_amount
         description: Indicates the total amount associated with this payment. This includes the total of all the payments from the payment line details.
       - name: transaction_date
-        description: Timestamp of the day the transaction tool place.
+        description: Timestamp of the day the transaction took place.
       - name: vendor_id
         description: Reference to the vendor for this transaction.
       - name: _fivetran_deleted
@@ -185,7 +185,7 @@ models:
       - name: due_date_at
         description: Timestamp of the date which the bill is due.
       - name: transaction_date
-        description: Timestamp of the date when the bill transaction occured.
+        description: Timestamp of the date when the bill transaction occurred.
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
       - name: payable_account_id
@@ -257,7 +257,7 @@ models:
           - unique
           - not_null
       - name: is_active
-        description: Boolean indicating whether is currently enabled for use by QuickBooks. 
+        description: Boolean indicating whether it is currently enabled for use by QuickBooks. 
       - name: balance
         description: Specifies the open balance amount or the amount unpaid by the customer.
       - name: balance_with_jobs
@@ -276,12 +276,12 @@ models:
         description: Boolean indicating whether the customer is taxable.
 
   - name: stg_quickbooks__department
-    description: Table containing records represeneting physical locations such as stores, and sales regions.
+    description: Table containing records representing physical locations such as stores, and sales regions.
     columns: 
       - name: department_id
         description: Unique identifier of the department.
       - name: is_active
-        description: Boolean indiciating whether the department is currently active.
+        description: Boolean indicating whether the department is currently active.
       - name: created_at
         description: Timestamp of the date when the department was created.
       - name: updated_at
@@ -334,11 +334,84 @@ models:
       - name: total_amount
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
       - name: transaction_date
-        description: Timestamp of the date which the deposit transaction occured.
+        description: Timestamp of the date which the deposit transaction occurred.
       - name: transaction_status
         description: Status of the deposit transaction.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__estimate
+    description: Table containing estimates. An estimate represents a proposal for a financial transaction from a business to a customer for goods or services proposed to be sold, including proposed pricing.
+    columns:
+      - name: estimate_id
+        description: Unique identifier of the estimate.
+        tests:
+          - unique
+          - not_null
+      - name: class_id
+        description: Reference to the class associated with the estimate record.
+      - name: created_at
+        description: Timestamp of the date when the estimate was created.
+      - name: currency_id
+        description: Reference to the currency which the estimate was provided.
+      - name: customer_id
+        description: Reference to the customer associated with the estimate.
+      - name: department_id
+        description: Reference to the department associated with the estimate.
+      - name: due_date
+        description: Timestamp of the date which the estimate is due.
+      - name: total_amount
+        description: Total amount of all line items included in the estimate.
+      - name: transaction_date
+        description: Timestamp of the date which the estimate occurred.
+      - name: _fivetran_deleted
+        description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__estimate_line
+    description: Table containing line item records of an estimate.
+    columns:
+      - name: estimate_id
+        description: Reference to the unique estimate record.
+        tests: 
+          - not_null
+      - name: index
+        description: Index count of records associated with the estimate line record.
+      - name: description
+        description: Description of the estimate line.
+      - name: discount_account_id
+        description: Reference to the account associated with the discount estimate line.
+      - name: discount_class_id
+        description: Reference to the class associated with the discount estimate line.
+      - name: sales_item_account_id
+        description: Reference to the account associated with the sales estimate line.
+      - name: sales_item_class_id
+        description: Reference to the class associated with the sales estimate line.
+      - name: sales_item_item_id
+        description: Reference to the item associated with a sales estimate line.
+      - name: sales_item_quantity
+        description: Quantity of the item for a sales estimate line.
+      - name: item_id
+        description: Reference to the item associated with the estimate line.
+      - name: quantity
+        description: Quantity of the item for the estimate line.
+      - name: account_id
+        description: Reference to the account associated with the estimate line.
+      - name: amount
+        description: Monetary amount of the estimate line.
+
+  - name: stg_quickbooks__invoice_linked_txn
+    description: Mapping table for invoices records to respective estimate and payment objects.
+    columns:
+      - name: invoice_id
+        description: Reference to the unique invoice.
+        tests:
+          - not_null
+      - name: payment_id
+        description: Reference to the respective payment object for the invoice.
+      - name: estimate_id
+        description: Reference to the respective estimate object for the invoice.
+      - name: index
+        description: Index count of records associated with the invoice mapping record.
 
   - name: stg_quickbooks__invoice_line
     description: Table containing individual records from invoices.
@@ -370,7 +443,7 @@ models:
       - name: bundle_quantity
         description: Quantity of items included in the invoice bundle.
       - name: bundle_id
-        description: Reference to the the bundle associated with the invoice line.
+        description: Reference to the bundle associated with the invoice line.
       - name: account_id
         description: Reference to the account associated with the invoice line.
       - name: item_id
@@ -427,9 +500,9 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date which the deposit transaction occured.
+        description: Timestamp of the date which the deposit transaction occurred.
       - name: customer_id
-        description: Customer reference in associated with the invoice.
+        description: Customer reference is associated with the invoice.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -555,7 +628,7 @@ models:
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: receivable_account_id
-        description: Identifies the account for a obtaining a receivable from this payment.
+        description: Identifies the account for obtaining a receivable from this payment.
       - name: deposit_to_account_id
         description: Identifies the account to be used for this payment.
       - name: exchange_rate
@@ -675,7 +748,7 @@ models:
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
   - name: stg_quickbooks__refund_receipt_line
-    description: Table containing individual line items of a refund transactions.
+    description: Table containing individual line items of a refund transaction.
     columns:
       - name: refund_id
         description: Unique identifier of the refund record.
@@ -732,7 +805,7 @@ models:
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
   - name: stg_quickbooks__sales_receipt_line
-    description: Table containing individual line items of a sales transactions.
+    description: Table containing individual line items of a sales transaction.
     columns:
       - name: sales_receipt_id
         description: Unique identifier of the sales record.
@@ -772,7 +845,7 @@ models:
       - name: deposit_to_account_id
         description: Account to which payment money is deposited.
       - name: created_at
-        description: Timestamp of the date when the sales was created.
+        description: Timestamp of the date when the sale was created.
       - name: customer_id
         description: Customer id of the sold to customer.
       - name: currency_id
@@ -792,7 +865,7 @@ models:
     description: Table containing records of transfers. A Transfer represents a transaction where funds are moved between two accounts from the company's QuickBooks chart of accounts.
     columns:
       - name: transfer_id
-        description: Unique identified of the transfer.
+        description: Unique identifier of the transfer.
         tests:
           - unique
           - not_null
