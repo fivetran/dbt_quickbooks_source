@@ -18,6 +18,8 @@ vars:
     bill_payment_line:    "{{ ref('bill_payment_line_data') }}"
     bill_payment:         "{{ ref('bill_payment_data') }}"
     bill:                 "{{ ref('bill_data') }}"
+    bundle_item:          "{{ ref('bundle_item_data') }}"
+    bundle:               "{{ ref('bundle_data') }}"
     credit_memo:          "{{ ref('credit_memo_data') }}"
     credit_memo_line:     "{{ ref('credit_memo_line_data') }}"
     customer:             "{{ ref('customer_data') }}"
@@ -58,6 +60,8 @@ seeds:
       bill_payment_line_data:
       bill_payment_data:
       bill_data:
+      bundle_item_data:
+      bundle_data:
       credit_memo_data:
       credit_memo_line_data:
       customer_data:

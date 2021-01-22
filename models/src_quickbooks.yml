@@ -182,6 +182,30 @@ sources:
           - name: _fivetran_deleted
             description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+      - name: bundle_item
+        description: Mapping table containing all bundle and item combinations
+        columns:
+          - name: bundle_id
+            description: Reference to the bundle table.
+          - name: item_id
+            description: Reference to the item which the bundle is mapped.
+          - name: item_quantity
+            description: Total item quantity associated with the bunlde and item mapping.
+
+      - name: bundle
+        description: Table containing all bundles possible to be used within an invoice.
+        columns:
+          - name: id
+            description: Unique identifier of the bundle.
+          - name: created_at
+            description: Timestamp of the date which the bundle was created.
+          - name: active
+            description: Boolean indicating whether the bundle is active.
+          - name: fully_qualified_name
+            description: Full name given to the bundle.
+          - name: updated_at
+            description: Timestamp of the date when the bundle was last updated.
+
       - name: credit_memo_line
         description: Table containing individual records of credit memos.
         columns:

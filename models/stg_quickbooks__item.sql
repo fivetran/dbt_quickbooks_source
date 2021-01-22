@@ -38,7 +38,9 @@ final as (
         purchase_cost,
         taxable,
         type,
-        unit_price  
+        unit_price,
+        inventory_start_date,
+        parent_item_id
     from fields
 )
 
