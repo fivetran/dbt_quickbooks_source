@@ -25,7 +25,7 @@ account as (
 final as (
 
     select
-        id as account_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
         account_number,
         sub_account as is_sub_account,
         parent_account_id,

@@ -28,10 +28,11 @@ fields as (
 final as (
     
     select 
-        id as vendor_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
         account_number,
         active as is_active,
         balance,
+        billing_address_id,
         company_name,
         created_at,
         currency_id,

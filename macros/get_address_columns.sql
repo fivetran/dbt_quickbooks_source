@@ -5,7 +5,7 @@
     {"name": "city", "datatype": dbt_utils.type_string()},
     {"name": "country", "datatype": dbt_utils.type_string()},
     {"name": "country_sub_division_code", "datatype": dbt_utils.type_string()},
-    {"name": "id", "datatype": dbt_utils.type_string()},
+    {"name": "id", "datatype": dbt_utils.type_int()},
     {"name": "latitude", "datatype": dbt_utils.type_string()},
     {"name": "line_1", "datatype": dbt_utils.type_string()},
     {"name": "line_2", "datatype": dbt_utils.type_string()},

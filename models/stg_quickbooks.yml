@@ -489,7 +489,7 @@ models:
         description: Unique identifier of the invoice record.
         tests:
           - not_null
-      - name: index
+      - name: invoice_line_index
         description: Index count of records associated with the invoice bundle line.
       - name: class_id
         description: Reference to the class associated with the invoice line bundle.
@@ -534,7 +534,7 @@ models:
         description: Timestamp of the date which the deposit transaction occurred.
       - name: customer_id
         description: Customer reference is associated with the invoice.
-      - name: billing_address_id,
+      - name: billing_address_id
         description: Reference to the address where the invoice is billed.
       - name: shipping_address_id
         description: Reference to the address where the invoice is to be shipped.
@@ -566,6 +566,10 @@ models:
         description: Reference to the expense account used to pay the vendor for this item.
       - name: name
         description: Full name of the item.
+      - name: inventory_start_date
+        description: Timestamp of the date the item was started as inventory.
+      - name: parent_item_id
+        description: Reference to the parent item.
       - name: purchase_cost
         description: Amount paid when buying or ordering the item, as expressed in the home currency.
       - name: taxable
@@ -711,8 +715,6 @@ models:
     columns:
       - name: purchase_order_id
         description: Unique identifier of the purchase order record.
-        tests:
-          - not_null
       - name: index
         description: Index count of records associated with the purchase order record.
       - name: amount
@@ -731,9 +733,6 @@ models:
     columns: 
       - name: purchase_order_id
         description: Unique identifier of the purchase order.
-        tests:
-          - unique
-          - not_null
       - name: total_amount
         description: Indicates the total amount of the transaction.
       - name: currency_id
@@ -997,6 +996,8 @@ models:
           - not_null
       - name: account_number
         description: Name or number of the account associated with this vendor.
+      - name: billing_address_id
+        description: Address reference for the billing address of the vendor.
       - name: is_active
         description: Boolean indicating whether the vendor is active.
       - name: balance

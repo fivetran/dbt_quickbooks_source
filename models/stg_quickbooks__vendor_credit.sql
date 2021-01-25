@@ -41,7 +41,7 @@ final as (
         department_id,
         private_note,
         transaction_date,
-        vendor_id,
+        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
         _fivetran_deleted
     from fields
 )

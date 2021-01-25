@@ -40,7 +40,7 @@ final as (
         exchange_rate,
         payable_account_id,
         total_amount,
-        vendor_id,
+        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
         private_note,
         _fivetran_deleted
     from fields

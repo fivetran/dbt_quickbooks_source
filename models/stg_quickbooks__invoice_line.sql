@@ -35,7 +35,7 @@ final as (
         index,
         amount,
         sales_item_account_id,
-        sales_item_item_id,
+        cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
         sales_item_class_id,
         sales_item_quantity,
         sales_item_unit_price,
@@ -45,7 +45,7 @@ final as (
         quantity,
         bundle_quantity,
         bundle_id,
-        account_id,
+        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }} ) as account_id,
         item_id
     from fields
 )

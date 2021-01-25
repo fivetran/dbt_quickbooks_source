@@ -33,7 +33,7 @@ final as (
     select 
         journal_entry_id,
         index,
-        account_id,
+        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
         amount,
         customer_id,
         department_id,
@@ -41,7 +41,7 @@ final as (
         description,
         billable_status,
         posting_type,
-        vendor_id
+        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
     from fields
 )
 

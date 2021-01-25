@@ -35,7 +35,7 @@ final as (
         index,
         amount,
         description,
-        deposit_account_id,
+        cast(deposit_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_account_id,
         deposit_class_id,
         deposit_customer_id
     from fields

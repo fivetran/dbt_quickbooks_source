@@ -37,8 +37,6 @@ vars:
     payment_line:         "{{ source('quickbooks','payment_line') }}"
     payment:              "{{ source('quickbooks','payment') }}"
     purchase_line:        "{{ source('quickbooks','purchase_line') }}"
-    purchase_order_line:  "{{ source('quickbooks','purchase_order_line') }}"
-    purchase_order:       "{{ source('quickbooks','purchase_order') }}"
     purchase:             "{{ source('quickbooks','purchase') }}"
     refund_receipt_line:  "{{ source('quickbooks','refund_receipt_line') }}"
     refund_receipt:       "{{ source('quickbooks','refund_receipt') }}"

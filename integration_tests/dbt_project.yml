@@ -39,8 +39,6 @@ vars:
     payment_line:         "{{ ref('payment_line_data') }}"
     purchase_line:        "{{ ref('purchase_line_data') }}"
     purchase:             "{{ ref('purchase_data') }}"
-    purchase_order:       "{{ ref('purchase_order_data') }}"
-    purchase_order_line:  "{{ ref('purchase_order_line_data') }}"
     refund_receipt_line:  "{{ ref('refund_receipt_line_data') }}"
     refund_receipt:       "{{ ref('refund_receipt_data') }}"
     sales_receipt_line:   "{{ ref('sales_receipt_line_data') }}"
@@ -82,8 +80,6 @@ seeds:
       payment_line_data:
       purchase_line_data:
       purchase_data:
-      purchase_order_data:
-      purchase_order_line_data:
       refund_receipt_line_data:
       refund_receipt_data:
       sales_receipt_line_data:

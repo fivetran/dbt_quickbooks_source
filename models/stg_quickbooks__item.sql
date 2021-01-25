@@ -28,12 +28,12 @@ fields as (
 final as (
     
     select 
-        id as item_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_id,
         active as is_active,
         created_at,
-        income_account_id,
-        asset_account_id,
-        expense_account_id,
+        cast(income_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as income_account_id,
+        cast(asset_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as asset_account_id,
+        cast(expense_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as expense_account_id,
         name,
         purchase_cost,
         taxable,

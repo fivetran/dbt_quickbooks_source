@@ -489,7 +489,7 @@ sources:
             description: Timestamp of the date which the deposit transaction occurred.
           - name: customer_id
             description: Customer reference associated with the invoice.
-          - name: billing_address_id,
+          - name: billing_address_id
             description: Reference to the address where the invoice is billed.
           - name: shipping_address_id
             description: Reference to the address where the invoice is to be shipped.
@@ -515,6 +515,10 @@ sources:
             description: Reference to the Inventory Asset account that tracks the current value of the inventory.
           - name: expense_account_id
             description: Reference to the expense account used to pay the vendor for this item.
+          - name: inventory_start_date
+            description: Timestamp of the date the item was started as inventory.
+          - name: parent_item_id
+            description: Reference to the parent item.
           - name: name
             description: Full name of the item.
           - name: purchase_cost
@@ -899,6 +903,8 @@ sources:
             description: Unique identifier of the vendor.
           - name: account_number
             description: Name or number of the account associated with this vendor.
+          - name: billing_address_id
+            description: Address reference for the billing address of the vendor.
           - name: active
             description: Boolean indicating whether the vendor is active.
           - name: balance

@@ -37,7 +37,7 @@ final as (
         description,
         discount_account_id,
         sales_item_account_id,
-        sales_item_item_id,
+        cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
         sales_item_tax_code_id,
         sales_item_quantity,
         sales_item_unit_price 
