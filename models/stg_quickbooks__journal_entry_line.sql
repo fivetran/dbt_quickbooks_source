@@ -41,7 +41,7 @@ final as (
         description,
         billable_status,
         posting_type,
-        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
+        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id
     from fields
 )
 
