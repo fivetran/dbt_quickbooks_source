@@ -36,7 +36,7 @@ final as (
         amount,
         journal_entry_id,
         deposit_id,
-        invoice_id,
+        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
         credit_memo_id
     from fields
 )
