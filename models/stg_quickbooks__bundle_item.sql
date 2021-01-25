@@ -30,8 +30,8 @@ fields as (
 final as (
     
     select 
-        bundle_id,
-        item_id,
+        cast(bundle_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bundle_id,
+        cast(item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_id,
         item_quantity
     from fields
 )

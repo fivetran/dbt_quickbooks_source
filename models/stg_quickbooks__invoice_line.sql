@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        invoice_id,
+        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
         index,
         amount,
-        sales_item_account_id,
+        cast(sales_item_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_account_id,
         cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
         sales_item_class_id,
         sales_item_quantity,
@@ -44,9 +44,9 @@ final as (
         description,
         quantity,
         bundle_quantity,
-        bundle_id,
+        cast(bundle_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bundle_id,
         cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }} ) as account_id,
-        item_id
+        cast(item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_id
     from fields
 )
 

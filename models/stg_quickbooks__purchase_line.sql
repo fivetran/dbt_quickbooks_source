@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        purchase_id,
+        cast(purchase_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as purchase_id,
         index,
         cast(account_expense_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_expense_account_id,
         account_expense_class_id,

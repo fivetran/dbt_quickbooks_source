@@ -31,8 +31,8 @@ fields as (
 final as (
      
     select 
-        id as purchase_id,
-        account_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as purchase_id,
+        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
         created_at,
         currency_id,
         exchange_rate,

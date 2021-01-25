@@ -31,13 +31,13 @@ fields as (
 final as (
     
     select 
-        id as vendor_credit_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_credit_id,
         balance,
         total_amount,
         currency_id,
         exchange_rate,
         created_at,
-        payable_account_id,
+        cast(payable_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as payable_account_id,
         department_id,
         private_note,
         transaction_date,

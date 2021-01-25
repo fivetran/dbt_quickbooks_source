@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        payment_id,
+        cast(payment_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as payment_id,
         index,
         amount,
         journal_entry_id,

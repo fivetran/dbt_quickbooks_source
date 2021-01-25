@@ -40,7 +40,7 @@ final as (
         type,
         unit_price,
         inventory_start_date,
-        parent_item_id
+        cast(parent_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as parent_item_id
     from fields
 )
 

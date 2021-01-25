@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        id as transfer_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as transfer_id,
         amount,
-        from_account_id,
-        to_account_id,
+        cast(from_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as from_account_id,
+        cast(to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as to_account_id,
         transaction_date,
         _fivetran_deleted
     from fields

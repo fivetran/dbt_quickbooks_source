@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        estimate_id,
+        cast(estimate_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as estimate_id,
         index,
         description,
         discount_account_id,

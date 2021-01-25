@@ -31,9 +31,9 @@ fields as (
 final as (
     
     select 
-        bill_id,
+        cast(bill_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_id,
         index,
-        bill_payment_id
+        cast(bill_payment_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_payment_id
     from fields
 )
 

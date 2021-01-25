@@ -31,12 +31,12 @@ fields as (
 final as (
     
     select 
-        sales_receipt_id,
+        cast(sales_receipt_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_receipt_id,
         index,
         amount,
         description,
-        discount_account_id,
-        sales_item_account_id,
+        cast(discount_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as discount_account_id,
+        cast(sales_item_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_account_id,
         cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
         sales_item_tax_code_id,
         sales_item_quantity,

@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        vendor_credit_id,
+        cast(vendor_credit_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_credit_id,
         index,
         account_expense_customer_id,
         cast(account_expense_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_expense_account_id,

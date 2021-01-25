@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        id as invoice_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
         balance,
         total_amount,
         currency_id,

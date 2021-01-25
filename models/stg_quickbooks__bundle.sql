@@ -30,7 +30,7 @@ fields as (
 final as (
     
     select 
-        id as bundle_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bundle_id,
         created_at,
         active as is_active,
         fully_qualified_name,

@@ -31,11 +31,11 @@ fields as (
 final as (
     
     select 
-        id as refund_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as refund_id,
         balance,
         total_amount,
         class_id,
-        deposit_to_account_id,
+        cast(deposit_to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_to_account_id,
         created_at,
         department_id,
         customer_id,

@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        id as sales_receipt_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_receipt_id,
         balance,
         total_amount,
-        deposit_to_account_id,
+        cast(deposit_to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_to_account_id,
         created_at,
         customer_id,
         department_id,

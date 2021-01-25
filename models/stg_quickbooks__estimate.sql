@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        id as estimate_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as estimate_id,
         class_id,
         created_at,
         currency_id,

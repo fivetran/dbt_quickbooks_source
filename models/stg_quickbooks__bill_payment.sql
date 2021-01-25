@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        id as bill_payment_id,
-        check_bank_account_id,
+        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_payment_id,
+        cast(check_bank_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as check_bank_account_id,
         check_print_status,
-        credit_card_account_id,
+        cast(credit_card_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as credit_card_account_id,
         exchange_rate,
         currency_id,
         department_id,

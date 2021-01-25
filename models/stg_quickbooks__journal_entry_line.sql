@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        journal_entry_id,
+        cast(journal_entry_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as journal_entry_id,
         index,
         cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
         amount,
