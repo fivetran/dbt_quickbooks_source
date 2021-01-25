@@ -34,7 +34,7 @@ final as (
         cast(bill_payment_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_payment_id,
         index,
         amount,
-        bill_id,
+        cast(bill_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_id,
         deposit_id,
         expense_id,
         journal_entry_id,
