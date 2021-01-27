@@ -40,8 +40,7 @@ This package takes into consideration that not every QuickBooks account utilizes
 ...
 vars:
   quickbooks_source:
-    using_bill:           false         #disable if you don't have bils in Quickbooks
-    using_bill_payment:   false         #disable if you don't have bill payments in Quickbooks
+    using_bill:           false         #disable if you don't have bils or bill payments in Quickbooks
     using_credit_memo:    false         #disable if you don't have credit memos in Quickbooks
     using_department:     false         #disable if you don't have departments in Quickbooks
     using_deposit:        false         #disable if you don't have deposits in Quickbooks
@@ -50,10 +49,7 @@ vars:
     using_invoice_bundle: false         #disable if you don't have invoice bundles in Quickbooks
     using_journal_entry:  false         #disable if you don't have journal entries in Quickbooks
     using_payment:        false         #disable if you don't have payments in Quickbooks
-    using_purchase:       false         #disable if you don't have purchases in Quickbooks
-    using_purchase_order: false         #disable if you don't have purchase orders in Quickbooks
     using_refund_receipt: false         #disable if you don't have refund receipts in Quickbooks
-    using_sales_receipt:  false         #disable if you don't have sales receipts in Quickbooks
     using_transfer:       false         #disable if you don't have transfers in Quickbooks
     using_vendor_credit:  false         #disable if you don't have vendor credits in Quickbooks
 ```
