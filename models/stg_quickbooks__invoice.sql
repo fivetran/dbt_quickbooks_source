@@ -33,7 +33,7 @@ final as (
     select 
         cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
         balance,
-        doc_number,
+        cast(doc_number as {{ 'varchar(25)' if target.name == 'redshift' else 'string' }} ) as doc_number,
         total_amount,
         currency_id,
         department_id,

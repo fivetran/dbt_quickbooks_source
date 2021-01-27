@@ -35,7 +35,7 @@ final as (
         adjustment,
         created_at,
         currency_id,
-        doc_number,
+        cast(doc_number as {{ 'varchar(25)' if target.name == 'redshift' else 'string' }} ) as doc_number,
         exchange_rate,
         private_note,
         total_amount,
