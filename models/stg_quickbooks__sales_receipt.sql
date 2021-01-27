@@ -30,6 +30,7 @@ final as (
     select 
         cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_receipt_id,
         balance,
+        doc_number,
         total_amount,
         cast(deposit_to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_to_account_id,
         created_at,

@@ -37,7 +37,10 @@ final as (
         fully_qualified_name,
         currency_id,
         display_name,
+        website,
         taxable
+
+
     from fields
 )
 

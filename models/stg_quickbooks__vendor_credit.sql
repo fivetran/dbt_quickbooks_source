@@ -33,6 +33,7 @@ final as (
     select 
         cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_credit_id,
         balance,
+        doc_number,
         total_amount,
         currency_id,
         exchange_rate,

@@ -33,6 +33,7 @@ final as (
     select 
         cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bill_id,
         balance,
+        doc_number,
         currency_id,
         department_id,
         due_date as due_date_at,

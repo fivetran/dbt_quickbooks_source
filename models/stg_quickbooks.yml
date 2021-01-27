@@ -180,6 +180,8 @@ models:
         description: Reference to the department the bill is linked with.
       - name: total_amount
         description: Total monetary amount of all bill line items.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: vendor_id
         description: Reference to the vendor the bill is linked with.
       - name: due_date_at
@@ -262,6 +264,8 @@ models:
         description: The balance reflecting any payments made against the transaction.
       - name: total_amount
         description: Indicates the total amount of the transaction.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: class_id
@@ -301,6 +305,8 @@ models:
         description: Reference to the currency in which all amounts associated with this customer are expressed.
       - name: display_name
         description: Name of the customer which is displayed.
+      - name: website
+        description: Website url associated with the vendor.
       - name: taxable
         description: Boolean indicating whether the customer is taxable.
 
@@ -522,6 +528,8 @@ models:
         description: The balance reflecting any payments made against the transaction.
       - name: total_amount
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed. 
       - name: department_id
@@ -710,46 +718,6 @@ models:
       - name: description
         description: User defined description of the purchase line.
 
-  - name: stg_quickbooks__purchase_order_line
-    description: Table containing individual records within a purchase order.
-    columns:
-      - name: purchase_order_id
-        description: Unique identifier of the purchase order record.
-      - name: index
-        description: Index count of records associated with the purchase order record.
-      - name: amount
-        description: Monetary amount of the purchase order.
-      - name: account_expense_account_id
-        description: Account reference for the purchase order expense.
-      - name: account_expense_customer_id
-        description: Customer reference for the purchase order expense.
-      - name: item_expense_item_id
-        description: Item reference for the item on the purchase order.
-      - name: item_expense_customer_id
-        description: Customer reference for the item on the purchase order.
-
-  - name: stg_quickbooks__purchase_order
-    description: Table containing a record of all purchase orders. A purchase order is a non-posting transaction representing a request to purchase goods or services from a third party.
-    columns: 
-      - name: purchase_order_id
-        description: Unique identifier of the purchase order.
-      - name: total_amount
-        description: Indicates the total amount of the transaction.
-      - name: currency_id
-        description: Reference to the currency in which all amounts on the associated transaction are expressed.
-      - name: payable_account_id
-        description: Reference to the account associated with the purchase order.
-      - name: exchange_rate
-        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
-      - name: transaction_date
-        description: Timestamp of the date when the purchase occurred.
-      - name: transaction_date
-        description: Timestamp of the date the purchase order occurred.
-      - name: vendor_id
-        description: Reference to the vendor associated with the purchase order.
-      - name: _fivetran_deleted
-        description: Boolean created by Fivetran to indicate whether the record has been deleted.
-
   - name: stg_quickbooks__purchase
     description: Table containing records of purchase expenses.
     columns:
@@ -762,6 +730,8 @@ models:
         description: Specifies the account reference to which this purchase is applied based on the PaymentType.
       - name: created_at
         description: Timestamp of the date when the purchase was created.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: exchange_rate
@@ -824,6 +794,8 @@ models:
         description: The balance reflecting any payments made against the transaction.
       - name: total_amount
         description: Indicates the total amount of the transaction.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: class_id
         description: Reference to the class which the refund receipt is associated.
       - name: department_id
@@ -881,6 +853,8 @@ models:
         description: The balance reflecting any payments made against the transaction.
       - name: total_amount
         description: Indicates the total amount of the transaction. 
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: deposit_to_account_id
         description: Account to which payment money is deposited.
       - name: created_at
@@ -967,6 +941,8 @@ models:
         description: The current amount of the vendor credit reflecting any adjustments to the original credit amount.
       - name: total_amount
         description: Indicates the total credit amount, determined by taking the total of all all lines of the transaction.
+      - name: doc_number
+        description: Reference number for the transaction.
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: exchange_rate
@@ -1010,5 +986,7 @@ models:
         description: Reference to the currency in which all amounts associated with this vendor are expressed.
       - name: display_name
         description: The name of the vendor as displayed. Must be unique across all Vendor, Customer, and Employee objects.
+      - name: web_url
+        description: Website url associated with the vendor.
       - name: is_vendor_1099
         description: Boolean indicating whether this vendor is an independent contractor; someone who is given a 1099-MISC form at the end of the year.
