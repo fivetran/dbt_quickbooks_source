@@ -37,6 +37,7 @@ final as (
         created_at,
         currency_id,
         display_name,
+        web_url,
         vendor_1099 as is_vendor_1099
     from fields
 )
