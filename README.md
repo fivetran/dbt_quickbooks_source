@@ -10,7 +10,7 @@ This package enriches your Fivetran data by doing the following:
 
 ## Models
 
-This package contains staging models, designed to work simultaneously with our [quickbooks modeling package](https://github.com/fivetran/dbt_quickbooks). The staging models name columns consistently across all packages:
+This package contains staging models, designed to work simultaneously with our [QuickBooks Modeling Package](https://github.com/fivetran/dbt_quickbooks). The staging models name columns consistently across all packages:
 
 * Boolean fields are prefixed with `is_` or `has_`
 * Timestamps are appended with `_at`
