@@ -40,7 +40,7 @@ final as (
         type,
         unit_price,
         inventory_start_date,
-        cast(parent_item_id as {{ dbt_utils.type_int() }}) as parent_item_id,
+        cast(parent_item_id as {{ dbt_utils.type_int() }}) as parent_item_id
     from fields
 )
 
