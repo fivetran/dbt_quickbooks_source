@@ -26,7 +26,7 @@ final as (
 
     select
         cast(id as {{ dbt_utils.type_int() }}) as account_id,
-        account_number,
+        cast(account_number as {{ dbt_utils.type_string() }}) as account_number,
         sub_account as is_sub_account,
         parent_account_id,
         name,
