@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as estimate_id,
+        cast(id as {{ dbt_utils.type_int() }}) as estimate_id,
         class_id,
         created_at,
         currency_id,

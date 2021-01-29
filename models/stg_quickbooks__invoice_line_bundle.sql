@@ -30,16 +30,16 @@ fields as (
 final as (
     
     select 
-        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
+        cast(invoice_id as {{ dbt_utils.type_int() }}) as invoice_id,
         index,
         class_id,
         description,
         amount,
-        cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
-        cast(item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_id,
+        cast(sales_item_item_id as {{ dbt_utils.type_int() }}) as sales_item_item_id,
+        cast(item_id as {{ dbt_utils.type_int() }}) as item_id,
         quantity,
         sales_item_quantity,
-        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
+        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
         unit_price,
         invoice_line_index
     from fields

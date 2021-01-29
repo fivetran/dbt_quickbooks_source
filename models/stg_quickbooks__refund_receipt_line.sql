@@ -31,13 +31,13 @@ fields as (
 final as (
     
     select 
-        cast(refund_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as refund_id,
+        cast(refund_id as {{ dbt_utils.type_int() }}) as refund_id,
         index,
         amount,
         description,
-        cast(discount_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as discount_account_id,
-        cast(sales_item_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_account_id,
-        cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
+        cast(discount_account_id as {{ dbt_utils.type_int() }}) as discount_account_id,
+        cast(sales_item_account_id as {{ dbt_utils.type_int() }}) as sales_item_account_id,
+        cast(sales_item_item_id as {{ dbt_utils.type_int() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
         sales_item_tax_code_id

@@ -31,9 +31,9 @@ fields as (
 final as (
     
     select 
-        cast(journal_entry_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as journal_entry_id,
+        cast(journal_entry_id as {{ dbt_utils.type_int() }}) as journal_entry_id,
         index,
-        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
+        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
         amount,
         customer_id,
         department_id,
@@ -41,7 +41,7 @@ final as (
         description,
         billable_status,
         posting_type,
-        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id
+        cast(vendor_id as {{ dbt_utils.type_int() }}) as vendor_id
     from fields
 )
 

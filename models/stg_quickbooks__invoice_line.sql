@@ -31,11 +31,11 @@ fields as (
 final as (
     
     select 
-        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
+        cast(invoice_id as {{ dbt_utils.type_int() }}) as invoice_id,
         index,
         amount,
-        cast(sales_item_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_account_id,
-        cast(sales_item_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_item_item_id,
+        cast(sales_item_account_id as {{ dbt_utils.type_int() }}) as sales_item_account_id,
+        cast(sales_item_item_id as {{ dbt_utils.type_int() }}) as sales_item_item_id,
         sales_item_class_id,
         sales_item_quantity,
         sales_item_unit_price,

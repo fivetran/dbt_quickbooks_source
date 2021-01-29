@@ -31,12 +31,12 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as payment_id,
+        cast(id as {{ dbt_utils.type_int() }}) as payment_id,
         unapplied_amount,
         total_amount,
         currency_id,
-        cast(receivable_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as receivable_account_id,
-        cast(deposit_to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_to_account_id,
+        cast(receivable_account_id as {{ dbt_utils.type_int() }}) as receivable_account_id,
+        cast(deposit_to_account_id as {{ dbt_utils.type_int() }}) as deposit_to_account_id,
         exchange_rate,
         transaction_date,
         customer_id,

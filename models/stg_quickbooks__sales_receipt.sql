@@ -28,11 +28,11 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as sales_receipt_id,
+        cast(id as {{ dbt_utils.type_int() }}) as sales_receipt_id,
         balance,
-        cast(doc_number as {{ 'varchar(25)' if target.name == 'redshift' else 'string' }} ) as doc_number,
+        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
         total_amount,
-        cast(deposit_to_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_to_account_id,
+        cast(deposit_to_account_id as {{ dbt_utils.type_int() }}) as deposit_to_account_id,
         created_at,
         customer_id,
         department_id,

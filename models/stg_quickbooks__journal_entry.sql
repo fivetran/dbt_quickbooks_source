@@ -31,11 +31,11 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as journal_entry_id,
+        cast(id as {{ dbt_utils.type_int() }}) as journal_entry_id,
         adjustment,
         created_at,
         currency_id,
-        cast(doc_number as {{ 'varchar(25)' if target.name == 'redshift' else 'string' }} ) as doc_number,
+        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
         exchange_rate,
         private_note,
         total_amount,

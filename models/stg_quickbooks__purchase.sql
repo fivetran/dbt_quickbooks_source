@@ -28,10 +28,10 @@ fields as (
 final as (
      
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as purchase_id,
-        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
+        cast(id as {{ dbt_utils.type_int() }}) as purchase_id,
+        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
         created_at,
-        cast(doc_number as {{ 'varchar(25)' if target.name == 'redshift' else 'string' }} ) as doc_number,
+        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
         currency_id,
         exchange_rate,
         credit,
@@ -39,7 +39,7 @@ final as (
         payment_type,
         department_id,
         customer_id,
-        cast(vendor_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
+        cast(vendor_id as {{ dbt_utils.type_int() }}) as vendor_id,
         transaction_date,
         _fivetran_deleted
     from fields

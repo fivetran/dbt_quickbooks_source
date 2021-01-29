@@ -31,12 +31,12 @@ fields as (
 final as (
     
     select 
-        cast(payment_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as payment_id,
+        cast(payment_id as {{ dbt_utils.type_int() }}) as payment_id,
         index,
         amount,
         journal_entry_id,
         deposit_id,
-        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
+        cast(invoice_id as {{ dbt_utils.type_int() }}) as invoice_id,
         credit_memo_id
     from fields
 )

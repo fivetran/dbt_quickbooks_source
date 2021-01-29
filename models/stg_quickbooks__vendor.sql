@@ -28,7 +28,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as vendor_id,
+        cast(id as {{ dbt_utils.type_int() }}) as vendor_id,
         account_number,
         active as is_active,
         balance,

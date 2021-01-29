@@ -28,13 +28,13 @@ fields as (
 final as (
     
     select 
-        cast(purchase_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as purchase_id,
+        cast(purchase_id as {{ dbt_utils.type_int() }}) as purchase_id,
         index,
-        cast(account_expense_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_expense_account_id,
+        cast(account_expense_account_id as {{ dbt_utils.type_int() }}) as account_expense_account_id,
         account_expense_class_id,
         account_expense_billable_status,
         account_expense_tax_code_id,
-        cast(item_expense_item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_expense_item_id,
+        cast(item_expense_item_id as {{ dbt_utils.type_int() }}) as item_expense_item_id,
         item_expense_billable_status,
         amount,
         description

@@ -31,8 +31,8 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_id,
-        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as account_id,
+        cast(id as {{ dbt_utils.type_int() }}) as deposit_id,
+        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
         created_at,
         currency_id,
         department_id,

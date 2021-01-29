@@ -31,11 +31,11 @@ fields as (
 final as (
     
     select 
-        cast(deposit_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_id,
+        cast(deposit_id as {{ dbt_utils.type_int() }}) as deposit_id,
         index,
         amount,
         description,
-        cast(deposit_account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as deposit_account_id,
+        cast(deposit_account_id as {{ dbt_utils.type_int() }}) as deposit_account_id,
         deposit_class_id,
         deposit_customer_id
     from fields

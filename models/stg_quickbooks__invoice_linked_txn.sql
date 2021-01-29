@@ -31,9 +31,9 @@ fields as (
 final as (
     
     select 
-        cast(invoice_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as invoice_id,
-        cast(payment_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as payment_id,
-        cast(estimate_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as estimate_id,
+        cast(invoice_id as {{ dbt_utils.type_int() }}) as invoice_id,
+        cast(payment_id as {{ dbt_utils.type_int() }}) as payment_id,
+        cast(estimate_id as {{ dbt_utils.type_int() }}) as estimate_id,
         index
     from fields
 )
