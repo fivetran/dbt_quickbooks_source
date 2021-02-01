@@ -44,9 +44,9 @@ final as (
         description,
         quantity,
         bundle_quantity,
-        cast(bundle_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as bundle_id,
-        cast(account_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }} ) as account_id,
-        cast(item_id as {{ 'int64' if target.name == 'bigquery' else 'bigint' }}) as item_id
+        cast(bundle_id as {{ dbt_utils.type_int() }}) as bundle_id,
+        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
+        cast(item_id as {{ dbt_utils.type_int() }}) as item_id
     from fields
 )
 
