@@ -3,7 +3,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ ref('stg_quickbooks__journal_entry_tmp') }}
 
 ),
@@ -12,8 +12,8 @@ fields as (
 
     select
         /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
-        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns 
+        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns
+        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns
         in the source (source_columns from dbt_salesforce_source/macros/).
         For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
         */
@@ -24,15 +24,15 @@ fields as (
                 staging_columns=get_journal_entry_columns()
             )
         }}
-        
+
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
         cast(id as {{ dbt_utils.type_int() }}) as journal_entry_id,
-        adjustment,
+        adjustment as is_adjustment,
         created_at,
         currency_id,
         cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
@@ -44,6 +44,6 @@ final as (
     from fields
 )
 
-select * 
+select *
 from final
 where not coalesce(_fivetran_deleted, false)
