@@ -760,6 +760,88 @@ models:
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+  - name: stg_quickbooks__purchase_order_line
+    description: Table containing individual line items of a transaction associated with a purchase order.
+    columns:
+      - name: purchase_order_id
+        description: Unique identifier of the purchase order record.
+        tests:
+          - not_null
+      - name: index
+        description: Index count of records associated with the purchase order record.
+      - name: account_expense_account_id
+        description: Account id of the account which the purchase order is credited.
+      - name: account_expense_class_id
+        description: The class reference associated with the account based expense purchase order line.
+      - name: account_expense_billable_status
+        description: Status of the purchase billable.
+      - name: account_expense_customer_id
+        description: The customer id associated with the account based purchase order line.
+      - name: account_expense_tax_code_id
+        description: Tax code reference associated to the purchase order.
+      - name: item_expense_item_id
+        description: The item reference associated with the item based expense purchase order line.
+      - name: item_expense_billable_status
+        description: The billable status of the item based expense purchase order line.
+      - name: item_expense_customer_id
+        description: The customer id associated with the item based purchase order line.
+      - name: amount
+        description: Monetary amount of the purchase.
+      - name: description
+        description: User defined description of the purchase line.
+
+  - name: stg_quickbooks__purchase_order_linked_txn
+    description: Mapping table for purchase order records to respective bill and purchase objects.
+    columns:
+      - name: purchase_order_id
+        description: Reference to the unique purchase order.
+        tests:
+          - not_null
+      - name: bill_id
+        description: Reference to the respective bill object for the purchase order.
+      - name: purchase_id
+        description: Reference to the respective purchase object for the purchase_order.
+      - name: vendor_credit_id
+        description: Reference to the respective vendor credit object for the purchase_order.
+      - name: index
+        description: Index count of records associated with the purchase order mapping record.
+
+  - name: stg_quickbooks__purchase_order
+    description: Table containing records of purchase orders (PO).
+    columns:
+      - name: purchase_order_id
+        description: Unique identifier of the purchase order.
+        tests:
+          - unique
+          - not_null
+      - name: created_at
+        description: Timestamp of the date when the purchase order was created.
+      - name: custom_po_number
+        description: Custom field for PO number.
+      - name: doc_number
+        description: Reference number for the transaction.
+      - name: due_date
+        description: Timestamp of the date when the purchase order is due.
+      - name: currency_id
+        description: Reference to the currency in which all amounts on the associated transaction are expressed.
+      - name: exchange_rate
+        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+      - name: transaction_date
+        description: Timestamp of the date when the purchase order occurred.
+      - name: total_amount
+        description: Indicates the total amount of the transaction.
+      - name: payable_account_id
+        description: Account id for which the purchase order will credited.
+      - name: status
+        description: Purchase order status. Valid values are: Open and Closed.
+        tests:
+          - accepted_values:
+              values: ['Open', 'Closed']
+      - name: vendor_id
+        description: Reference to the vendor for the purchase order.
+      - name: _fivetran_deleted
+        description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
   - name: stg_quickbooks__refund_receipt_line
     description: Table containing individual line items of a refund transaction.
     columns:

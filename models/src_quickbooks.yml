@@ -1,5 +1,5 @@
 version: 2
- 
+
 sources:
   - name: quickbooks
     schema: "{{ var('quickbooks_schema', 'quickbooks') }}"
@@ -13,8 +13,8 @@ sources:
     tables:
       - name: account
         description: >
-          Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary 
-          amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue 
+          Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary
+          amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue
           (income), expenses, or equity.
         columns:
           - name: id
@@ -64,10 +64,10 @@ sources:
           - name: line_2
             description: The address_line_2 associated with the address (if applicable).
           - name: postal_code
-            description: The postal code which the address is located.       
+            description: The postal code which the address is located.
 
       - name: bill_line
-        descrition: Table containing distinct line items from bills within the `bill` table.
+        description: Table containing distinct line items from bills within the `bill` table.
         columns:
           - name: bill_id
             description: The unique identifier of the parent bill record.
@@ -95,7 +95,7 @@ sources:
             description: Description of the bill line item.
 
       - name: bill_linked_txn
-        descrition: Mapping table containing bill payment transactions linked to a bill.
+        description: Mapping table containing bill payment transactions linked to a bill.
         columns:
           - name: bill_id
             description: The unique identifier of the bill record.
@@ -105,7 +105,7 @@ sources:
             description: The unique identifier of the bill payment id record.
 
       - name: bill_payment_line
-        descrition: Table containing individual line items of a bill payment, which are recorded within the `bill_payment` table.
+        description: Table containing individual line items of a bill payment, which are recorded within the `bill_payment` table.
         columns:
           - name: bill_payment_id
             description: The unique identifier of the bill payment record.
@@ -176,7 +176,7 @@ sources:
           - name: transaction_date
             description: Timestamp of the date when the bill transaction occurred.
           - name: exchange_rate
-            description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: payable_account_id
             description: Account id of the account which the bill is credited.
           - name: private_note
@@ -264,7 +264,7 @@ sources:
           - name: id
             description: Unique identifier of the customer.
           - name: active
-            description: Boolean indicating whether it is currently enabled for use by QuickBooks. 
+            description: Boolean indicating whether it is currently enabled for use by QuickBooks.
           - name: balance
             description: Specifies the open balance amount or the amount unpaid by the customer.
           - name: balance_with_jobs
@@ -286,7 +286,7 @@ sources:
 
       - name: department
         description: Table containing records representing physical locations such as stores, and sales regions.
-        columns: 
+        columns:
           - name: id
             description: Unique identifier of the department.
           - name: is_active
@@ -334,7 +334,7 @@ sources:
           - name: department_id
             description: Reference to the department associated with the deposit line.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed. 
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
           - name: total_amount
             description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
           - name: transaction_date
@@ -343,7 +343,7 @@ sources:
             description: Status of the deposit transaction.
           - name: _fivetran_deleted
             description: Boolean created by Fivetran to indicate whether the record has been deleted.
-      
+
       - name: estimate
         description: Table containing estimates. An estimate represents a proposal for a financial transaction from a business to a customer for goods or services proposed to be sold, including proposed pricing.
         columns:
@@ -447,7 +447,7 @@ sources:
             description: Reference to the item associated with the invoice line.
           - name: quantity
             description: Quantity of the item included on the invoice line.
-      
+
       - name: invoice_line_bundle
         description: Table containing lines of an invoice which were bundled.
         columns:
@@ -486,7 +486,7 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed. 
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
           - name: department_id
             description: Reference to the department associated with the invoice.
           - name: deposit_to_account_id
@@ -518,7 +518,7 @@ sources:
           - name: created_at
             description: Timestamp of the date when the item was created within QuickBooks.
           - name: income_account_id
-            description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item. 
+            description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item.
           - name: asset_account_id
             description: Reference to the Inventory Asset account that tracks the current value of the inventory.
           - name: expense_account_id
@@ -578,7 +578,7 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: exchange_rate
-            description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: private_note
             description: User entered, organization-private note about the transaction.
           - name: total_amount
@@ -686,6 +686,86 @@ sources:
           - name: _fivetran_deleted
             description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+      - name: purchase_order_line
+        description: Table containing individual line items of a transaction associated with a purchase order.
+        columns:
+          - name: purchase_order_id
+            description: Unique identifier of the purchase order record.
+          - name: index
+            description: Index count of records associated with the purchase order record.
+          - name: account_expense_account_id
+            description: Account id of the account which the purchase order is credited.
+          - name: account_expense_class_id
+            description: The class reference associated with the account based expense purchase order line.
+          - name: account_expense_billable_status
+            description: Status of the purchase billable.
+          - name: account_expense_customer_id
+            description: The customer id associated with the account based purchase order line.
+          - name: account_expense_tax_code_id
+            description: Tax code reference associated to the purchase order.
+          - name: item_expense_item_id
+            description: The item reference associated with the item based expense purchase order line.
+          - name: item_expense_billable_status
+            description: The billable status of the item based expense purchase order line.
+          - name: item_expense_customer_id
+            description: The customer id associated with the item based purchase order line.
+          - name: amount
+            description: Monetary amount of the purchase.
+          - name: description
+            description: User defined description of the purchase line.
+
+      - name: purchase_order_linked_txn
+        description: Mapping table for purchase order records to respective bill and purchase objects.
+        columns:
+          - name: purchase_order_id
+            description: Reference to the unique purchase order.
+          - name: bill_id
+            description: Reference to the respective bill object for the purchase order.
+          - name: purchase_id
+            description: Reference to the respective purchase object for the purchase_order.
+          - name: vendor_credit_id
+            description: Reference to the respective vendor credit object for the purchase_order.
+          - name: index
+            description: Index count of records associated with the purchase order mapping record.
+
+      - name: purchase_order
+        description: Table containing records of purchase orders (PO).
+        columns:
+          - name: id
+            description: Unique identifier of the purchase order.
+          - name: class_id
+            description: Reference to the class which the purchase order is associated.
+          - name: created_at
+            description: Timestamp of the date when the purchase order was created.
+          - name: custom_po_number
+            description: Custom field for PO number.
+          - name: custom_customer_type
+            description: Custom field for customer type.
+          - name: doc_number
+            description: Reference number for the transaction.
+          - name: due_date
+            description: Timestamp of the date when the purchase order is due.
+          - name: currency_id
+            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+          - name: memo
+            description: A message for the vendor. This text appears on the purchase order object sent to the vendor.
+          - name: transaction_date
+            description: Timestamp of the date when the purchase order occurred.
+          - name: total_amount
+            description: Indicates the total amount of the transaction.
+          - name: private_note
+            description: User entered, organization-private note about the transaction. This note does not appear on the purchase order to the vendor.
+          - name: payable_account_id
+            description: Account id for which the purchase order will credited.
+          - name: status
+            description: Purchase order status. Valid values are: Open and Closed.
+          - name: vendor_id
+            description: Reference to the vendor for the purchase order.
+          - name: _fivetran_deleted
+            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
       - name: refund_receipt_line
         description: Table containing individual line items of a refund transaction.
         columns:
@@ -698,7 +778,7 @@ sources:
           - name: description
             description: User defined description of the refund line.
           - name: discount_account_id
-            description: Reference to Income account used to track discounts. 
+            description: Reference to Income account used to track discounts.
           - name: sales_item_quantity
             description: Quantity of the item associated with the refund receipt line.
           - name: sales_item_unit_price
@@ -726,7 +806,7 @@ sources:
           - name: department_id
             description: Reference to the department which the refund receipt is associated.
           - name: deposit_to_account_id
-            description: Account from which payment money is refunded. 
+            description: Account from which payment money is refunded.
           - name: created_at
             description: Timestamp of the date when the refund was created.
           - name: customer_id
@@ -752,7 +832,7 @@ sources:
           - name: description
             description: Description of the sales receipt line.
           - name: discount_account_id
-            description: Reference to Income account used to track discounts. 
+            description: Reference to Income account used to track discounts.
           - name: sales_item_account_id
             description: Account id of the account credited with the sales line.
           - name: sales_item_item_id
