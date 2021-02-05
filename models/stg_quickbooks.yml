@@ -833,7 +833,7 @@ models:
       - name: payable_account_id
         description: Account id for which the purchase order will credited.
       - name: status
-        description: Purchase order status. Valid values are: Open and Closed.
+        description: Purchase order status. Valid values are "Open" and "Closed".
         tests:
           - accepted_values:
               values: ['Open', 'Closed']
