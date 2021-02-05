@@ -57,6 +57,7 @@ vars:
     using_refund_receipt: false         #disable if you don't have refund receipts in QuickBooks
     using_transfer:       false         #disable if you don't have transfers in QuickBooks
     using_vendor_credit:  false         #disable if you don't have vendor credits in QuickBooks
+    using_sales_receipt:  false         #disable if you don't have sales receipts in QuickBooks
 ```
 
 ## Contributions
