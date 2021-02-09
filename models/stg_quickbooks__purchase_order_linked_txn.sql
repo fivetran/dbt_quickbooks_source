@@ -1,7 +1,10 @@
+--To disable this model, set the using_invoice variable within your dbt_project.yml file to False.
+{{ config(enabled=var('using_purchase_order', True)) }}
+
 with base as (
 
     select *
-    from {{ ref('stg_quickbooks__purchase_line_tmp') }}
+    from {{ ref('stg_quickbooks__purchase_order_linked_txn_tmp') }}
 
 ),
 
@@ -17,8 +20,8 @@ fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__purchase_line_tmp')),
-                staging_columns=get_purchase_line_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__purchase_order_linked_txn_tmp')),
+                staging_columns=get_purchase_order_linked_txn_columns()
             )
         }}
 
@@ -28,18 +31,11 @@ fields as (
 final as (
 
     select
+        cast(purchase_order_id as {{ dbt_utils.type_int() }}) as purchase_order_id,
+        cast(bill_id as {{ dbt_utils.type_int() }}) as bill_id,
         cast(purchase_id as {{ dbt_utils.type_int() }}) as purchase_id,
-        index,
-        cast(account_expense_account_id as {{ dbt_utils.type_int() }}) as account_expense_account_id,
-        account_expense_class_id,
-        account_expense_billable_status,
-        account_expense_customer_id,
-        account_expense_tax_code_id,
-        cast(item_expense_item_id as {{ dbt_utils.type_int() }}) as item_expense_item_id,
-        item_expense_billable_status,
-        item_expense_customer_id,
-        amount,
-        description
+        cast(vendor_credit_id as {{ dbt_utils.type_int() }}) as vendor_credit_id,
+        index
     from fields
 )
 

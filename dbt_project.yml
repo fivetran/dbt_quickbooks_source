@@ -5,7 +5,7 @@ version: '0.1.1'
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
-models: 
+models:
   quickbooks_source:
     materialized: table
     tmp:
@@ -41,6 +41,9 @@ vars:
     payment:              "{{ source('quickbooks','payment') }}"
     purchase_line:        "{{ source('quickbooks','purchase_line') }}"
     purchase:             "{{ source('quickbooks','purchase') }}"
+    purchase_order_line:  "{{ source('quickbooks','purchase_order_line') }}"
+    purchase_order:       "{{ source('quickbooks','purchase_order') }}"
+    purchase_order_linked_txn:  "{{ source('quickbooks','purchase_order_linked_txn') }}"
     refund_receipt_line:  "{{ source('quickbooks','refund_receipt_line') }}"
     refund_receipt:       "{{ source('quickbooks','refund_receipt') }}"
     sales_receipt_line:   "{{ source('quickbooks','sales_receipt_line') }}"
@@ -60,6 +63,7 @@ vars:
     using_invoice_bundle: True
     using_journal_entry:  True
     using_payment:        True
+    using_purchase_order: True
     using_refund_receipt: True
     using_transfer:       True
     using_vendor_credit:  True
