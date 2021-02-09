@@ -1,3 +1,5 @@
+{{ config(enabled=var('using_sales_receipt', True)) }}
+
 with base as (
 
     select * 
