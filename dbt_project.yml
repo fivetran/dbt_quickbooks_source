@@ -66,8 +66,8 @@ vars:
     using_refund_receipt: True
     using_transfer:       True
     using_vendor_credit:  True
-    using_purchase_order: True
     using_sales_receipt:  True
+    using_purchase_order: False
 
 clean-targets:
     - target

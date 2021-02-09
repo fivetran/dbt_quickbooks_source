@@ -1,4 +1,4 @@
---To disable this model, set the using_invoice variable within your dbt_project.yml file to False.
+--To enable this model, set the using_invoice variable within your dbt_project.yml file to True.
 {{ config(enabled=var('using_purchase_order', True)) }}
 
 with base as (
