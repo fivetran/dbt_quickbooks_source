@@ -72,3 +72,4 @@ vars:
 clean-targets:
     - target
     - dbt_modules
+ 
