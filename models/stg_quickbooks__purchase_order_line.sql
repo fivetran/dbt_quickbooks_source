@@ -1,7 +1,10 @@
+--To enable this model, set the using_invoice variable within your dbt_project.yml file to True.
+{{ config(enabled=var('using_purchase_order', False)) }}
+
 with base as (
 
     select *
-    from {{ ref('stg_quickbooks__purchase_line_tmp') }}
+    from {{ ref('stg_quickbooks__purchase_order_line_tmp') }}
 
 ),
 
@@ -17,8 +20,8 @@ fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__purchase_line_tmp')),
-                staging_columns=get_purchase_line_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__purchase_order_line_tmp')),
+                staging_columns=get_purchase_order_line_columns()
             )
         }}
 
@@ -28,7 +31,7 @@ fields as (
 final as (
 
     select
-        cast(purchase_id as {{ dbt_utils.type_int() }}) as purchase_id,
+        cast(purchase_order_id as {{ dbt_utils.type_int() }}) as purchase_order_id,
         index,
         cast(account_expense_account_id as {{ dbt_utils.type_int() }}) as account_expense_account_id,
         account_expense_class_id,

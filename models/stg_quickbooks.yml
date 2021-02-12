@@ -3,13 +3,13 @@ version: 2
 models:
   - name: stg_quickbooks__account
     description: >
-      Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary 
-      amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue 
+      Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary
+      amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue
       (income), expenses, or equity.
     columns:
       - name: account_id
         description: Unique identifier for an account.
-        tests: 
+        tests:
           - unique
           - not_null
       - name: account_number
@@ -51,7 +51,7 @@ models:
     columns:
       - name: address_id
         description: Unique identifier for an address.
-        tests: 
+        tests:
           - unique
           - not_null
       - name: city
@@ -189,7 +189,7 @@ models:
       - name: transaction_date
         description: Timestamp of the date when the bill transaction occurred.
       - name: exchange_rate
-        description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: payable_account_id
         description: Account id of the account which the bill is credited.
       - name: private_note
@@ -202,7 +202,7 @@ models:
     columns:
       - name: bundle_id
         description: Reference to the bundle table.
-        tests: 
+        tests:
           - not_null
       - name: item_id
         description: Reference to the item which the bundle is mapped.
@@ -290,7 +290,7 @@ models:
           - unique
           - not_null
       - name: is_active
-        description: Boolean indicating whether it is currently enabled for use by QuickBooks. 
+        description: Boolean indicating whether it is currently enabled for use by QuickBooks.
       - name: balance
         description: Specifies the open balance amount or the amount unpaid by the customer.
       - name: balance_with_jobs
@@ -312,7 +312,7 @@ models:
 
   - name: stg_quickbooks__department
     description: Table containing records representing physical locations such as stores, and sales regions.
-    columns: 
+    columns:
       - name: department_id
         description: Unique identifier of the department.
       - name: is_active
@@ -409,7 +409,7 @@ models:
     columns:
       - name: estimate_id
         description: Reference to the unique estimate record.
-        tests: 
+        tests:
           - not_null
       - name: index
         description: Index count of records associated with the estimate line record.
@@ -531,7 +531,7 @@ models:
       - name: doc_number
         description: Reference number for the transaction.
       - name: currency_id
-        description: Reference to the currency in which all amounts on the associated transaction are expressed. 
+        description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: department_id
         description: Reference to the department associated with the invoice.
       - name: deposit_to_account_id
@@ -567,7 +567,7 @@ models:
       - name: created_at
         description: Timestamp of the date when the item was created within QuickBooks.
       - name: income_account_id
-        description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item. 
+        description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item.
       - name: asset_account_id
         description: Reference to the Inventory Asset account that tracks the current value of the inventory.
       - name: expense_account_id
@@ -626,7 +626,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: adjustment
+      - name: is_adjustment
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
       - name: created_at
         description: Timestamp of the date when the journal entry was created.
@@ -635,7 +635,7 @@ models:
       - name: doc_number
         description: Reference number for the transaction.
       - name: exchange_rate
-        description: The number of home currency units it takes to equal one unit of currency specified by currency_id. 
+        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: private_note
         description: User entered, organization-private note about the transaction.
       - name: total_amount
@@ -644,7 +644,7 @@ models:
         description: Timestamp of the date when the journal entry was transacted.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
-    
+
   - name: stg_quickbooks__payment_line
     description: Table containing individual line items recorded within a payment.
     columns:
@@ -707,12 +707,16 @@ models:
         description: The class reference associated with the account based expense purchase line.
       - name: account_expense_billable_status
         description: Status of the purchase billable.
+      - name: account_expense_customer_id
+        description: The customer id associated with the account based expense purchase line
       - name: account_expense_tax_code_id
         description: Tax code reference associated to the purchase.
       - name: item_expense_item_id
         description: The item reference associated with the item based expense purchase line.
       - name: item_expense_billable_status
         description: The billable status of the item based expense purchase line.
+      - name: item_expense_customer_id
+        description: The customer id associated with the item based expense purchase line
       - name: amount
         description: Monetary amount of the purchase.
       - name: description
@@ -756,6 +760,88 @@ models:
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+  - name: stg_quickbooks__purchase_order_line
+    description: Table containing individual line items of a transaction associated with a purchase order.
+    columns:
+      - name: purchase_order_id
+        description: Unique identifier of the purchase order record.
+        tests:
+          - not_null
+      - name: index
+        description: Index count of records associated with the purchase order record.
+      - name: account_expense_account_id
+        description: Account id of the account which the purchase order is credited.
+      - name: account_expense_class_id
+        description: The class reference associated with the account based expense purchase order line.
+      - name: account_expense_billable_status
+        description: Status of the purchase billable.
+      - name: account_expense_customer_id
+        description: The customer id associated with the account based purchase order line.
+      - name: account_expense_tax_code_id
+        description: Tax code reference associated to the purchase order.
+      - name: item_expense_item_id
+        description: The item reference associated with the item based expense purchase order line.
+      - name: item_expense_billable_status
+        description: The billable status of the item based expense purchase order line.
+      - name: item_expense_customer_id
+        description: The customer id associated with the item based purchase order line.
+      - name: amount
+        description: Monetary amount of the purchase.
+      - name: description
+        description: User defined description of the purchase line.
+
+  - name: stg_quickbooks__purchase_order_linked_txn
+    description: Mapping table for purchase order records to respective bill and purchase objects.
+    columns:
+      - name: purchase_order_id
+        description: Reference to the unique purchase order.
+        tests:
+          - not_null
+      - name: bill_id
+        description: Reference to the respective bill object for the purchase order.
+      - name: purchase_id
+        description: Reference to the respective purchase object for the purchase_order.
+      - name: vendor_credit_id
+        description: Reference to the respective vendor credit object for the purchase_order.
+      - name: index
+        description: Index count of records associated with the purchase order mapping record.
+
+  - name: stg_quickbooks__purchase_order
+    description: Table containing records of purchase orders (PO).
+    columns:
+      - name: purchase_order_id
+        description: Unique identifier of the purchase order.
+        tests:
+          - unique
+          - not_null
+      - name: created_at
+        description: Timestamp of the date when the purchase order was created.
+      - name: custom_po_number
+        description: Custom field for PO number.
+      - name: doc_number
+        description: Reference number for the transaction.
+      - name: due_date
+        description: Timestamp of the date when the purchase order is due.
+      - name: currency_id
+        description: Reference to the currency in which all amounts on the associated transaction are expressed.
+      - name: exchange_rate
+        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
+      - name: transaction_date
+        description: Timestamp of the date when the purchase order occurred.
+      - name: total_amount
+        description: Indicates the total amount of the transaction.
+      - name: payable_account_id
+        description: Account id for which the purchase order will credited.
+      - name: status
+        description: Purchase order status. Valid values are "Open" and "Closed".
+        tests:
+          - accepted_values:
+              values: ['Open', 'Closed']
+      - name: vendor_id
+        description: Reference to the vendor for the purchase order.
+      - name: _fivetran_deleted
+        description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
   - name: stg_quickbooks__refund_receipt_line
     description: Table containing individual line items of a refund transaction.
     columns:
@@ -770,7 +856,7 @@ models:
       - name: description
         description: User defined description of the refund line.
       - name: discount_account_id
-        description: Reference to Income account used to track discounts. 
+        description: Reference to Income account used to track discounts.
       - name: sales_item_quantity
         description: Quantity of the item associated with the refund receipt line.
       - name: sales_item_unit_price
@@ -829,7 +915,7 @@ models:
       - name: description
         description: Description of the sales receipt line.
       - name: discount_account_id
-        description: Reference to Income account used to track discounts. 
+        description: Reference to Income account used to track discounts.
       - name: sales_item_account_id
         description: Account id of the account credited with the sales line.
       - name: sales_item_item_id
@@ -852,7 +938,7 @@ models:
       - name: balance
         description: The balance reflecting any payments made against the transaction.
       - name: total_amount
-        description: Indicates the total amount of the transaction. 
+        description: Indicates the total amount of the transaction.
       - name: doc_number
         description: Reference number for the transaction.
       - name: deposit_to_account_id

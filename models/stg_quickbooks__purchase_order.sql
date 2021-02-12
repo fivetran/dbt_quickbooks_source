@@ -1,10 +1,10 @@
---To disable this model, set the using_journal_entry variable within your dbt_project.yml file to False.
-{{ config(enabled=var('using_journal_entry', True)) }}
+--To enable this model, set the using_invoice variable within your dbt_project.yml file to True.
+{{ config(enabled=var('using_purchase_order', False)) }}
 
 with base as (
 
     select *
-    from {{ ref('stg_quickbooks__journal_entry_tmp') }}
+    from {{ ref('stg_quickbooks__purchase_order_tmp') }}
 
 ),
 
@@ -20,8 +20,8 @@ fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__journal_entry_tmp')),
-                staging_columns=get_journal_entry_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__purchase_order_tmp')),
+                staging_columns=get_purchase_order_columns()
             )
         }}
 
@@ -31,15 +31,18 @@ fields as (
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_int() }}) as journal_entry_id,
-        adjustment as is_adjustment,
+        cast(id as {{ dbt_utils.type_int() }}) as purchase_order_id,
         created_at,
-        currency_id,
+        custom_po_number,
         cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        currency_id,
         exchange_rate,
-        private_note,
         total_amount,
+        cast(payable_account_id as {{ dbt_utils.type_int() }}) as payable_account_id,
+        cast(vendor_id as {{ dbt_utils.type_int() }}) as vendor_id,
         transaction_date,
+        status,
+        due_date,
         _fivetran_deleted
     from fields
 )

@@ -37,7 +37,7 @@ vars:
 
 ### Disabling models
 
-This package takes into consideration that not every QuickBooks account utilizes the same transactional tables, and allows you to disable the corresponding functionality. By default, all variables' values are assumed to be `true`. Add variables for only the tables you want to disable: 
+This package takes into consideration that not every QuickBooks account utilizes the same transactional tables, and allows you to disable the corresponding functionality. By default, most variables' values are assumed to be `true` (with exception of purchase orders). Add variables for only the tables you want to disable or enable respectively:
 
 ```yml
 # dbt_project.yml
@@ -57,12 +57,14 @@ vars:
     using_refund_receipt: false         #disable if you don't have refund receipts in QuickBooks
     using_transfer:       false         #disable if you don't have transfers in QuickBooks
     using_vendor_credit:  false         #disable if you don't have vendor credits in QuickBooks
+    using_sales_receipt:  false         #disable if you don't have sales receipts in QuickBooks
+    using_purchase_order: true          #enable if you want to include purchase orders in your staging models
 ```
 
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
-or open PRs against `master`. Check out [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
+or open PRs against `master`. Check out [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657)
 on the best workflow for contributing to a package.
 
 ## Resources:
