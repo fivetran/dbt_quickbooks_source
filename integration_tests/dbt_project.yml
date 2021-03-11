@@ -1,5 +1,5 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.1.2'
+version: '0.2.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -11,6 +11,7 @@ models:
 
 vars:
   quickbooks_source:
+    using_purchase_order: True
     account:                    "{{ ref('account_data') }}"
     address:                    "{{ ref('address_data') }}"
     bill_line:                  "{{ ref('bill_line_data') }}"

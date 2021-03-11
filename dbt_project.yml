@@ -1,12 +1,13 @@
 config-version: 2
 
 name: 'quickbooks_source'
-version: '0.1.2'
+version: '0.2.0'
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
 models:
   quickbooks_source:
+    +schema: quickbooks_staging
     materialized: table
     tmp:
       materialized: view
