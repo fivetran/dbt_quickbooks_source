@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'quickbooks_source'
-version: '0.2.0'
+version: '0.2.1'
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
@@ -55,6 +55,7 @@ vars:
     vendor:                     "{{ source('quickbooks','vendor') }}"
 
     #Variables if your company utilizes the below parent and child transactional tables.
+    using_address:        True
     using_bill:           True
     using_credit_memo:    True
     using_department:     True
