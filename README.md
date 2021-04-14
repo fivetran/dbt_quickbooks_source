@@ -56,6 +56,7 @@ This package takes into consideration that not every QuickBooks account utilizes
 ...
 vars:
   quickbooks_source:
+    using_address:        false         #disable if you don't have addresses in QuickBooks
     using_bill:           false         #disable if you don't have bills or bill payments in QuickBooks
     using_credit_memo:    false         #disable if you don't have credit memos in QuickBooks
     using_department:     false         #disable if you don't have departments in QuickBooks
