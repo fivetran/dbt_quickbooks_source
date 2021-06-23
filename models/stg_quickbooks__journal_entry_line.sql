@@ -35,7 +35,7 @@ final as (
         index,
         cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
         amount,
-        customer_id,
+        cast(customer_id as {{ dbt_utils.type_int() }}) as customer_id,
         department_id,
         class_id,
         description,

@@ -39,7 +39,7 @@ final as (
         cast(deposit_to_account_id as {{ dbt_utils.type_int() }}) as deposit_to_account_id,
         created_at,
         department_id,
-        customer_id,
+        cast(customer_id as {{ dbt_utils.type_int() }}) as customer_id,
         currency_id,
         exchange_rate,
         transaction_date,
