@@ -41,7 +41,7 @@ final as (
         cast(item_expense_item_id as {{ dbt_utils.type_int() }}) as item_expense_item_id,
         cast(item_expense_customer_id as {{ dbt_utils.type_int() }}) as item_expense_customer_id,
         item_expense_billable_status,
-        cast(amount as {{ dbt_utils.type_numeric() }}) as amount,
+        amount,
         description
     from fields
 )
