@@ -40,7 +40,7 @@ final as (
         cast(deposit_to_account_id as {{ dbt_utils.type_int() }}) as deposit_to_account_id,
         exchange_rate,
         transaction_date,
-        customer_id,
+        cast(customer_id as {{ dbt_utils.type_int() }}) as customer_id,
         billing_address_id,
         shipping_address_id,
         delivery_type,

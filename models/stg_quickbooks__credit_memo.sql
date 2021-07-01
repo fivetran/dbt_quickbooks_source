@@ -38,7 +38,7 @@ final as (
         currency_id,
         class_id,
         department_id,
-        customer_id,
+        cast(customer_id as {{ dbt_utils.type_int() }}) as customer_id,
         exchange_rate,
         transaction_date,
         _fivetran_deleted

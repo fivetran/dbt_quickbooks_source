@@ -38,7 +38,7 @@ final as (
         total_amount,
         payment_type,
         department_id,
-        customer_id,
+        cast(customer_id as {{ dbt_utils.type_int() }}) as customer_id,
         cast(vendor_id as {{ dbt_utils.type_int() }}) as vendor_id,
         transaction_date,
         _fivetran_deleted

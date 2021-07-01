@@ -28,7 +28,7 @@ fields as (
 final as (
     
     select 
-        id as customer_id,
+        cast(id as {{ dbt_utils.type_int() }}) as customer_id,
         active as is_active,
         balance,
         balance_with_jobs,

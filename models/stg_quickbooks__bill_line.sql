@@ -37,9 +37,9 @@ final as (
         account_expense_class_id,
         account_expense_billable_status,
         account_expense_tax_code_id,
-        account_expense_customer_id,
+        cast(account_expense_customer_id as {{ dbt_utils.type_int() }}) as account_expense_customer_id,
         cast(item_expense_item_id as {{ dbt_utils.type_int() }}) as item_expense_item_id,
-        item_expense_customer_id,
+        cast(item_expense_customer_id as {{ dbt_utils.type_int() }}) as item_expense_customer_id,
         item_expense_billable_status,
         amount,
         description

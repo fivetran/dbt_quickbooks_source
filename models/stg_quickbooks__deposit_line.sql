@@ -37,7 +37,7 @@ final as (
         description,
         cast(deposit_account_id as {{ dbt_utils.type_int() }}) as deposit_account_id,
         deposit_class_id,
-        deposit_customer_id
+        cast(deposit_customer_id as {{ dbt_utils.type_int() }}) as deposit_customer_id
     from fields
 )
 

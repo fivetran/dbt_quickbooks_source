@@ -41,7 +41,7 @@ final as (
         pay_type,
         total_amount,
         transaction_date,
-        vendor_id,
+        cast(vendor_id as {{ dbt_utils.type_int() }}) as vendor_id,
         _fivetran_deleted
     from fields
 )
