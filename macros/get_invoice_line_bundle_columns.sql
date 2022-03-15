@@ -15,7 +15,7 @@
     {"name": "line_num", "datatype": dbt_utils.type_int()},
     {"name": "quantity", "datatype": dbt_utils.type_float()},
     {"name": "sales_item_account_id", "datatype": dbt_utils.type_int()},
-    {"name": "sales_item_item_id", "datatype": dbt_utils.type_int()},
+    {"name": "sales_item_item_id", "datatype": dbt_utils.type_string()},
     {"name": "sales_item_quantity", "datatype": dbt_utils.type_float()},
     {"name": "sales_item_tax_code_id", "datatype": dbt_utils.type_int()},
     {"name": "service_date", "datatype": dbt_utils.type_timestamp()},

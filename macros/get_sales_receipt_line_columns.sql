@@ -18,7 +18,7 @@
     {"name": "sales_item_class_id", "datatype": dbt_utils.type_int()},
     {"name": "sales_item_discount_amount", "datatype": dbt_utils.type_float()},
     {"name": "sales_item_discount_rate", "datatype": dbt_utils.type_float()},
-    {"name": "sales_item_item_id", "datatype": dbt_utils.type_int()},
+    {"name": "sales_item_item_id", "datatype": dbt_utils.type_string()},
     {"name": "sales_item_quantity", "datatype": dbt_utils.type_float()},
     {"name": "sales_item_service_date", "datatype": "date"},
     {"name": "sales_item_tax_code_id", "datatype": dbt_utils.type_int()},
