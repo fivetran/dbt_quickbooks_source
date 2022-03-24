@@ -35,7 +35,7 @@ final as (
         class_id,
         description,
         amount,
-        sales_item_item_id,
+        cast(sales_item_item_id as {{ dbt_utils.type_int() }}) as sales_item_item_id,
         cast(item_id as {{ dbt_utils.type_int() }}) as item_id,
         quantity,
         sales_item_quantity,
