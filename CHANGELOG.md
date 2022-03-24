@@ -1,3 +1,9 @@
+# dbt_quickbooks_source v0.4.1
+## Fixes
+- The `sales_item_item_id` field within various staging models was being cast as an integer. However, this field is sometimes a string. To accommodate this, the field is now being cast to the more appropriate string datatype. ([#25](https://github.com/fivetran/dbt_quickbooks_source/pull/25)) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
+
+## Contributors
+- [@evancole-untitled](https://github.com/evancole-untitled) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
 # dbt_quickbooks_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

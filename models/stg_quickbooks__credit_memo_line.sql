@@ -35,7 +35,7 @@ final as (
         index,
         amount,
         cast(sales_item_account_id as {{ dbt_utils.type_int() }}) as sales_item_account_id,
-        cast(sales_item_item_id as {{ dbt_utils.type_int() }}) as sales_item_item_id,
+        cast(sales_item_item_id as {{ dbt_utils.type_string() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
         cast(discount_account_id as {{ dbt_utils.type_int() }}) as discount_account_id,
