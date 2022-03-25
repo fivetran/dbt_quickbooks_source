@@ -32,7 +32,7 @@ final as (
         account_number,
         active as is_active,
         balance,
-        billing_address_id,
+        cast(billing_address_id as {{ dbt_utils.type_string() }}) as billing_address_id,
         company_name,
         created_at,
         currency_id,
