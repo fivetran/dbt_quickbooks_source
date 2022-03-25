@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        cast(invoice_id as {{ dbt_utils.type_int() }}) as invoice_id,
+        cast(invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
         index,
         amount,
-        cast(sales_item_account_id as {{ dbt_utils.type_int() }}) as sales_item_account_id,
+        cast(sales_item_account_id as {{ dbt_utils.type_string() }}) as sales_item_account_id,
         cast(sales_item_item_id as {{ dbt_utils.type_string() }}) as sales_item_item_id,
         sales_item_class_id,
         sales_item_quantity,
@@ -44,9 +44,9 @@ final as (
         description,
         quantity,
         bundle_quantity,
-        cast(bundle_id as {{ dbt_utils.type_int() }}) as bundle_id,
-        cast(account_id as {{ dbt_utils.type_int() }}) as account_id,
-        cast(item_id as {{ dbt_utils.type_int() }}) as item_id
+        cast(bundle_id as {{ dbt_utils.type_string() }}) as bundle_id,
+        cast(account_id as {{ dbt_utils.type_string() }}) as account_id,
+        cast(item_id as {{ dbt_utils.type_string() }}) as item_id
     from fields
 )
 

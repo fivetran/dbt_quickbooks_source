@@ -31,12 +31,12 @@ fields as (
 final as (
     
     select 
-        cast(refund_id as {{ dbt_utils.type_int() }}) as refund_id,
+        cast(refund_id as {{ dbt_utils.type_string() }}) as refund_id,
         index,
         amount,
         description,
-        cast(discount_account_id as {{ dbt_utils.type_int() }}) as discount_account_id,
-        cast(sales_item_account_id as {{ dbt_utils.type_int() }}) as sales_item_account_id,
+        cast(discount_account_id as {{ dbt_utils.type_string() }}) as discount_account_id,
+        cast(sales_item_account_id as {{ dbt_utils.type_string() }}) as sales_item_account_id,
         cast(sales_item_item_id as {{ dbt_utils.type_string() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
