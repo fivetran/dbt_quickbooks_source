@@ -41,7 +41,7 @@ final as (
         exchange_rate,
         transaction_date,
         cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
-        billing_address_id,
+        cast(billing_address_id as {{ dbt_utils.type_string() }}) as billing_address_id,
         shipping_address_id,
         delivery_type,
         due_date,
