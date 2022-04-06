@@ -3,7 +3,7 @@
 
 with base as (
 
-    select * 
+    select *
     from {{ ref('stg_quickbooks__bill_linked_txn_tmp') }}
 
 ),
@@ -12,8 +12,8 @@ fields as (
 
     select
         /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
-        that are expected/needed (staging_columns from dbt_quickbooks_source/models/tmp/) and compares it with columns 
+        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns
+        that are expected/needed (staging_columns from dbt_quickbooks_source/models/tmp/) and compares it with columns
         in the source (source_columns from dbt_quickbooks_source/macros/).
         For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
         */
@@ -24,18 +24,22 @@ fields as (
                 staging_columns=get_bill_linked_txn_columns()
             )
         }}
-        
+
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
         cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
         index,
         cast(bill_payment_id as {{ dbt_utils.type_string() }}) as bill_payment_id
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 
-select * 
+select *
 from final

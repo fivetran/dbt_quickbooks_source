@@ -22,6 +22,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -39,6 +40,9 @@ final as (
         display_name,
         web_url,
         vendor_1099 as is_vendor_1099
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

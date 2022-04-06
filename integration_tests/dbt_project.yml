@@ -1,9 +1,9 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.5.0'
+version: '0.6.0'
 profile: 'integration_tests'
 config-version: 2
 
-models: 
+models:
   quickbooks_source:
     materialized: table
     tmp:
@@ -47,11 +47,11 @@ vars:
     refund_receipt:             "{{ ref('refund_receipt_data') }}"
     sales_receipt_line:         "{{ ref('sales_receipt_line_data') }}"
     sales_receipt:              "{{ ref('sales_receipt_data') }}"
-    transfer:                   "{{ ref('transfer_data') }}"    
+    transfer:                   "{{ ref('transfer_data') }}"
     vendor_credit_line:         "{{ ref('vendor_credit_line_data') }}"
     vendor_credit:              "{{ ref('vendor_credit_data') }}"
     vendor:                     "{{ ref('vendor_data') }}"
-    
+
 seeds:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
     quickbooks_source_integration_tests:

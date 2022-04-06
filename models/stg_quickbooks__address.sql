@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -37,6 +38,9 @@ final as (
         line_1 as address_1,
         line_2 as address_2,
         postal_code
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

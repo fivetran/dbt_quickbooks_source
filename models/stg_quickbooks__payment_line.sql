@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -38,6 +39,9 @@ final as (
         deposit_id,
         cast(invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
         credit_memo_id
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
  
@@ -44,6 +45,9 @@ final as (
         cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
         private_note,
         _fivetran_deleted
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

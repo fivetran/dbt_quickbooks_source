@@ -25,6 +25,7 @@ fields as (
             )
         }}
 
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -43,6 +44,9 @@ final as (
         cast(item_expense_customer_id as {{ dbt_utils.type_string() }}) as item_expense_customer_id,
         amount,
         description
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

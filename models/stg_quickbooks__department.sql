@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -39,6 +40,9 @@ final as (
         name,
         sub_department as is_sub_department,
         parent_department_id
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

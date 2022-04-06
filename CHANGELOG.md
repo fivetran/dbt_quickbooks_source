@@ -1,9 +1,22 @@
+# dbt_quickbooks_source v0.6.0
+
+## Features
+- Allow for multiple sources by unioning source tables across multiple QuickBooks connectors.
+([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
+  - Refer to the [README](https://github.com/fivetran/dbt_quickbooks_source#unioning-multiple-quickbooks-connectors) for more details.
+
+## Under the Hood
+- Unioning: The unioning occurs in the tmp models using the `fivetran_utils.union_data` macro. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
+- Unique tests: Because columns that were previously used for unique tests may now have duplicate fields across multiple sources, these columns are combined with the new `source_relation` column for unique tests and tested using the `dbt_utils.unique_combination_of_columns` macro. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
+- Source Relation column: To distinguish which source each field comes from, we added a new `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
+
 # dbt_quickbooks_source v0.5.0
 ## 🚨 Breaking Changes 🚨
 - It was discovered that IDs from the source tables can sometimes be strings. The previous build of the package interpreted all IDs as integers. To ensure the package operates as intended, the package has been updated to cast all IDs to the string datatype. If you were leveraging the end models in downstream analysis, this change could break your join conditions. Be sure to be aware of any join conditions you may have downstream before upgrading your QuickBooks package. (#36)[https://github.com/fivetran/dbt_quickbooks/pull/36]. ([#25](https://github.com/fivetran/dbt_quickbooks_source/pull/25)) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
 
 ## Contributors
 - [@evancole-untitled](https://github.com/evancole-untitled) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
+
 # dbt_quickbooks_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
