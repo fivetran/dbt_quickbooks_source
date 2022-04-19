@@ -31,7 +31,7 @@ fields as (
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_int() }}) as journal_entry_id,
+        cast(id as {{ dbt_utils.type_string() }}) as journal_entry_id,
         adjustment as is_adjustment,
         created_at,
         currency_id,
