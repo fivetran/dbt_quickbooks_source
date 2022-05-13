@@ -45,7 +45,7 @@ vars:
     quickbooks_schema: your_schema_name 
 ```
 ## Step 4: Disable models for non-existent sources
-Your quickbooks connector may not sync every table that this package expects. This package takes into consideration that not every QuickBooks account utilizes the same transactional tables, and allows you to disable the corresponding functionality. By default, most variables' values are assumed to be `true` (with exception of purchase orders). Add variables within your root `dbt_project.yml` for only the tables you want to disable or enable respectively:
+This package takes into consideration that not every QuickBooks account utilizes the same transactional tables, and allows you to disable the corresponding functionality. By default, most variables' values are assumed to be `true` (with exception of purchase orders). Add variables within your root `dbt_project.yml` for only the tables you want to disable or enable respectively:
 
 ```yml
 vars:
