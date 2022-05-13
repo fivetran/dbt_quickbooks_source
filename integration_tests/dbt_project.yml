@@ -3,12 +3,6 @@ version: '0.6.0'
 profile: 'integration_tests'
 config-version: 2
 
-models: 
-  quickbooks_source:
-    materialized: table
-    tmp:
-      materialized: view
-
 vars:
   quickbooks_schema: quickbooks_source_integration_tests
   quickbooks_source:
