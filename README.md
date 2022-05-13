@@ -16,7 +16,7 @@
 # QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
 # 📣 What does this dbt package do?
 - Materializes [QuickBooks staging tables](https://fivetran.github.io/dbt_quickbooks_source/#!/overview/github_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/quickbooks/#schemainformation). These staging tables clean, test, and prepare your QuickBooks data from [Fivetran's connector](https://fivetran.com/docs/applications/quickbooks) for analysis by doing the following:
-  - Name columns for consistency across all packages and easier analysis
+  - Name columns for consistency across all packages and for easier analysis
   - Adds freshness tests to source data
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
 - Generates a comprehensive data dictionary of your QuickBooks data through the [dbt docs site](https://fivetran.github.io/dbt_quickbooks_source/).
