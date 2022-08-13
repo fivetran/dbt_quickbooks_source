@@ -39,7 +39,11 @@ final as (
         expense_id,
         journal_entry_id,
         linked_bill_payment_id,
-        vendor_credit_id
+        vendor_credit_id, 
+        case when cast(bill_payment_id as {{ dbt_utils.type_string() }}) in ('60878', '60904') 
+                  and journal_entry_id in ('12961', '12962', '12963', '12964', '12965', '12966', '21675') then amount
+             when bill_id is null then amount*(-1)
+             else amount end as net_amount
     from fields
 )
 

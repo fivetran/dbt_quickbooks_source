@@ -8,6 +8,14 @@ with base as (
 
 ),
 
+journal_entry_line as (
+
+    select * 
+    from {{ ref('stg_quickbooks__journal_entry_line_tmp') }}
+
+
+),
+
 fields as (
 
     select
@@ -32,13 +40,18 @@ final as (
     
     select 
         cast(payment_id as {{ dbt_utils.type_string() }}) as payment_id,
-        index,
-        amount,
-        journal_entry_id,
-        deposit_id,
-        cast(invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
-        credit_memo_id
+        fields.index,
+        case when invoice_id is not null then fields.amount
+             when journal_entry_line.journal_entry_id is not null and journal_entry_line.posting_type like 'Debit' then fields.amount
+             else fields.amount*(-1) end as amount,
+        fields.journal_entry_id,
+        fields.deposit_id,
+        cast(fields.invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
+        fields.credit_memo_id
     from fields
+
+    left join journal_entry_line on fields.journal_entry_id = journal_entry_line.journal_entry_id
+                                 and fields.amount = journal_entry_line.amount
 )
 
 select * 
