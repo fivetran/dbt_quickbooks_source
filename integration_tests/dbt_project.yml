@@ -9,8 +9,7 @@ models:
     tmp:
       materialized: view
 
-vars:
-  quickbooks_schema: quickbooks_integration_tests
+vars: 
   quickbooks_source:
     using_purchase_order: True
     account:                    "{{ ref('account_data') }}"
