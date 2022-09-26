@@ -79,6 +79,7 @@ vars:
     using_vendor_credit:  false         #disable if you don't have vendor credits in QuickBooks
     using_sales_receipt:  false         #disable if you don't have sales receipts in QuickBooks
     using_purchase_order: true          #enable if you want to include purchase orders in your staging models
+    using_credit_card_payment_txn: true #enable if you want to include credit card payment transactions in your staging models
 ```
 
 ## Contributions

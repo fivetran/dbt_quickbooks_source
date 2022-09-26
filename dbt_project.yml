@@ -23,6 +23,7 @@ vars:
     bill: "{{ source('quickbooks','bill') }}"
     bundle_item: "{{ source('quickbooks','bundle_item') }}"
     bundle: "{{ source('quickbooks','bundle') }}"
+    credit_card_payment_txn: "{{ source('quickbooks','credit_card_payment_txn') }}"
     credit_memo_line: "{{ source('quickbooks','credit_memo_line') }}"
     credit_memo: "{{ source('quickbooks','credit_memo') }}"
     customer: "{{ source('quickbooks','customer') }}"
