@@ -10,7 +10,7 @@ models:
       materialized: view
 
 vars:
-  quickbooks_schema: quickbooks_source_integration_tests
+  quickbooks_schema: quickbooks_source_integrations_tests
   quickbooks_source:
     using_purchase_order: True
     using_credit_card_payment_txn: True
