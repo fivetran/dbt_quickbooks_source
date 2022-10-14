@@ -1,14 +1,13 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.5.1'
+version: '0.6.0'
+
 profile: 'integration_tests'
 config-version: 2
-
-models: 
+models:
   quickbooks_source:
     materialized: table
     tmp:
       materialized: view
-
 vars:
   quickbooks_schema: quickbooks_source_integrations_tests
   quickbooks_source:
@@ -56,9 +55,8 @@ vars:
     vendor:                     "{{ ref('vendor_data') }}"
     
 seeds:
-    +quote_columns: "{{ true if target.type == 'redshift' else false }}"
-    quickbooks_source_integration_tests:
-
+  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+  quickbooks_source_integration_tests:
 clean-targets:
-    - target
-    - dbt_modules
+- target
+- dbt_modules

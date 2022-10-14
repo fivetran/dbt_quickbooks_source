@@ -31,14 +31,14 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as credit_memo_id,
+        cast(id as {{ dbt.type_string() }}) as credit_memo_id,
         balance,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         total_amount,
         currency_id,
         class_id,
         department_id,
-        cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
+        cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         exchange_rate,
         transaction_date,
         _fivetran_deleted

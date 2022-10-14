@@ -31,14 +31,14 @@ fields as (
 final as (
     
     select 
-        cast(credit_memo_id as {{ dbt_utils.type_string() }}) as credit_memo_id,
+        cast(credit_memo_id as {{ dbt.type_string() }}) as credit_memo_id,
         index,
         amount,
-        cast(sales_item_account_id as {{ dbt_utils.type_string() }}) as sales_item_account_id,
-        cast(sales_item_item_id as {{ dbt_utils.type_string() }}) as sales_item_item_id,
+        cast(sales_item_account_id as {{ dbt.type_string() }}) as sales_item_account_id,
+        cast(sales_item_item_id as {{ dbt.type_string() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
-        cast(discount_account_id as {{ dbt_utils.type_string() }}) as discount_account_id,
+        cast(discount_account_id as {{ dbt.type_string() }}) as discount_account_id,
         discount_class_id,
         description
     from fields

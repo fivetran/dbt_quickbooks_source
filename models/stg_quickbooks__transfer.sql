@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as transfer_id,
+        cast(id as {{ dbt.type_string() }}) as transfer_id,
         amount,
-        cast(from_account_id as {{ dbt_utils.type_string() }}) as from_account_id,
-        cast(to_account_id as {{ dbt_utils.type_string() }}) as to_account_id,
+        cast(from_account_id as {{ dbt.type_string() }}) as from_account_id,
+        cast(to_account_id as {{ dbt.type_string() }}) as to_account_id,
         transaction_date,
         _fivetran_deleted
     from fields

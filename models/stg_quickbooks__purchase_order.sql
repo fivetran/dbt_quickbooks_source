@@ -31,15 +31,15 @@ fields as (
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_string() }}) as purchase_order_id,
+        cast(id as {{ dbt.type_string() }}) as purchase_order_id,
         created_at,
         custom_po_number,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         currency_id,
         exchange_rate,
         total_amount,
-        cast(payable_account_id as {{ dbt_utils.type_string() }}) as payable_account_id,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         transaction_date,
         status,
         due_date,

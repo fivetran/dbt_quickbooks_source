@@ -28,11 +28,11 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(id as {{ dbt.type_string() }}) as vendor_id,
         account_number,
         active as is_active,
         balance,
-        cast(billing_address_id as {{ dbt_utils.type_string() }}) as billing_address_id,
+        cast(billing_address_id as {{ dbt.type_string() }}) as billing_address_id,
         company_name,
         created_at,
         currency_id,

@@ -31,11 +31,11 @@ fields as (
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_string() }}) as journal_entry_id,
+        cast(id as {{ dbt.type_string() }}) as journal_entry_id,
         adjustment as is_adjustment,
         created_at,
         currency_id,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         exchange_rate,
         private_note,
         total_amount,
