@@ -30,7 +30,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as bundle_id,
+        cast(id as {{ dbt.type_string() }}) as bundle_id,
         created_at,
         active as is_active,
         fully_qualified_name,

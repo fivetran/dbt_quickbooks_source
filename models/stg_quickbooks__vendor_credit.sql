@@ -31,18 +31,18 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as vendor_credit_id,
+        cast(id as {{ dbt.type_string() }}) as vendor_credit_id,
         balance,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         total_amount,
         currency_id,
         exchange_rate,
         created_at,
-        cast(payable_account_id as {{ dbt_utils.type_string() }}) as payable_account_id,
+        cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         department_id,
         private_note,
         transaction_date,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         _fivetran_deleted
     from fields
 )

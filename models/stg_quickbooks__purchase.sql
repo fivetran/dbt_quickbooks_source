@@ -28,18 +28,18 @@ fields as (
 final as (
      
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as purchase_id,
-        cast(account_id as {{ dbt_utils.type_string() }}) as account_id,
+        cast(id as {{ dbt.type_string() }}) as purchase_id,
+        cast(account_id as {{ dbt.type_string() }}) as account_id,
         created_at,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         currency_id,
         exchange_rate,
         credit,
         total_amount,
         payment_type,
         department_id,
-        cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(customer_id as {{ dbt.type_string() }}) as customer_id,
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         transaction_date,
         _fivetran_deleted
     from fields

@@ -31,15 +31,15 @@ fields as (
 final as (
     
     select 
-        cast(vendor_credit_id as {{ dbt_utils.type_string() }}) as vendor_credit_id,
+        cast(vendor_credit_id as {{ dbt.type_string() }}) as vendor_credit_id,
         index,
-        cast(account_expense_customer_id as {{ dbt_utils.type_string() }}) as account_expense_customer_id,
-        cast(account_expense_account_id as {{ dbt_utils.type_string() }}) as account_expense_account_id,
+        cast(account_expense_customer_id as {{ dbt.type_string() }}) as account_expense_customer_id,
+        cast(account_expense_account_id as {{ dbt.type_string() }}) as account_expense_account_id,
         account_expense_billable_status,
         account_expense_tax_code_id,
         account_expense_class_id,
-        cast(item_expense_customer_id as {{ dbt_utils.type_string() }}) as item_expense_customer_id,
-        cast(item_expense_item_id as {{ dbt_utils.type_string() }}) as item_expense_item_id,
+        cast(item_expense_customer_id as {{ dbt.type_string() }}) as item_expense_customer_id,
+        cast(item_expense_item_id as {{ dbt.type_string() }}) as item_expense_item_id,
         item_expense_quantity,
         item_expense_unit_price,
         item_expense_class_id,
