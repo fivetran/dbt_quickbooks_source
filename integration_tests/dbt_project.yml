@@ -1,5 +1,6 @@
 name: 'quickbooks_source_integration_tests'
 version: '0.6.0'
+
 profile: 'integration_tests'
 config-version: 2
 models:
@@ -8,47 +9,51 @@ models:
     tmp:
       materialized: view
 vars:
+  quickbooks_schema: quickbooks_source_integrations_tests
   quickbooks_source:
-    using_purchase_order: true
-    account: "{{ ref('account_data') }}"
-    address: "{{ ref('address_data') }}"
-    bill_line: "{{ ref('bill_line_data') }}"
-    bill_linked_txn: "{{ ref('bill_linked_txn_data') }}"
-    bill_payment_line: "{{ ref('bill_payment_line_data') }}"
-    bill_payment: "{{ ref('bill_payment_data') }}"
-    bill: "{{ ref('bill_data') }}"
-    bundle_item: "{{ ref('bundle_item_data') }}"
-    bundle: "{{ ref('bundle_data') }}"
-    credit_memo: "{{ ref('credit_memo_data') }}"
-    credit_memo_line: "{{ ref('credit_memo_line_data') }}"
-    customer: "{{ ref('customer_data') }}"
-    department: "{{ ref('department_data') }}"
-    deposit_line: "{{ ref('deposit_line_data') }}"
-    deposit: "{{ ref('deposit_data') }}"
-    estimate: "{{ ref('estimate_data') }}"
-    estimate_line: "{{ ref('estimate_line_data') }}"
-    invoice: "{{ ref('invoice_data') }}"
-    invoice_line: "{{ ref('invoice_line_data') }}"
-    invoice_line_bundle: "{{ ref('invoice_line_bundle_data') }}"
-    invoice_linked_txn: "{{ ref('invoice_linked_txn_data') }}"
-    item: "{{ ref('item_data') }}"
-    journal_entry_line: "{{ ref('journal_entry_line_data') }}"
-    journal_entry: "{{ ref('journal_entry_data') }}"
-    payment: "{{ ref('payment_data') }}"
-    payment_line: "{{ ref('payment_line_data') }}"
-    purchase_line: "{{ ref('purchase_line_data') }}"
-    purchase_order: "{{ ref('purchase_order_data') }}"
-    purchase_order_line: "{{ ref('purchase_order_line_data') }}"
-    purchase_order_linked_txn: "{{ ref('purchase_order_linked_txn_data') }}"
-    purchase: "{{ ref('purchase_data') }}"
-    refund_receipt_line: "{{ ref('refund_receipt_line_data') }}"
-    refund_receipt: "{{ ref('refund_receipt_data') }}"
-    sales_receipt_line: "{{ ref('sales_receipt_line_data') }}"
-    sales_receipt: "{{ ref('sales_receipt_data') }}"
-    transfer: "{{ ref('transfer_data') }}"
-    vendor_credit_line: "{{ ref('vendor_credit_line_data') }}"
-    vendor_credit: "{{ ref('vendor_credit_data') }}"
-    vendor: "{{ ref('vendor_data') }}"
+    using_purchase_order: True
+    using_credit_card_payment_txn: True
+    account:                    "{{ ref('account_data') }}"
+    address:                    "{{ ref('address_data') }}"
+    bill_line:                  "{{ ref('bill_line_data') }}"
+    bill_linked_txn:            "{{ ref('bill_linked_txn_data') }}"
+    bill_payment_line:          "{{ ref('bill_payment_line_data') }}"
+    bill_payment:               "{{ ref('bill_payment_data') }}"
+    bill:                       "{{ ref('bill_data') }}"
+    bundle_item:                "{{ ref('bundle_item_data') }}"
+    bundle:                     "{{ ref('bundle_data') }}"
+    credit_card_payment_txn:    "{{ ref('credit_card_payment_txn_data') }}"
+    credit_memo:                "{{ ref('credit_memo_data') }}"
+    credit_memo_line:           "{{ ref('credit_memo_line_data') }}"
+    customer:                   "{{ ref('customer_data') }}"
+    department:                 "{{ ref('department_data') }}"
+    deposit_line:               "{{ ref('deposit_line_data') }}"
+    deposit:                    "{{ ref('deposit_data') }}"
+    estimate:                   "{{ ref('estimate_data') }}"
+    estimate_line:              "{{ ref('estimate_line_data') }}"
+    invoice:                    "{{ ref('invoice_data') }}"
+    invoice_line:               "{{ ref('invoice_line_data') }}"
+    invoice_line_bundle:        "{{ ref('invoice_line_bundle_data') }}"
+    invoice_linked_txn:         "{{ ref('invoice_linked_txn_data') }}"
+    item:                       "{{ ref('item_data') }}"
+    journal_entry_line:         "{{ ref('journal_entry_line_data') }}"
+    journal_entry:              "{{ ref('journal_entry_data') }}"
+    payment:                    "{{ ref('payment_data') }}"
+    payment_line:               "{{ ref('payment_line_data') }}"
+    purchase_line:              "{{ ref('purchase_line_data') }}"
+    purchase_order:             "{{ ref('purchase_order_data') }}"
+    purchase_order_line:        "{{ ref('purchase_order_line_data') }}"
+    purchase_order_linked_txn:  "{{ ref('purchase_order_linked_txn_data') }}"
+    purchase:                   "{{ ref('purchase_data') }}"
+    refund_receipt_line:        "{{ ref('refund_receipt_line_data') }}"
+    refund_receipt:             "{{ ref('refund_receipt_data') }}"
+    sales_receipt_line:         "{{ ref('sales_receipt_line_data') }}"
+    sales_receipt:              "{{ ref('sales_receipt_data') }}"
+    transfer:                   "{{ ref('transfer_data') }}"    
+    vendor_credit_line:         "{{ ref('vendor_credit_line_data') }}"
+    vendor_credit:              "{{ ref('vendor_credit_data') }}"
+    vendor:                     "{{ ref('vendor_data') }}"
+    
 seeds:
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"
   quickbooks_source_integration_tests:
