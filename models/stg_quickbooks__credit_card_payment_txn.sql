@@ -22,7 +22,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as credit_card_payment_id,
+        cast(id as {{ dbt.type_string() }}) as credit_card_payment_id,
         amount,
         bank_account_id,
         credit_card_account_id,
