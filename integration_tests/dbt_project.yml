@@ -1,5 +1,5 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.5.0'
+version: '0.5.1'
 profile: 'integration_tests'
 config-version: 2
 
@@ -23,6 +23,7 @@ vars:
     bundle:                     "{{ ref('bundle_data') }}"
     credit_memo:                "{{ ref('credit_memo_data') }}"
     credit_memo_line:           "{{ ref('credit_memo_line_data') }}"
+    credit_card_payment_txn: "{{ ref('credit_card_payment_txn_data') }}"
     customer:                   "{{ ref('customer_data') }}"
     department:                 "{{ ref('department_data') }}"
     deposit_line:               "{{ ref('deposit_line_data') }}"
