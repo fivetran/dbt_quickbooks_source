@@ -6,7 +6,7 @@ models:
   quickbooks_source:
     +schema: quickbooks_staging
     materialized: table
-    tmp:
+    tmp: 
       materialized: view
 vars:
   quickbooks_source:
