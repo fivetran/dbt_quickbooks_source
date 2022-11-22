@@ -79,6 +79,8 @@ sources:
             description: The customer reference associated with the account based expense bill line.
           - name: item_expense_item_id
             description: The item reference associated with the item based expense bill line.
+          - name: item_expense_class_id
+            description: The class reference associated with the item based expense bill line.
           - name: item_expense_customer_id
             description: The customer reference associated with the item based expense bill line.
           - name: item_expense_billable_status
@@ -241,6 +243,8 @@ sources:
             description: Monetary amount of the credit memo line.
           - name: sales_item_account_id
             description: Account reference for an item credit memo record.
+          - name: sales_item_class_id
+            description: Class reference for an item credit memo record.
           - name: sales_item_item_id
             description: Item reference for an item credit memo record.
           - name: sales_item_quantity
@@ -527,6 +531,8 @@ sources:
             description: How the invoice is delivered to the customer.
           - name: due_date
             description: Timestamp of the date which the invoice payment is due.
+          - name: class_id
+            description: Reference to the class to which the invoice is associated with.
           - name: _fivetran_deleted
             description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -669,6 +675,8 @@ sources:
             description: Tax code reference associated to the purchase.
           - name: item_expense_item_id
             description: The item reference associated with the item based expense purchase line.
+          - name: item_expense_class_id
+            description: The class id associated with the item based expense purchase line. 
           - name: item_expense_billable_status
             description: The billable status of the item based expense purchase line.
           - name: amount
@@ -801,12 +809,16 @@ sources:
             description: User defined description of the refund line.
           - name: discount_account_id
             description: Reference to Income account used to track discounts.
+          - name: discount_class_id
+            description: Class id of the discount associated with the refunded item. 
           - name: sales_item_quantity
             description: Quantity of the item associated with the refund receipt line.
           - name: sales_item_unit_price
             description: Unit price of the item associated with the refund receipt line.
           - name: sales_item_account_id
             description: Account id of the account which the refund is credited.
+          - name: sales_item_class_id
+            description: Class id of the refunded item.
           - name: sales_item_item_id
             description: Item id of the refunded item.
           - name: sales_item_tax_code_id
@@ -855,8 +867,12 @@ sources:
             description: Description of the sales receipt line.
           - name: discount_account_id
             description: Reference to Income account used to track discounts.
+          - name: discount_class_id
+            description: Class id of the discount credited to the sales line.
           - name: sales_item_account_id
             description: Account id of the account credited with the sales line.
+          - name: sales_item_class_id
+            description: Class id of the receipt credited with the sales line.
           - name: sales_item_item_id
             description: Item id of the item sold in the sale line.
           - name: sales_item_tax_code_id

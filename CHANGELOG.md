@@ -1,3 +1,6 @@
+# New feature
+- Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models.
+
 # dbt_quickbooks_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
 [PR #30](https://github.com/fivetran/dbt_quickbooks_source/pull/30) includes the following breaking changes:

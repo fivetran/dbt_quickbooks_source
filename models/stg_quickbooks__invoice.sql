@@ -45,6 +45,7 @@ final as (
         shipping_address_id,
         delivery_type,
         due_date,
+        class_id,
         _fivetran_deleted
     from fields
 )
