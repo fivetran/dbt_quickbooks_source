@@ -25,6 +25,13 @@ fields as (
             )
         }}
         
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -36,7 +43,8 @@ final as (
         country,
         line_1 as address_1,
         line_2 as address_2,
-        postal_code
+        postal_code,
+        source_relation
     from fields
 )
 

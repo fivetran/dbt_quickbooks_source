@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_estimate_line_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -43,7 +50,8 @@ final as (
         item_id,
         quantity,
         account_id,
-        amount
+        amount,
+        source_relation
     from fields
 )
 

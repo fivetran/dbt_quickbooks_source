@@ -17,8 +17,16 @@ account as (
             fivetran_utils.fill_staging_columns(
                 source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__account_tmp')),
                 staging_columns=get_account_columns()
-            )
+                )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -40,7 +48,8 @@ final as (
         currency_id,
         description,
         fully_qualified_name,
-        updated_at
+        updated_at,
+        source_relation
 
     from base
 )

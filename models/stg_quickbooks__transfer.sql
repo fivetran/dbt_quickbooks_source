@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_transfer_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -36,7 +43,8 @@ final as (
         cast(from_account_id as {{ dbt.type_string() }}) as from_account_id,
         cast(to_account_id as {{ dbt.type_string() }}) as to_account_id,
         transaction_date,
-        _fivetran_deleted
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

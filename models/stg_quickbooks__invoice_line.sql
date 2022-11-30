@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_invoice_line_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -46,7 +53,8 @@ final as (
         bundle_quantity,
         cast(bundle_id as {{ dbt.type_string() }}) as bundle_id,
         cast(account_id as {{ dbt.type_string() }}) as account_id,
-        cast(item_id as {{ dbt.type_string() }}) as item_id
+        cast(item_id as {{ dbt.type_string() }}) as item_id,
+        source_relation
     from fields
 )
 

@@ -25,6 +25,13 @@ fields as (
             )
         }}
         
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -41,7 +48,8 @@ final as (
         description,
         billable_status,
         posting_type,
-        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
+        source_relation
     from fields
 )
 

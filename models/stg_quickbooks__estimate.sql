@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_estimate_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -41,7 +48,8 @@ final as (
         total_amount,
         transaction_date,
         transaction_status,
-        _fivetran_deleted
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 
