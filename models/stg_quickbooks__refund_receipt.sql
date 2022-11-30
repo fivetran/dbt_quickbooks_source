@@ -35,7 +35,7 @@ final as (
         balance,
         cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         total_amount,
-        class_id,
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
         cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         created_at,
         department_id,

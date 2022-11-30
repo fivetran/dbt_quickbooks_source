@@ -31,14 +31,14 @@ final as (
         cast(purchase_id as {{ dbt.type_string() }}) as purchase_id,
         index,
         cast(account_expense_account_id as {{ dbt.type_string() }}) as account_expense_account_id,
-        account_expense_class_id,
+        cast(account_expense_class_id as {{ dbt.type_string() }}) as account_expense_class_id, 
         account_expense_billable_status,
         cast(account_expense_customer_id as {{ dbt.type_string() }}) as account_expense_customer_id,
         account_expense_tax_code_id,
         cast(item_expense_item_id as {{ dbt.type_string() }}) as item_expense_item_id,
         item_expense_billable_status,
         cast(item_expense_customer_id as {{ dbt.type_string() }}) as item_expense_customer_id,
-        item_expense_class_id,
+        cast(item_expense_class_id as {{ dbt.type_string() }}) as item_expense_class_id,
         amount,
         description
     from fields

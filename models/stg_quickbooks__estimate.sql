@@ -32,7 +32,7 @@ final as (
     
     select 
         cast(id as {{ dbt.type_string() }}) as estimate_id,
-        class_id,
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
         created_at,
         currency_id,
         customer_id,

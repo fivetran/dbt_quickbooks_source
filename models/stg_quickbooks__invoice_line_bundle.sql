@@ -32,7 +32,7 @@ final as (
     select 
         cast(invoice_id as {{ dbt.type_string() }}) as invoice_id,
         index,
-        class_id,
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
         description,
         amount,
         cast(sales_item_item_id as {{ dbt.type_string() }}) as sales_item_item_id,

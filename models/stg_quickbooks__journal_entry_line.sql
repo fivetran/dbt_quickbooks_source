@@ -37,7 +37,7 @@ final as (
         amount,
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         department_id,
-        class_id,
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
         description,
         billable_status,
         posting_type,
