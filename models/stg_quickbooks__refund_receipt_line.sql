@@ -25,6 +25,13 @@ fields as (
             )
         }}
         
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -36,11 +43,14 @@ final as (
         amount,
         description,
         cast(discount_account_id as {{ dbt.type_string() }}) as discount_account_id,
+        cast(discount_class_id as {{ dbt.type_string() }}) as discount_class_id,
         cast(sales_item_account_id as {{ dbt.type_string() }}) as sales_item_account_id,
+        cast(sales_item_class_id as {{ dbt.type_string() }}) as sales_item_class_id, 
         cast(sales_item_item_id as {{ dbt.type_string() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
-        sales_item_tax_code_id
+        sales_item_tax_code_id,
+        source_relation
     from fields
 )
 

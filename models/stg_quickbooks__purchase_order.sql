@@ -25,6 +25,13 @@ fields as (
             )
         }}
 
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -43,7 +50,8 @@ final as (
         transaction_date,
         status,
         due_date,
-        _fivetran_deleted
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

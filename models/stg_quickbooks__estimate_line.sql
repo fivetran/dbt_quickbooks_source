@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_estimate_line_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -35,15 +42,16 @@ final as (
         index,
         description,
         discount_account_id,
-        discount_class_id,
+        cast(discount_class_id as {{ dbt.type_string() }}) as discount_class_id,
         sales_item_account_id,
-        sales_item_class_id,
+        cast(sales_item_class_id as {{ dbt.type_string() }}) as sales_item_class_id,
         sales_item_item_id,
         sales_item_quantity,
         item_id,
         quantity,
         account_id,
-        amount
+        amount,
+        source_relation
     from fields
 )
 

@@ -21,6 +21,13 @@ fields as (
                 staging_columns=get_vendor_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -38,7 +45,8 @@ final as (
         currency_id,
         display_name,
         web_url,
-        vendor_1099 as is_vendor_1099
+        vendor_1099 as is_vendor_1099,
+        source_relation
     from fields
 )
 
