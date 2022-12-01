@@ -50,7 +50,6 @@ final as (
         fully_qualified_name,
         updated_at,
         source_relation
-
     from base
 )
 
