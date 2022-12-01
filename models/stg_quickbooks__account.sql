@@ -17,7 +17,7 @@ account as (
             fivetran_utils.fill_staging_columns(
                 source_columns=adapter.get_columns_in_relation(ref('stg_quickbooks__account_tmp')),
                 staging_columns=get_account_columns()
-                )
+            )
         }}
 
         {{ 
