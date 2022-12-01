@@ -481,6 +481,8 @@ sources:
             description: Unique identifier of the invoice record.
           - name: index
             description: Index count of records associated with the invoice bundle line.
+          - name: invoice_line_index
+            description: Invoice index count of records associated with the invoice bundle line.
           - name: class_id
             description: Reference to the class associated with the invoice line bundle.
           - name: description

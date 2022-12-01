@@ -79,6 +79,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - bill_id
+            - index
             - source_relation    
     columns:
       - name: bill_id
@@ -130,6 +131,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - bill_payment_id
+            - index
             - source_relation    
     columns:
       - name: bill_payment_id
@@ -288,6 +290,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - credit_memo_id
+            - index
             - source_relation
     columns:
       - name: credit_memo_id
@@ -407,6 +410,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - deposit_id
+            - index
             - source_relation
     columns:
       - name: deposit_id
@@ -494,6 +498,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - estimate_id
+            - index
             - source_relation
     columns:
       - name: estimate_id
@@ -545,6 +550,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - invoice_id
+            - index
             - source_relation
     columns:
       - name: invoice_id
@@ -588,14 +594,18 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - invoice_id
+            - index
+            - invoice_line_index
             - source_relation
     columns:
       - name: invoice_id
         description: Unique identifier of the invoice record.
         tests:
           - not_null
-      - name: invoice_line_index
+      - name: index
         description: Index count of records associated with the invoice bundle line.
+      - name: invoice_line_index
+        description: Invoice index count of records associated with the invoice bundle line.
       - name: class_id
         description: Reference to the class associated with the invoice line bundle.
       - name: description
@@ -701,6 +711,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - journal_entry_id
+            - index
             - source_relation
     columns:
       - name: journal_entry_id
@@ -764,6 +775,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - payment_id
+            - index
             - source_relation
     columns:
       - name: payment_id
@@ -820,6 +832,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - purchase_id
+            - index
             - source_relation
     columns:
       - name: purchase_id
@@ -899,6 +912,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - purchase_order_id
+            - index
             - source_relation
     columns:
       - name: purchase_order_id
@@ -990,6 +1004,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - refund_id
+            - index
             - source_relation
     columns:
       - name: refund_id
@@ -1062,6 +1077,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - sales_receipt_id
+            - index
             - source_relation
     columns:
       - name: sales_receipt_id
@@ -1157,6 +1173,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - vendor_credit_id
+            - index
             - source_relation
     columns:
       - name: vendor_credit_id
