@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_bill_linked_txn_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -33,7 +40,8 @@ final as (
     select 
         cast(bill_id as {{ dbt.type_string() }}) as bill_id,
         index,
-        cast(bill_payment_id as {{ dbt.type_string() }}) as bill_payment_id
+        cast(bill_payment_id as {{ dbt.type_string() }}) as bill_payment_id,
+        source_relation
     from fields
 )
 

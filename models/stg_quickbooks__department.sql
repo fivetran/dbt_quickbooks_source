@@ -25,6 +25,13 @@ fields as (
             )
         }}
         
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -38,7 +45,8 @@ final as (
         fully_qualified_name,
         name,
         sub_department as is_sub_department,
-        parent_department_id
+        parent_department_id,
+        source_relation
     from fields
 )
 

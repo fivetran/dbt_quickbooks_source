@@ -24,6 +24,13 @@ fields as (
                 staging_columns=get_invoice_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -45,7 +52,9 @@ final as (
         shipping_address_id,
         delivery_type,
         due_date,
-        _fivetran_deleted
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

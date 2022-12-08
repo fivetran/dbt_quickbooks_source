@@ -16,6 +16,14 @@ fields as (
                 staging_columns=get_credit_card_payment_txn_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
@@ -31,7 +39,8 @@ final as (
         currency_id,
         transaction_date,
         _fivetran_deleted,
-        row_number() over (partition by id, updated_at order by updated_at desc) = 1 as is_most_recent_record
+        row_number() over (partition by id, updated_at order by updated_at desc) = 1 as is_most_recent_record,
+        source_relation
     from fields
 )
 

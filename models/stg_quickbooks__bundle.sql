@@ -23,6 +23,13 @@ fields as (
                 staging_columns=get_bundle_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
     from base
 ),
@@ -34,7 +41,8 @@ final as (
         created_at,
         active as is_active,
         fully_qualified_name,
-        updated_at
+        updated_at,
+        source_relation
 
     from fields
 )

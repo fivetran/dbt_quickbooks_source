@@ -1,6 +1,11 @@
 # New features
+<<<<<<< HEAD
 - Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models.  [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
 - Add union schema ability to run quickbooks for a number of schemas. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
+=======
+- Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models.
+- Add union schema ability to run quickbooks for a number of schemas. 
+>>>>>>> b9cadd3425c79712a279ba5edbb2684e1ba8bd82
 # dbt_quickbooks_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
 [PR #30](https://github.com/fivetran/dbt_quickbooks_source/pull/30) includes the following breaking changes:

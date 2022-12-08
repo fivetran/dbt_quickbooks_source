@@ -6,11 +6,15 @@ models:
       Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary
       amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue
       (income), expenses, or equity.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - source_relation
     columns:
       - name: account_id
         description: Unique identifier for an account.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: account_number
         description: User-defined account number intended to identify the account within the Chart of Accounts.
@@ -48,11 +52,15 @@ models:
 
   - name: stg_quickbooks__address
     description: Table containing address details.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - address_id
+            - source_relation
     columns:
       - name: address_id
         description: Unique identifier for an address.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: city
         description: The city which the address is located.
@@ -66,7 +74,13 @@ models:
         description: The postal code which the address is located.
 
   - name: stg_quickbooks__bill_line
-    descrition: Table containing distinct line items from bills within the `stg_quickbooks__bill` table.
+    description: Table containing distinct line items from bills within the `stg_quickbooks__bill` table.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bill_id
+            - index
+            - source_relation    
     columns:
       - name: bill_id
         description: The unique identifier of the parent bill record.
@@ -84,6 +98,8 @@ models:
         description: The customer reference associated with the item based expense bill line.
       - name: item_expense_billable_status
         description: The billable status of the item based expense bill line.
+      - name: item_expense_class_id
+        description: The class reference associated with the item based expense bill line.
       - name: account_expense_account_id
         description: The id of the account being expensed from the bill.
       - name: account_expense_billable_status
@@ -96,7 +112,7 @@ models:
         description: Description of the bill line item.
 
   - name: stg_quickbooks__bill_linked_txn
-    descrition: Mapping table containing bill payment transactions linked to a bill.
+    description: Mapping table containing bill payment transactions linked to a bill.
     columns:
       - name: bill_id
         description: The unique identifier of the bill record.
@@ -110,7 +126,13 @@ models:
           - not_null
 
   - name: stg_quickbooks__bill_payment_line
-    descrition: Table containing individual line items of a bill payment, which are recorded within the `stg_quickbooks__bill_payment` table.
+    description: Table containing individual line items of a bill payment, which are recorded within the `stg_quickbooks__bill_payment` table.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bill_payment_id
+            - index
+            - source_relation    
     columns:
       - name: bill_payment_id
         description: The unique identifier of the bill payment record.
@@ -135,11 +157,15 @@ models:
 
   - name: stg_quickbooks__bill_payment
     description: Table containing payment transactions bills that the business owner receives from a vendor for goods or services purchased from the vendor.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bill_payment_id
+            - source_relation     
     columns:
       - name: bill_payment_id
         description: Unique identifier of the bill payment.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: check_bank_account_id
         description: Account id of the account which the bill payment is credited. Only applicable if bill payment `pay_type` is of type check.
@@ -166,11 +192,15 @@ models:
 
   - name: stg_quickbooks__bill
     description: Table containing AP transactions representing a request-for-payment from a third party for goods/services rendered, received, or both.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bill_id
+            - source_relation    
     columns:
       - name: bill_id
         description: Unique identifier of the bill record.
         tests:
-          - unique
           - not_null
       - name: balance
         description: The balance reflecting any payments made against the transaction.
@@ -198,7 +228,7 @@ models:
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
   - name: stg_quickbooks__bundle_item
-    description: Mapping table containing all bundle and item combinations
+    description: Mapping table containing all bundle and item combinations  
     columns:
       - name: bundle_id
         description: Reference to the bundle table.
@@ -211,11 +241,15 @@ models:
 
   - name: stg_quickbooks__bundle
     description: Table containing all bundles possible to be used within an invoice.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - bundle_id
+            - source_relation    
     columns:
       - name: bundle_id
         description: Unique identifier of the bundle.
         tests:
-          - unique
           - not_null
       - name: created_at
         description: Timestamp of the date which the bundle was created.
@@ -252,6 +286,12 @@ models:
 
   - name: stg_quickbooks__credit_memo_line
     description: Table containing individual records of credit memos.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - credit_memo_id
+            - index
+            - source_relation
     columns:
       - name: credit_memo_id
         description: Unique identifier of the credit memo record.
@@ -263,6 +303,8 @@ models:
         description: Monetary amount of the credit memo line.
       - name: sales_item_account_id
         description: Account reference for an item credit memo record.
+      - name: sales_item_class_id
+        description: Class reference for an item credit memo record.
       - name: sales_item_item_id
         description: Item reference for an item credit memo record.
       - name: sales_item_quantity
@@ -278,11 +320,15 @@ models:
 
   - name: stg_quickbooks__credit_memo
     description: Table containing credit memo records. A credit memo is a refund or credit of payment or part of a payment for goods or services that have been sold.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - credit_memo_id
+            - source_relation
     columns:
       - name: credit_memo_id
         description: Unique identifier for a credit memo.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: balance
         description: The balance reflecting any payments made against the transaction.
@@ -307,11 +353,15 @@ models:
 
   - name: stg_quickbooks__customer
     description: Table containing customers of which are consumers of the service or product that your business offers.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - customer_id
+            - source_relation
     columns:
       - name: customer_id
         description: Unique identifier of the customer.
         tests:
-          - unique
           - not_null
       - name: is_active
         description: Boolean indicating whether it is currently enabled for use by QuickBooks.
@@ -356,6 +406,12 @@ models:
 
   - name: stg_quickbooks__deposit_line
     description: Table containing individual line items comprising the deposit.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - deposit_id
+            - index
+            - source_relation
     columns:
       - name: deposit_id
         description: Unique identifier of the deposit record.
@@ -376,11 +432,15 @@ models:
 
   - name: stg_quickbooks__deposit
     description: Table containing records of transactions that record on or more deposits of a customer payment or a new direct deposit.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - deposit_id
+            - source_relation
     columns:
       - name: deposit_id
         description: Unique identifier of the deposit.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: Identifies the account to be used for this deposit.
@@ -401,11 +461,15 @@ models:
 
   - name: stg_quickbooks__estimate
     description: Table containing estimates. An estimate represents a proposal for a financial transaction from a business to a customer for goods or services proposed to be sold, including proposed pricing.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - estimate_id
+            - source_relation
     columns:
       - name: estimate_id
         description: Unique identifier of the estimate.
         tests:
-          - unique
           - not_null
       - name: class_id
         description: Reference to the class associated with the estimate record.
@@ -430,6 +494,12 @@ models:
 
   - name: stg_quickbooks__estimate_line
     description: Table containing line item records of an estimate.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - estimate_id
+            - index
+            - source_relation
     columns:
       - name: estimate_id
         description: Reference to the unique estimate record.
@@ -476,6 +546,12 @@ models:
 
   - name: stg_quickbooks__invoice_line
     description: Table containing individual records from invoices.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - invoice_id
+            - index
+            - source_relation
     columns:
       - name: invoice_id
         description: Unique identifier of the invoice record.
@@ -514,13 +590,22 @@ models:
 
   - name: stg_quickbooks__invoice_line_bundle
     description: Table containing lines of an invoice which were bundled.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - invoice_id
+            - index
+            - invoice_line_index
+            - source_relation
     columns:
       - name: invoice_id
         description: Unique identifier of the invoice record.
         tests:
           - not_null
-      - name: invoice_line_index
+      - name: index
         description: Index count of records associated with the invoice bundle line.
+      - name: invoice_line_index
+        description: Invoice index count of records associated with the invoice bundle line.
       - name: class_id
         description: Reference to the class associated with the invoice line bundle.
       - name: description
@@ -542,11 +627,15 @@ models:
 
   - name: stg_quickbooks__invoice
     description: Table containing invoice records. An Invoice represents a sales form where the customer pays for a product or service later.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - invoice_id
+            - source_relation
     columns:
       - name: invoice_id
         description: Unique identifier of the invoice.
         tests:
-          - unique
           - not_null
       - name: balance
         description: The balance reflecting any payments made against the transaction.
@@ -574,17 +663,22 @@ models:
         description: How the invoice is delivered to the customer.
       - name: due_date
         description: Timestamp of the date which the invoice payment is due.
-      - name: _fivetran_deleted
+      - name: class_id
+        description: Reference to the class to which the invoice is associated with.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
   - name: stg_quickbooks__item
     description: Table containing item records. An item is a thing that your company buys, sells, or re-sells, such as products and services.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - item_id
+            - source_relation
     columns:
       - name: item_id
         description: Unique identifier of the item.
         tests:
-          - unique
           - not_null
       - name: is_active
         description: Boolean indicating whether the object is currently enabled for use by QuickBooks.
@@ -613,6 +707,12 @@ models:
 
   - name: stg_quickbooks__journal_entry_line
     description: Individual line items of a transaction associated with a journal entry.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - journal_entry_id
+            - index
+            - source_relation
     columns:
       - name: journal_entry_id
         description: Unique identifier of the journal entry record.
@@ -644,11 +744,11 @@ models:
 
   - name: stg_quickbooks__journal_entry
     description: Table containing journal entry transactions.
+
     columns:
       - name: journal_entry_id
         description: Unique identifier of the journal entry.
         tests:
-          - unique
           - not_null
       - name: is_adjustment
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
@@ -671,6 +771,12 @@ models:
 
   - name: stg_quickbooks__payment_line
     description: Table containing individual line items recorded within a payment.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - payment_id
+            - index
+            - source_relation
     columns:
       - name: payment_id
         description: Unique identifier of the payment record.
@@ -691,11 +797,15 @@ models:
 
   - name: stg_quickbooks__payment
     description: Table containing all payment records. The payment can be applied for a particular customer against multiple Invoices and Credit Memos. It can also be created without any Invoice or Credit Memo, by just specifying an amount.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - payment_id
+            - source_relation
     columns:
       - name: payment_id
         description: Unique identifier of the payment.
         tests:
-          - unique
           - not_null
       - name: unapplied_amount
         description: Indicates the amount that has not been applied to pay amounts owed for sales transactions.
@@ -718,6 +828,12 @@ models:
 
   - name: stg_quickbooks__purchase_line
     description: Table containing individual line items of a transaction associated with a purchase.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - purchase_id
+            - index
+            - source_relation
     columns:
       - name: purchase_id
         description: Unique identifier of the purchase record.
@@ -739,8 +855,10 @@ models:
         description: The item reference associated with the item based expense purchase line.
       - name: item_expense_billable_status
         description: The billable status of the item based expense purchase line.
+      - name: item_expense_class_id
+        description: The class id associated with the item based expense purchase line. 
       - name: item_expense_customer_id
-        description: The customer id associated with the item based expense purchase line
+        description: The customer id associated with the item based expense purchase line.
       - name: amount
         description: Monetary amount of the purchase.
       - name: description
@@ -748,11 +866,15 @@ models:
 
   - name: stg_quickbooks__purchase
     description: Table containing records of purchase expenses.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - purchase_id
+            - source_relation
     columns:
       - name: purchase_id
         description: Unique identifier of the purchase.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: Specifies the account reference to which this purchase is applied based on the PaymentType.
@@ -786,6 +908,12 @@ models:
 
   - name: stg_quickbooks__purchase_order_line
     description: Table containing individual line items of a transaction associated with a purchase order.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - purchase_order_id
+            - index
+            - source_relation
     columns:
       - name: purchase_order_id
         description: Unique identifier of the purchase order record.
@@ -832,11 +960,15 @@ models:
 
   - name: stg_quickbooks__purchase_order
     description: Table containing records of purchase orders (PO).
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - purchase_order_id
+            - source_relation
     columns:
       - name: purchase_order_id
         description: Unique identifier of the purchase order.
         tests:
-          - unique
           - not_null
       - name: created_at
         description: Timestamp of the date when the purchase order was created.
@@ -868,6 +1000,12 @@ models:
 
   - name: stg_quickbooks__refund_receipt_line
     description: Table containing individual line items of a refund transaction.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - refund_id
+            - index
+            - source_relation
     columns:
       - name: refund_id
         description: Unique identifier of the refund record.
@@ -881,12 +1019,16 @@ models:
         description: User defined description of the refund line.
       - name: discount_account_id
         description: Reference to Income account used to track discounts.
+      - name: discount_class_id
+        description: Class id of the discount associated with the refunded item. 
       - name: sales_item_quantity
         description: Quantity of the item associated with the refund receipt line.
       - name: sales_item_unit_price
         description: Unit price of the item associated with the refund receipt line.
       - name: sales_item_account_id
         description: Account id of the account which the refund is credited.
+      - name: sales_item_class_id
+        description: Class id of the refunded item.
       - name: sales_item_item_id
         description: Item id of the refunded item.
       - name: sales_item_tax_code_id
@@ -894,11 +1036,15 @@ models:
 
   - name: stg_quickbooks__refund_receipt
     description: Table containing refunds to the customer for a product or service that was provided.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - refund_id
+            - source_relation
     columns:
       - name: refund_id
         description: Unique identifier of the refund.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: balance
         description: The balance reflecting any payments made against the transaction.
@@ -927,6 +1073,12 @@ models:
 
   - name: stg_quickbooks__sales_receipt_line
     description: Table containing individual line items of a sales transaction.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - sales_receipt_id
+            - index
+            - source_relation
     columns:
       - name: sales_receipt_id
         description: Unique identifier of the sales record.
@@ -940,8 +1092,12 @@ models:
         description: Description of the sales receipt line.
       - name: discount_account_id
         description: Reference to Income account used to track discounts.
+      - name: discount_class_id
+        description: Class id of the discount credited to the sales line.
       - name: sales_item_account_id
         description: Account id of the account credited with the sales line.
+      - name: sales_item_class_id
+        description: Class id of the receipt credited with the sales line.
       - name: sales_item_item_id
         description: Item id of the item sold in the sale line.
       - name: sales_item_tax_code_id
@@ -953,11 +1109,15 @@ models:
 
   - name: stg_quickbooks__sales_receipt
     description: Table containing sales receipts that are given to a customer. A sales receipt, payment is received as part of the sale of goods and services. The sales receipt specifies a deposit account where the customer's payment is deposited.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - sales_receipt_id
+            - source_relation
     columns:
       - name: sales_receipt_id
         description: Unique identifier of the sales receipt.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: balance
         description: The balance reflecting any payments made against the transaction.
@@ -986,11 +1146,15 @@ models:
 
   - name: stg_quickbooks__transfer
     description: Table containing records of transfers. A Transfer represents a transaction where funds are moved between two accounts from the company's QuickBooks chart of accounts.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - transfer_id
+            - source_relation
     columns:
       - name: transfer_id
         description: Unique identifier of the transfer.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: amount
         description: Monetary amount of the transfer.
@@ -1005,6 +1169,12 @@ models:
 
   - name: stg_quickbooks__vendor_credit_line
     description: Table containing individual vendor credit line items.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - vendor_credit_id
+            - index
+            - source_relation
     columns:
       - name: vendor_credit_id
         description: Unique identifier of the vendor credit record.
@@ -1044,8 +1214,7 @@ models:
     columns:
       - name: vendor_credit_id
         description: Unique identifier of the vendor credit.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: balance
         description: The current amount of the vendor credit reflecting any adjustments to the original credit amount.
@@ -1074,11 +1243,15 @@ models:
 
   - name: stg_quickbooks__vendor
     description: Table containing all vendor records. A vendor is the seller from whom your company purchases any service or product.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - vendor_id
+            - source_relation
     columns:
       - name: vendor_id
         description: Unique identifier of the vendor.
-        tests:
-          - unique
+        tests: 
           - not_null
       - name: account_number
         description: Name or number of the account associated with this vendor.

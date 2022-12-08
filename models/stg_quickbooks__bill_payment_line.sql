@@ -24,7 +24,14 @@ fields as (
                 staging_columns=get_bill_payment_line_columns()
             )
         }}
-        
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+  
     from base
 ),
 
@@ -39,7 +46,8 @@ final as (
         expense_id,
         journal_entry_id,
         linked_bill_payment_id,
-        vendor_credit_id
+        vendor_credit_id,
+        source_relation
     from fields
 )
 
