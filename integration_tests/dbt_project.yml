@@ -54,8 +54,7 @@ vars:
     vendor:                     "{{ ref('vendor_data') }}"
     
 seeds:
-    +quote_columns: "{{ true if target.type == 'redshift' else false }}"
-    quickbooks_source_integration_tests:
+    +quote_columns: "{{ true if target.type == 'redshift' else false }}" 
 
 clean-targets:
     - target
