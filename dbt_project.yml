@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'quickbooks_source'
-version: '0.5.0'
+version: '0.5.1'
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
@@ -25,6 +25,7 @@ vars:
     bundle: "{{ source('quickbooks','bundle') }}"
     credit_memo_line: "{{ source('quickbooks','credit_memo_line') }}"
     credit_memo: "{{ source('quickbooks','credit_memo') }}"
+    credit_card_payment_txn: "{{ source('quickbooks','credit_card_payment_txn') }}"
     customer: "{{ source('quickbooks','customer') }}"
     department: "{{ source('quickbooks','department') }}"
     deposit_line: "{{ source('quickbooks','deposit_line') }}"

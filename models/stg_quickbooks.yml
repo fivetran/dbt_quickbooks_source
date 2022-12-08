@@ -251,6 +251,30 @@ models:
         description: Class reference for a discount credit memo record.
       - name: description
         description: Description of the credit memo line.
+        
+  - name: stg_quickbooks__credit_card_payment_txn
+    description: Table containing all credit card payment transactions.
+    columns:
+      - name: credit_card_payment_id
+        description: Unique identifier of the credit card payment transaction.
+      - name: amount
+        description: Total amount of money applied to the credit card payment transaction.
+      - name: bank_account_id
+        description: Reference to the bank account which the credit card payment is debited towards.
+      - name: credit_card_account_id
+        description: Reference to the credit card account which the credit card payment is credited towards.
+      - name: created_at
+        description: Timestamp when the credit card payment was created.
+      - name: updated_at
+        description: Timestamp when the credit card payment was last updated.
+      - name: currency_id
+        description: Reference to the currency used for the credit card payment.
+      - name: transaction_date
+        description: Date the credit card payment transaction took place.
+      - name: _fivetran_deleted
+        description: Boolean indicating if the credit card payment was deleted.
+      - name: is_most_recent_record
+        description: Boolean indicating if the record is the most recent updated version of the credit card payment transaction.
 
   - name: stg_quickbooks__credit_memo
     description: Table containing credit memo records. A credit memo is a refund or credit of payment or part of a payment for goods or services that have been sold.
