@@ -36,12 +36,11 @@
     - `dbt.current_timestamp_in_utc_backcompat`
 - `dbt_utils.surrogate_key` has also been updated to `dbt_utils.generate_surrogate_key`. Since the method for creating surrogate keys differ, we suggest all users do a `full-refresh` for the most accurate data. For more information, please refer to dbt-utils [release notes](https://github.com/dbt-labs/dbt-utils/releases) for this update.
 - `packages.yml` has been updated to reflect new default `fivetran/fivetran_utils` version, previously `[">=0.3.0", "<0.4.0"]` now `[">=0.4.0", "<0.5.0"]`.
-## Features
-- Addition of the `credit_card_payment_txn` (enabled/disabled using the `using_credit_card_payment_txn` variable) source as well as the accompanying staging models. This source includes all credit card payment transactions and will be used in downstream General Ledger generation to ensure accurate reporting of all transaction types. ([#29](https://github.com/fivetran/dbt_quickbooks_source/pull/29))
-  >**Note**: the `credit_card_payment_txn` source and models are disabled by default. In order to enabled them, you will want to set the `using_credit_card_payment_txn` variable to `true` in your dbt_project.yml.
-
 ## Under the Hood
 - A GitHub workflow has been added to ensure the dbt docs are regenerated before each merge to the `main` release branch. 
+# dbt_quickbooks_source v0.5.1
+## 🎉 Feature Updates 🎉
+- Addition of the new `stg_quickbooks__credit_card_payment_txn` model that may be used to track credit card transactions within QBO and used in downstream financial statement reports. ([#32](https://github.com/fivetran/dbt_quickbooks_source/pull/32))
 # dbt_quickbooks_source v0.5.0
 ## 🚨 Breaking Changes 🚨
 - It was discovered that IDs from the source tables can sometimes be strings. The previous build of the package interpreted all IDs as integers. To ensure the package operates as intended, the package has been updated to cast all IDs to the string datatype. If you were leveraging the end models in downstream analysis, this change could break your join conditions. Be sure to be aware of any join conditions you may have downstream before upgrading your QuickBooks package. ([#36](https://github.com/fivetran/dbt_quickbooks/pull/36)) ([#25](https://github.com/fivetran/dbt_quickbooks_source/pull/25)) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))

@@ -22,6 +22,7 @@ vars:
     credit_card_payment_txn: "{{ source('quickbooks','credit_card_payment_txn') }}"
     credit_memo_line: "{{ source('quickbooks','credit_memo_line') }}"
     credit_memo: "{{ source('quickbooks','credit_memo') }}"
+    credit_card_payment_txn: "{{ source('quickbooks','credit_card_payment_txn') }}"
     customer: "{{ source('quickbooks','customer') }}"
     department: "{{ source('quickbooks','department') }}"
     deposit_line: "{{ source('quickbooks','deposit_line') }}"

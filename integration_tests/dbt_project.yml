@@ -25,6 +25,7 @@ vars:
     credit_card_payment_txn:    "{{ ref('credit_card_payment_txn_data') }}"
     credit_memo:                "{{ ref('credit_memo_data') }}"
     credit_memo_line:           "{{ ref('credit_memo_line_data') }}"
+    credit_card_payment_txn:    "{{ ref('credit_card_payment_txn_data') }}"
     customer:                   "{{ ref('customer_data') }}"
     department:                 "{{ ref('department_data') }}"
     deposit_line:               "{{ ref('deposit_line_data') }}"
@@ -55,8 +56,10 @@ vars:
     vendor:                     "{{ ref('vendor_data') }}"
     
 seeds:
-  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
   quickbooks_source_integration_tests:
+    +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+
 clean-targets:
 - target
 - dbt_modules
+- dbt_packages
