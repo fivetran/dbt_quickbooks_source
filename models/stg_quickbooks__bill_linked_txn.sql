@@ -31,9 +31,9 @@ fields as (
 final as (
     
     select 
-        cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
+        cast(bill_id as {{ dbt.type_string() }}) as bill_id,
         index,
-        cast(bill_payment_id as {{ dbt_utils.type_string() }}) as bill_payment_id
+        cast(bill_payment_id as {{ dbt.type_string() }}) as bill_payment_id
     from fields
 )
 

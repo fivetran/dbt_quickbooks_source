@@ -31,17 +31,17 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as bill_payment_id,
-        cast(check_bank_account_id as {{ dbt_utils.type_string() }}) as check_bank_account_id,
+        cast(id as {{ dbt.type_string() }}) as bill_payment_id,
+        cast(check_bank_account_id as {{ dbt.type_string() }}) as check_bank_account_id,
         check_print_status,
-        cast(credit_card_account_id as {{ dbt_utils.type_string() }}) as credit_card_account_id,
+        cast(credit_card_account_id as {{ dbt.type_string() }}) as credit_card_account_id,
         exchange_rate,
         currency_id,
         department_id,
         pay_type,
         total_amount,
         transaction_date,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         _fivetran_deleted
     from fields
 )

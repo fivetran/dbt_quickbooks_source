@@ -31,17 +31,17 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as invoice_id,
+        cast(id as {{ dbt.type_string() }}) as invoice_id,
         balance,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         total_amount,
         currency_id,
         department_id,
-        cast(deposit_to_account_id as {{ dbt_utils.type_string() }}) as deposit_to_account_id,
+        cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         exchange_rate,
         transaction_date,
-        cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
-        cast(billing_address_id as {{ dbt_utils.type_string() }}) as billing_address_id,
+        cast(customer_id as {{ dbt.type_string() }}) as customer_id,
+        cast(billing_address_id as {{ dbt.type_string() }}) as billing_address_id,
         shipping_address_id,
         delivery_type,
         due_date,

@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as estimate_id,
+        cast(id as {{ dbt.type_string() }}) as estimate_id,
         class_id,
         created_at,
         currency_id,

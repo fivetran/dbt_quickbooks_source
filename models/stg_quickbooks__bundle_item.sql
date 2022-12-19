@@ -30,8 +30,8 @@ fields as (
 final as (
     
     select 
-        cast(bundle_id as {{ dbt_utils.type_string() }}) as bundle_id,
-        cast(item_id as {{ dbt_utils.type_string() }}) as item_id,
+        cast(bundle_id as {{ dbt.type_string() }}) as bundle_id,
+        cast(item_id as {{ dbt.type_string() }}) as item_id,
         item_quantity
     from fields
 )

@@ -28,19 +28,19 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as item_id,
+        cast(id as {{ dbt.type_string() }}) as item_id,
         active as is_active,
         created_at,
-        cast(income_account_id as {{ dbt_utils.type_string() }}) as income_account_id,
-        cast(asset_account_id as {{ dbt_utils.type_string() }}) as asset_account_id,
-        cast(expense_account_id as {{ dbt_utils.type_string() }}) as expense_account_id,
+        cast(income_account_id as {{ dbt.type_string() }}) as income_account_id,
+        cast(asset_account_id as {{ dbt.type_string() }}) as asset_account_id,
+        cast(expense_account_id as {{ dbt.type_string() }}) as expense_account_id,
         name,
         purchase_cost,
         taxable,
         type,
         unit_price,
         inventory_start_date,
-        cast(parent_item_id as {{ dbt_utils.type_string() }}) as parent_item_id
+        cast(parent_item_id as {{ dbt.type_string() }}) as parent_item_id
     from fields
 )
 

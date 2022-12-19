@@ -31,13 +31,13 @@ fields as (
 final as (
     
     select 
-        cast(deposit_id as {{ dbt_utils.type_string() }}) as deposit_id,
+        cast(deposit_id as {{ dbt.type_string() }}) as deposit_id,
         index,
         amount,
         description,
-        cast(deposit_account_id as {{ dbt_utils.type_string() }}) as deposit_account_id,
+        cast(deposit_account_id as {{ dbt.type_string() }}) as deposit_account_id,
         deposit_class_id,
-        cast(deposit_customer_id as {{ dbt_utils.type_string() }}) as deposit_customer_id
+        cast(deposit_customer_id as {{ dbt.type_string() }}) as deposit_customer_id
     from fields
 )
 

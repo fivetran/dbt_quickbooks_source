@@ -31,10 +31,10 @@ fields as (
 final as (
 
     select
-        cast(purchase_order_id as {{ dbt_utils.type_string() }}) as purchase_order_id,
-        cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
-        cast(purchase_id as {{ dbt_utils.type_string() }}) as purchase_id,
-        cast(vendor_credit_id as {{ dbt_utils.type_string() }}) as vendor_credit_id,
+        cast(purchase_order_id as {{ dbt.type_string() }}) as purchase_order_id,
+        cast(bill_id as {{ dbt.type_string() }}) as bill_id,
+        cast(purchase_id as {{ dbt.type_string() }}) as purchase_id,
+        cast(vendor_credit_id as {{ dbt.type_string() }}) as vendor_credit_id,
         index
     from fields
 )

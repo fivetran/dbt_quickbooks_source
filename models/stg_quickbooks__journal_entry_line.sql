@@ -31,17 +31,17 @@ fields as (
 final as (
     
     select 
-        cast(journal_entry_id as {{ dbt_utils.type_string() }}) as journal_entry_id,
+        cast(journal_entry_id as {{ dbt.type_string() }}) as journal_entry_id,
         index,
-        cast(account_id as {{ dbt_utils.type_string() }}) as account_id,
+        cast(account_id as {{ dbt.type_string() }}) as account_id,
         amount,
-        cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
+        cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         department_id,
         class_id,
         description,
         billable_status,
         posting_type,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id
     from fields
 )
 

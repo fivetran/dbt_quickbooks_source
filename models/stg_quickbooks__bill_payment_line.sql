@@ -31,10 +31,10 @@ fields as (
 final as (
     
     select 
-        cast(bill_payment_id as {{ dbt_utils.type_string() }}) as bill_payment_id,
+        cast(bill_payment_id as {{ dbt.type_string() }}) as bill_payment_id,
         index,
         amount,
-        cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
+        cast(bill_id as {{ dbt.type_string() }}) as bill_id,
         deposit_id,
         expense_id,
         journal_entry_id,

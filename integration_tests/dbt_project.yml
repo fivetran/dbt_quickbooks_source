@@ -1,17 +1,18 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.5.1'
+version: '0.6.0'
+
 profile: 'integration_tests'
 config-version: 2
-
-models: 
+models:
   quickbooks_source:
     materialized: table
     tmp:
       materialized: view
-
 vars:
+  quickbooks_schema: quickbooks_source_integrations_tests
   quickbooks_source:
     using_purchase_order: True
+    using_credit_card_payment_txn: True
     account:                    "{{ ref('account_data') }}"
     address:                    "{{ ref('address_data') }}"
     bill_line:                  "{{ ref('bill_line_data') }}"
@@ -21,6 +22,7 @@ vars:
     bill:                       "{{ ref('bill_data') }}"
     bundle_item:                "{{ ref('bundle_item_data') }}"
     bundle:                     "{{ ref('bundle_data') }}"
+    credit_card_payment_txn:    "{{ ref('credit_card_payment_txn_data') }}"
     credit_memo:                "{{ ref('credit_memo_data') }}"
     credit_memo_line:           "{{ ref('credit_memo_line_data') }}"
     credit_card_payment_txn:    "{{ ref('credit_card_payment_txn_data') }}"
@@ -54,8 +56,10 @@ vars:
     vendor:                     "{{ ref('vendor_data') }}"
     
 seeds:
+  quickbooks_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
 
 clean-targets:
-    - target
-    - dbt_modules
+- target
+- dbt_modules
+- dbt_packages

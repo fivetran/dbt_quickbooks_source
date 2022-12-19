@@ -31,7 +31,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as address_id,
+        cast(id as {{ dbt.type_string() }}) as address_id,
         city,
         country,
         line_1 as address_1,
