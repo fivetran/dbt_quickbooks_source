@@ -1,7 +1,7 @@
 # New features
 - Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models.  [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
 - Add union schema ability to run quickbooks for a number of schemas. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35) 
-- Add account class ordinals in seed files `quickbooks__balance_sheet_account_class_order` and `quickbooks__profit_and_loss_account_class_order` to allow ordering functionality in balance sheet and profit-and-loss sheet in transform package.
+- Add account class ordinals in seed files `quickbooks__balance_sheet_account_class_order` and `quickbooks__profit_and_loss_account_class_order` to allow ordering functionality in balance sheet and profit-and-loss sheet in transform package. [#36](https://github.com/fivetran/dbt_quickbooks_source/pull/36)
 # dbt_quickbooks_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
 [PR #30](https://github.com/fivetran/dbt_quickbooks_source/pull/30) includes the following breaking changes:
