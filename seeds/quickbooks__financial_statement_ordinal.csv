@@ -1,0 +1,6 @@
+report,account_class,account_type,account_sub_type,account_number,ordinal
+Profit and Loss,Revenue,,,,1
+Profit and Loss,Expense,,,,2
+Balance Sheet,Asset,,,,1
+Balance Sheet,Liability,,,,2
+Balance Sheet,Equity,,,,3

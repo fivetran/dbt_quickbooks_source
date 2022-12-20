@@ -10,7 +10,7 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-## QuickBooks Source
+# QuickBooks Source ([Docs](https://fivetran.github.io/dbt_quickbooks_source))
 
 This package models QuickBooks data from [Fivetran's connector](https://fivetran.com/docs/applications/quickbooks). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/quickbooks#schemainformation).
 
@@ -108,8 +108,22 @@ vars:
     using_credit_card_payment_txn: true #enable if you want to include credit card payment transactions in your staging models
 ```
 
-### Customize the ordinal for account classes in balance sheet and profit-and-loss models
-If you're also using the `dbt_quickbooks` package, you can customize the order of your account classes in the `quickbooks__balance_sheet_account_class_order` and `quickbooks__profit_and_loss_account_class_order` seed files by changing the `ordinal` numbering. The current default numbering is based on best practices for finance balance sheets and profit-and-loss statements. If you are adding additional account class types, you will need to customize your own version of the `int_quickbooks__account_classifications` model to handle the logic for these types and either override or disable the above model and set up your own custom configuration. 
+### Customize your own ordinals in the `quickbooks__financial_statement_ordinal` seed file
+
+The current default numbering for ordinals is based on best practices for balance sheets and profit-and-loss statements in accounting. If you were using `dbt_quickbooks`, you'd see those ordinals in the `quickbooks__general_ledger_by_period`, `quickbooks__balance_sheet` and `quickbooks__profit_and_loss` models.
+
+If you want more complex ordering, you can modify the seed file. This can be done in a few ways, such as:
+
+- Adding non-null values for `account_type`, `account_sub_type`, and/or `account_number`, and creating more custom ordinals for values to reflect the ordering you want to see on your balance sheet or profit-and-loss statements.
+- Removing, adding or changing the `account_class` ordinal values if you have your own specific class ordering in mind. Note: If you are adding additional account class types, you will need to customize your own version of the `int_quickbooks__account_classifications` model to handle the logic for these types, then either override/disable the above model and set up your own custom configuration. 
+
+Make sure to classify in the `report` field whether the ordinal should belong in `Balance Sheet` for `quickbooks__balance_sheet`, and `Profit and Loss` for `quickbooks__profit_and_loss`. It isn't technically necessary for the join to work, but it should be easier to track if you're exporting a csv with your own custom logic.  
+
+The current hierarchy for ordinals in the final `dbt_quickbooks` packages will progress from the most granular level to the original defaults: 
+1) `account_number`
+2) `account_sub_type`
+3) `account_type`
+4) `account_class`
 
 ## Contributions
 
