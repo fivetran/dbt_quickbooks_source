@@ -445,7 +445,7 @@ sources:
             description: Monetary amount of the estimate line.
 
       - name: invoice_linked_txn
-        identifier: "{{ var('_identifier', '') }}"
+        identifier: "{{ var('invoice_linked_txn_identifier', 'invoice_linked_txn') }}"
         description: Mapping table for invoices records to respective estimate and payment objects.
         columns:
           - name: invoice_id
