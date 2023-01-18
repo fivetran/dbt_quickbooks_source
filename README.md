@@ -10,19 +10,13 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-## QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
+# QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
 
 # Table of Contents
 - [📣 What does this dbt package do?](https://github.com/fivetran/dbt_quickbooks_source/#-what-does-this-dbt-package-do)
 - [🎯 How do I use the dbt package?](https://github.com/fivetran/dbt_quickbooks_source/#-how-do-i-use-the-dbt-package) 
-    - [Step 1: Prerequisites](https://github.com/fivetran/dbt_quickbooks_source/#step-1-prerequisites)
-    - [Step 2: Install the package](https://github.com/fivetran/dbt_quickbooks_source/#step-2-install-the-package)
-    - [Step 3: Define database and schema variables](https://github.com/fivetran/dbt_quickbooks_source/#step-3-define-database-and-schema-variables)
-    - [Step 4: Enabling And Disabling Models](https://github.com/fivetran/dbt_quickbooks_source/#step-4-enabling-and-disabling-models)
-    - [(Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™](https://github.com/fivetran/dbt_quickbooks_source/#optional-step-5-orchestrate-your-models-with-fivetran-transformations-for-dbt-core)
-    - [Union Multiple QuickBooks Connectors](https://github.com/fivetran/dbt_quickbooks_source/#union-multiple-quickbooks-connectors)
-    - [Changing the Build Schema](https://github.com/fivetran/dbt_quickbooks_source/#changing-the-build-schema)
-    - [Change the source table references](https://github.com/fivetran/dbt_quickbooks_source/#change-the-source-table-references)
+    - [Required steps](https://github.com/fivetran/dbt_quickbooks_source/#step-1-prerequisites)
+    - [Additional options](https://github.com/fivetran/dbt_quickbooks_source/#optional-step-5-orchestrate-your-models-with-fivetran-transformations-for-dbt-core)
 - [🔍 Does this package have dependencies?](https://github.com/fivetran/dbt_quickbooks_source/#-does-this-package-have-dependencies)
 - [🙌 How is this package maintained and can I contribute?](https://github.com/fivetran/dbt_quickbooks_source/#-how-is-this-package-maintained-and-can-i-contribute)
     - [Package Maintenance](https://github.com/fivetran/dbt_quickbooks_source/#package-maintenance)
