@@ -34,9 +34,9 @@ sources:
           - name: classification
             description: The classification of an account. Not supported for non-posting accounts. Valid values include Asset, Equity, Expense, Liability, Revenue.
           - name: created_at
-            description: Timestamp of the date the account was created.
+            description: "{{ doc('created_at') }} for the account."
           - name: currency_id
-            description: Reference to the currency which the account records the balance in.
+            description: "{{ doc('currency_id') }} which the account records the balance in."
           - name: description
             description: Description of the account.
           - name: fully_qualified_name
@@ -74,19 +74,19 @@ sources:
           - name: index
             description: Bill line index in reference to the parent bill.
           - name: account_expense_class_id
-            description: The class reference associated with the account based expense bill line.
+            description: "{{ doc('class_id') }} with the account based expense bill line."
           - name: account_expense_customer_id
-            description: The customer reference associated with the account based expense bill line.
+            description: "{{ doc('customer_id') }} with the account based expense bill line."
           - name: item_expense_item_id
-            description: The item reference associated with the item based expense bill line.
+            description: "{{ doc('item_id') }} with the item based expense bill line."
           - name: item_expense_class_id
-            description: The class reference associated with the item based expense bill line.
+            description: "{{ doc('class_id') }} with the item based expense bill line."
           - name: item_expense_customer_id
-            description: The customer reference associated with the item based expense bill line.
+            description: "{{ doc('customer_id') }} with the item based expense bill line."
           - name: item_expense_billable_status
             description: The billable status of the item based expense bill line.
           - name: account_expense_account_id
-            description: The id of the account being expensed from the bill.
+            description: "{{ doc('account_id') }} with account being expensed from the bill."
           - name: account_expense_billable_status
             description: The status of the bill line item expense.
           - name: account_expense_tax_code_id
@@ -137,17 +137,17 @@ sources:
           - name: id
             description: "{{ doc('id') }} bill payment."
           - name: check_bank_account_id
-            description: Account id of the account which the bill payment is credited. Only applicable if bill payment `pay_type` is of type check.
+            description: "{{ doc('account_id') }} with the credited bill payment. Only applicable if bill payment `pay_type` is of type check."
           - name: check_print_status
             description: Status of the check which was used as payment for the bill. Only applicable if bill payment `pay_type` is of type Check.
           - name: credit_card_account_id
-            description: Account id of the account which the bill is credited. Only applicable if bill payment `pay_type` is of type CreditCard.
+            description: "{{ doc('account_id') }} with the credited bill payment. Only applicable if bill payment `pay_type` is of type CreditCard."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by CurrencyRef. Applicable if multicurrency is enabled for the company.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: department_id
-            description: Reference to a Department object specifying the location of the transaction.
+            description: "{{ doc('department_id') }} specifying the location of the transaction."
           - name: pay_type
             description: The payment type. Valid values include Check, CreditCard
           - name: total_amount
@@ -170,9 +170,9 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: department_id
-            description: Reference to the department the bill is linked with.
+            description: "{{ doc('department_id') }} the bill is linked with."
           - name: total_amount
             description: Total "{{ doc('amount') }} all bill line items."
           - name: vendor_id
@@ -184,7 +184,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: payable_account_id
-            description: Account id of the account which the bill is credited.
+            description: "{{ doc('account_id') }} with the account which the bill is credited."
           - name: private_note
             description: User entered, organization-private note about the transaction.
           - name: _fivetran_deleted
@@ -197,7 +197,7 @@ sources:
           - name: bundle_id
             description: Reference to the bundle table.
           - name: item_id
-            description: Reference to the item which the bundle is mapped.
+            description: "{{ doc('item_id') }} which the bundle is mapped."
           - name: item_quantity
             description: Total item quantity associated with the bundle and item mapping.
 
@@ -208,7 +208,7 @@ sources:
           - name: id
             description: "{{ doc('id') }} bundle."
           - name: created_at
-            description: Timestamp of the date which the bundle was created.
+            description: "{{ doc('created_at') }} for the bundle."
           - name: active
             description: Boolean indicating whether the bundle is active.
           - name: fully_qualified_name
@@ -225,15 +225,15 @@ sources:
           - name: amount
             description: Total amount of money applied to the credit card payment transaction.
           - name: bank_account_id
-            description: Reference to the bank account which the credit card payment is debited towards.
+            description: "{{ doc('account_id') }} with the bank which the credit card payment is debited towards."
           - name: credit_card_account_id
-            description: Reference to the credit card account which the credit card payment is credited towards.
+            description: "{{ doc('account_id') }} with the credit card which the payment is credited towards."
           - name: created_at
             description: Timestamp when the credit card payment was created.
           - name: updated_at
             description: Timestamp when the credit card payment was last updated.
           - name: currency_id
-            description: Reference to the currency used for the credit card payment.
+            description: "{{ doc('currency_id') }} used for the credit card payment."
           - name: transaction_date
             description: Date the credit card payment transaction took place.
           - name: _fivetran_deleted
@@ -250,19 +250,19 @@ sources:
           - name: amount
             description: "{{ doc('amount') }} the credit memo line."
           - name: sales_item_account_id
-            description: Account reference for an item credit memo record.
+            description: "{{ doc('account_id') }} with an item credit memo record."
           - name: sales_item_class_id
-            description: Class reference for an item credit memo record.
+            description: "{{ doc('class_id') }} for an item credit memo record."
           - name: sales_item_item_id
-            description: Item reference for an item credit memo record.
+            description: "{{ doc('item_id') }} for an item credit memo record."
           - name: sales_item_quantity
             description: Quantity of item related to the credit memo line.
           - name: sales_item_unit_price
             description: Unit price of the item related to the credit memo line.
           - name: discount_account_id
-            description: Account reference for a discount credit memo record.
+            description: "{{ doc('account_id') }} with a discount credit memo record."
           - name: discount_class_id
-            description: Class reference for a discount credit memo record.
+            description: "{{ doc('class_id') }} for a discount credit memo record."
           - name: description
             description: Description of the credit memo line.
 
@@ -279,13 +279,13 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: class_id
-            description: Reference to the class associated with the credit memo.
+            description: "{{ doc('class_id') }} with the credit memo."
           - name: department_id
-            description: Reference to the department associated with the credit memo.
+            description: "{{ doc('department_id') }} associated with the credit memo."
           - name: customer_id
-            description: Reference to the customer associated with the credit memo.
+            description: "{{ doc('customer_id') }} with the credit memo."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
@@ -312,7 +312,7 @@ sources:
           - name: fully_qualified_name
             description: Fully qualified name of the company.
           - name: currency_id
-            description: Reference to the currency in which all amounts associated with this customer are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts associated with this customer are expressed."
           - name: display_name
             description: Name of the customer which is displayed.
           - name: website
@@ -329,7 +329,7 @@ sources:
           - name: is_active
             description: Boolean indicating whether the department is currently active.
           - name: created_at
-            description: Timestamp of the date when the department was created.
+            description:  "{{ doc('created_at') }} for the department."
           - name: updated_at
             description: Timestamp of the date when the department was last updated.
           - name: fully_qualified_name
@@ -354,11 +354,11 @@ sources:
           - name: description
             description: Description of the deposit line record.
           - name: deposit_class_id
-            description: Reference to the class which the deposit line record is associated with.
+            description: "{{ doc('class_id') }} the deposit line record."
           - name: deposit_account_id
-            description: Account id of the account which the deposit is credited.
+            description: "{{ doc('account_id') }} with the credited deposit."
           - name: deposit_customer_id
-            description: Customer id of the customer which the deposit is credited.
+            description: "{{ doc('customer_id') }} with the credited deposit."
 
       - name: deposit
         identifier: "{{ var('quickbooks_deposit_identifier', 'deposit') }}"
@@ -367,13 +367,13 @@ sources:
           - name: id
             description: "{{ doc('id') }} deposit."
           - name: account_id
-            description: Identifies the account to be used for this deposit.
+            description: "{{ doc('account_id') }} with this deposit."
           - name: created_at
-            description: Timestamp of the date which the deposit was created.
+            description: "{{ doc('created_at') }} for the deposit."
           - name: department_id
-            description: Reference to the department associated with the deposit line.
+            description: "{{ doc('department_id') }} associated with the deposit line."
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: total_amount
             description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
           - name: transaction_date
@@ -390,15 +390,15 @@ sources:
           - name: id
             description: "{{ doc('id') }} estimate."
           - name: class_id
-            description: Reference to the class associated with the estimate record.
+            description: "{{ doc('class_id') }} with the estimate record."
           - name: created_at
-            description: Timestamp of the date when the estimate was created.
+            description: "{{ doc('created_at') }} for the estimate."
           - name: currency_id
-            description: Reference to the currency which the estimate was provided.
+            description: "{{ doc('currency_id') }} which the estimate was provided."
           - name: customer_id
-            description: Reference to the customer associated with the estimate.
+            description: "{{ doc('customer_id') }} with the estimate."
           - name: department_id
-            description: Reference to the department associated with the estimate.
+            description: "{{ doc('department_id') }} associated with the estimate."
           - name: due_date
             description: Timestamp of the date which the estimate is due.
           - name: total_amount
@@ -421,23 +421,23 @@ sources:
           - name: description
             description: Description of the estimate line.
           - name: discount_account_id
-            description: Reference to the account associated with the discount estimate line.
+            description: "{{ doc('account_id') }} with the discount estimate line."
           - name: discount_class_id
-            description: Reference to the class associated with the discount estimate line.
+            description: "{{ doc('class_id') }} with the discount estimate line."
           - name: sales_item_account_id
-            description: Reference to the account associated with the sales estimate line.
+            description: "{{ doc('account_id') }} with the sales estimate line."
           - name: sales_item_class_id
-            description: Reference to the class associated with the sales estimate line.
+            description: "{{ doc('class_id') }} with the sales estimate line."
           - name: sales_item_item_id
-            description: Reference to the item associated with a sales estimate line.
+            description: "{{ doc('item_id') }} associated with a sales estimate line."
           - name: sales_item_quantity
             description: Quantity of the item for a sales estimate line.
           - name: item_id
-            description: Reference to the item associated with the estimate line.
+            description: "{{ doc('item_id') }} associated with the estimate line."
           - name: quantity
             description: Quantity of the item for the estimate line.
           - name: account_id
-            description: Reference to the account associated with the estimate line.
+            description: "{{ doc('account_id') }} associated with the estimate line."
           - name: amount
             description: "{{ doc('amount') }} the estimate line."
 
@@ -465,19 +465,19 @@ sources:
           - name: amount
             description: "{{ doc('amount') }} the invoice line record."
           - name: sales_item_account_id
-            description: Account reference for an item invoice record.
+            description: "{{ doc('account_id') }} for an item invoice record."
           - name: sales_item_item_id
-            description: Item reference for an item invoice record.
+            description: "{{ doc('item_id') }}  for an item invoice record."
           - name: sales_item_class_id
-            description: Class reference for an item invoice record.
+            description: "{{ doc('class_id') }} with an item invoice record."
           - name: sales_item_quantity
             description: Quantity of the item for an item invoice record.
           - name: sales_item_unit_price
             description: Unit price of the item for an item invoice record.
           - name: discount_account_id
-            description: Account reference for a discount invoice record.
+            description: "{{ doc('account_id') }} for a discount invoice record."
           - name: discount_class_id
-            description: Class reference for a discount invoice record.
+            description: "{{ doc('class_id') }} with a discount invoice record."
           - name: description
             description: Description of the invoice line.
           - name: bundle_quantity
@@ -485,9 +485,9 @@ sources:
           - name: bundle_id
             description: Reference to the bundle associated with the invoice line.
           - name: account_id
-            description: Reference to the account associated with the invoice line.
+            description: "{{ doc('account_id') }} with the invoice line."
           - name: item_id
-            description: Reference to the item associated with the invoice line.
+            description: "{{ doc('item_id') }} associated with the invoice line."
           - name: quantity
             description: Quantity of the item included on the invoice line.
 
@@ -502,21 +502,21 @@ sources:
           - name: invoice_line_index
             description: Invoice index count of records associated with the invoice bundle line.
           - name: class_id
-            description: Reference to the class associated with the invoice line bundle.
+            description: "{{ doc('class_id') }} with the invoice line bundle."
           - name: description
             description: Description of the invoice bundle line.
           - name: amount
             description: Total monetary value of the invoice bundle line.
           - name: sales_item_item_id
-            description: Reference to the sales item on the invoice bundle line.
+            description: "{{ doc('item_id') }} for sales on the invoice bundle line."
           - name: item_id
-            description: Reference to the item on the invoice bundle line.
+            description: "{{ doc('item_id') }} on the invoice bundle line."
           - name: quantity
             description: Total quantity of the item on the invoice bundle line.
           - name: sales_item_quantity
             description: Total quantity in relation to the sales item on the invoice bundle line.
           - name: account_id
-            description: Reference to the account associated with the invoice bundle line.
+            description: "{{ doc('account_id') }} with the invoice bundle line."
           - name: unit_price
             description: Unit price of the line item included on the invoice bundle line.
 
@@ -533,17 +533,17 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: department_id
-            description: Reference to the department associated with the invoice.
+            description: "{{ doc('department_id') }} associated with the invoice."
           - name: deposit_to_account_id
-            description: Identifies the account to be used for this invoice.
+            description: "{{ doc('account_id') }} to be used for this invoice."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
             description: Timestamp of the date which the deposit transaction occurred.
           - name: customer_id
-            description: Customer reference associated with the invoice.
+            description: "{{ doc('customer_id') }} with the invoice."
           - name: billing_address_id
             description: Reference to the address where the invoice is billed.
           - name: shipping_address_id
@@ -553,7 +553,7 @@ sources:
           - name: due_date
             description: Timestamp of the date which the invoice payment is due.
           - name: class_id
-            description: Reference to the class to which the invoice is associated with.
+            description: "{{ doc('class_id') }} with the invoice."
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -566,13 +566,13 @@ sources:
           - name: active
             description: Boolean indicating whether the object is currently enabled for use by QuickBooks.
           - name: created_at
-            description: Timestamp of the date when the item was created within QuickBooks.
+            description: "{{ doc('created_at') }} for the item within QuickBooks."
           - name: income_account_id
-            description: Reference to the posting account, that is, the account that records the proceeds from the sale of this item.
+            description: "{{ doc('account_id') }} with the proceeds from the sale of this item."
           - name: asset_account_id
-            description: Reference to the Inventory Asset account that tracks the current value of the inventory.
+            description: "{{ doc('account_id') }} with the inventory asset that tracks its current value."
           - name: expense_account_id
-            description: Reference to the expense account used to pay the vendor for this item.
+            description: "{{ doc('account_id') }} used to pay the vendor for this item."
           - name: inventory_start_date
             description: Timestamp of the date the item was started as inventory.
           - name: parent_item_id
@@ -597,15 +597,15 @@ sources:
           - name: index
             description: Index count of records associated with the journal entry record.
           - name: account_id
-            description: Account id of the account which the journal entry is credited.
+            description: "{{ doc('account_id') }} with the credited journal entry."
           - name: amount
             description: "{{ doc('amount') }} the journal entry line."
           - name: customer_id
-            description: Customer id of the customer which the journal entry is credited.
+            description: "{{ doc('customer_id') }} with the credited journal entry."
           - name: department_id
-            description: Reference to the department which the journal entry is associated.
+            description: "{{ doc('department_id') }} which the journal entry is associated."
           - name: class_id
-            description: Reference to the class which the journal entry is associated.
+            description: "{{ doc('class_id') }} with the journal entry."
           - name: billable_status
             description: Status of the journal entry indicating whether it is billable or not.
           - name: description
@@ -624,9 +624,9 @@ sources:
           - name: adjustment
             description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
           - name: created_at
-            description: Timestamp of the date when the journal entry was created.
+            description: "{{ doc('created_at') }} for the journal entry."
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: doc_number
             description: Reference number for the transaction.
           - name: exchange_rate
@@ -670,17 +670,17 @@ sources:
           - name: total_amount
             description: Indicates the total amount of the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: receivable_account_id
-            description: Identifies the account for obtaining a receivable from this payment.
+            description: "{{ doc('account_id') }} with obtaining a receivable from this payment."
           - name: deposit_to_account_id
-            description: Identifies the account to be used for this payment.
+            description: "{{ doc('account_id') }} with the deposit to be used for this payment."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
             description: Timestamp of the date when the payment occurred.
           - name: customer_id
-            description: Reference to a customer or job.
+            description: "{{ doc('customer_id') }} with the payment."
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -693,17 +693,17 @@ sources:
           - name: index
             description: Index count of records associated with the purchase record.
           - name: account_expense_account_id
-            description: Account id of the account which the purchase is credited.
+            description: "{{ doc('account_id') }} with the credited purchase."
           - name: account_expense_class_id
-            description: The class reference associated with the account based expense purchase line.
+            description: "{{ doc('class_id') }} with the account based expense purchase line."
           - name: account_expense_billable_status
             description: Status of the purchase billable.
           - name: account_expense_tax_code_id
             description: Tax code reference associated to the purchase.
           - name: item_expense_item_id
-            description: The item reference associated with the item based expense purchase line.
+            description: "{{ doc('item_id') }} associated with the item based expense purchase line."
           - name: item_expense_class_id
-            description: The class id associated with the item based expense purchase line. 
+            description: "{{ doc('class_id') }} with the item based expense purchase line."
           - name: item_expense_billable_status
             description: The billable status of the item based expense purchase line.
           - name: amount
@@ -718,21 +718,21 @@ sources:
           - name: id
             description: "{{ doc('id') }} purchase."
           - name: account_id
-            description: Specifies the account reference to which this purchase is applied based on the PaymentType.
+            description: "{{ doc('account_id') }} with the applied purchase based on the PaymentType."
           - name: created_at
-            description: Timestamp of the date when the purchase was created.
+            description: "{{ doc('created_at') }} for the purchase."
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: credit
             description: Boolean where `false` represents a charge and `true` represents a refund.
           - name: department_id
-            description: Reference to the department which the purchase is associated.
+            description: "{{ doc('department_id') }} which the purchase is associated."
           - name: customer_id
-            description: Reference to the customer which the purchase is associated.
+            description: "{{ doc('customer_id') }} with the purchase."
           - name: transaction_date
             description: Timestamp of the date when the purchase occurred.
           - name: total_amount
@@ -753,21 +753,21 @@ sources:
           - name: index
             description: Index count of records associated with the purchase order record.
           - name: account_expense_account_id
-            description: Account id of the account which the purchase order is credited.
+            description: "{{ doc('account_id') }} with the credited purchase order."
           - name: account_expense_class_id
-            description: The class reference associated with the account based expense purchase order line.
+            description: "{{ doc('class_id') }} with the account based expense purchase order line."
           - name: account_expense_billable_status
             description: Status of the purchase billable.
-          - name: account_expense_
-            description: The customer id associated with the account based purchase order line.
+          - name: account_expense_customer_id
+            description: "{{ doc('customer_id') }} with the account based purchase order line."
           - name: account_expense_tax_code_id
             description: Tax code reference associated to the purchase order.
           - name: item_expense_item_id
-            description: The item reference associated with the item based expense purchase order line.
+            description: "{{ doc('item_id') }} with the item based expense purchase order line."
           - name: item_expense_billable_status
             description: The billable status of the item based expense purchase order line.
           - name: item_expense_customer_id
-            description: The customer id associated with the item based purchase order line.
+            description: "{{ doc('customer_id') }} with the item based purchase order line."
           - name: amount
             description: "{{ doc('amount') }} the purchase."
           - name: description
@@ -795,7 +795,7 @@ sources:
           - name: id
             description: "{{ doc('id') }} purchase order."
           - name: class_id
-            description: Reference to the class which the purchase order is associated.
+            description: "{{ doc('class_id') }} with the purchase order."
           - name: created_at
             description: Timestamp of the date when the purchase order was created.
           - name: custom_po_number
@@ -807,7 +807,7 @@ sources:
           - name: due_date
             description: Timestamp of the date when the purchase order is due.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: memo
@@ -819,7 +819,7 @@ sources:
           - name: private_note
             description: User entered, organization-private note about the transaction. This note does not appear on the purchase order to the vendor.
           - name: payable_account_id
-            description: Account id for which the purchase order will credited.
+            description: "{{ doc('account_id') }} with the credited purchase order."
           - name: status
             description: Purchase order status. Valid values are "Open" and "Closed".
           - name: vendor_id
@@ -840,19 +840,19 @@ sources:
           - name: description
             description: User defined description of the refund line.
           - name: discount_account_id
-            description: Reference to Income account used to track discounts.
+            description: "{{ doc('account_id') }} with the income account used to track discounts."
           - name: discount_class_id
-            description: Class id of the discount associated with the refunded item. 
+            description: "{{ doc('class_id') }} with the discount of the refunded item." 
           - name: sales_item_quantity
             description: Quantity of the item associated with the refund receipt line.
           - name: sales_item_unit_price
             description: Unit price of the item associated with the refund receipt line.
           - name: sales_item_account_id
-            description: Account id of the account which the refund is credited.
+            description: "{{ doc('account_id') }} with the credited refund."
           - name: sales_item_class_id
-            description: Class id of the refunded item.
+            description: "{{ doc('class_id') }} with the refunded item."
           - name: sales_item_item_id
-            description: Item id of the refunded item.
+            description: "{{ doc('item_id') }} with the refunded item."
           - name: sales_item_tax_code_id
             description: Tax code id of the tax code associated with the refund.
 
@@ -869,17 +869,17 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: class_id
-            description: Reference to the class which the refund receipt is associated.
+            description: "{{ doc('class_id') }} with the refund receipt."
           - name: department_id
-            description: Reference to the department which the refund receipt is associated.
+            description: "{{ doc('department_id') }} which the refund receipt is associated."
           - name: deposit_to_account_id
-            description: Account from which payment money is refunded.
+            description: "{{ doc('account_id') }} with which payment money is refunded."
           - name: created_at
-            description: Timestamp of the date when the refund was created.
+            description: "{{ doc('created_at') }} for the refund."
           - name: customer_id
-            description: Customer id of the customer credited with the refund.
+            description: "{{ doc('customer_id') }} with the customer credited with the refund."
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
@@ -900,15 +900,15 @@ sources:
           - name: description
             description: Description of the sales receipt line.
           - name: discount_account_id
-            description: Reference to Income account used to track discounts.
+            description: "{{ doc('account_id') }} with income account used to track discounts."
           - name: discount_class_id
-            description: Class id of the discount credited to the sales line.
+            description: "{{ doc('class_id') }} with the discount credited to the sales line."
           - name: sales_item_account_id
-            description: Account id of the account credited with the sales line.
+            description: "{{ doc('account_id') }} with the sales line."
           - name: sales_item_class_id
-            description: Class id of the receipt credited with the sales line.
+            description: "{{ doc('class_id') }} with the receipt credited with the sales line."
           - name: sales_item_item_id
-            description: Item id of the item sold in the sale line.
+            description: "{{ doc('item_id') }} with the item sold in the sale line."
           - name: sales_item_tax_code_id
             description: Tax code id of the tax code associated with the sales line.
           - name: sales_item_quantity
@@ -929,17 +929,17 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: deposit_to_account_id
-            description: Account to which payment money is deposited.
+            description: "{{ doc('account_id') }} with where payment money is deposited."
           - name: created_at
-            description: Timestamp of the date when the sale was created.
+            description: "{{ doc('created_at') }} for the sale."
           - name: customer_id
-            description: Customer id of the sold to customer.
+            description: "{{ doc('customer_id') }} sales receipt to customer."
           - name: department_id
-            description: Reference to the department which the sales receipt is associated.
+            description: "{{ doc('department_id') }} which the sales receipt is associated."
           - name: class_id
-            description: Reference to the class which the sales receipt is associated.
+            description: "{{ doc('class_id') }} which the sales receipt is associated."
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
@@ -956,9 +956,9 @@ sources:
           - name: amount
             description: "{{ doc('amount') }} the transfer."
           - name: from_account_id
-            description: Account id of the account which the transfer is from.
+            description: "{{ doc('account_id') }} with where the transfer is from."
           - name: to_account_id
-            description: Account id of the account which the transfer is to.
+            description: "{{ doc('account_id') }} with where the transfer is to."
           - name: transaction_date
             description: Timestamp of the date which the transfer occurred.
           - name: _fivetran_deleted
@@ -973,25 +973,25 @@ sources:
           - name: index
             description: Index count of records associated with the vendor credit record.
           - name: account_expense_account_id
-            description: Account id of the account credited for the vendor credit line.
+            description: "{{ doc('account_id') }} with the vendor credit line."
           - name: account_expense_billable_status
             description: Status of the billable related to the vendor credit line.
           - name: account_expense_tax_code_id
             description: Tax code id of the tax code associated with the vendor credit line.
           - name: account_expense_customer_id
-            description: Customer reference for the vendor credit expense.
+            description: "{{ doc('customer_id') }} with the vendor credit expense."
           - name: account_expense_class_id
-            description: The class reference associated with the account based expense vendor credit line.
+            description: "{{ doc('class_id') }} with the account based expense vendor credit line."
           - name: item_expense_customer_id
-            description: Customer reference for the item on the vendor credit line.
+            description: "{{ doc('customer_id') }} with the item on the vendor credit line."
           - name: item_expense_item_id
-            description: The item reference associated with the item based expense vendor credit line.
+            description: "{{ doc('item_id') }} with the item based expense vendor credit line."
           - name: item_expense_quantity
             description: Quantity of the item within the item based expense vendor credit line.
           - name: item_expense_unit_price
             description: Unit price of the item within the item based expense vendor credit line.
           - name: item_expense_class_id
-            description: Reference to the class associated with the item based expense vendor credit line.
+            description: "{{ doc('class_id') }} with the item based expense vendor credit line."
           - name: item_expense_billable_status
             description: The billable status of the item based expense vendor credit line.
           - name: amount
@@ -1012,15 +1012,15 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: currency_id
-            description: Reference to the currency in which all amounts on the associated transaction are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: created_at
-            description: Timestamp of the date the vendor credit was created.
+            description: "{{ doc('created_at') }} for the vendor credit."
           - name: payable_account_id
-            description: Specifies to which AP account the bill is credited.
+            description: "{{ doc('account_id') }} with which AP account the bill is credited."
           - name: department_id
-            description: Reference to the department which the vendor credit is associated.
+            description: "{{ doc('department_id') }} which the vendor credit is associated."
           - name: private_note
             description: User entered, organization-private note about the transaction.
           - name: transaction_date
@@ -1047,9 +1047,9 @@ sources:
           - name: company_name
             description: The name of the company associated with the person or organization.
           - name: created_at
-            description: Timestamp of the date when the vendor was created.
+            description: "{{ doc('created_at') }} for the vendor."
           - name: currency_id
-            description: Reference to the currency in which all amounts associated with this vendor are expressed.
+            description: "{{ doc('currency_id') }} in which all amounts associated with this vendor are expressed."
           - name: display_name
             description: The name of the vendor as displayed. Must be unique across all Vendor, Customer, and Employee objects.
           - name: web_url

@@ -160,18 +160,41 @@ Table containing all vendor records. A vendor is the seller from whom your compa
 {% enddocs %}
 
 
-# Field Definitions
+# Field Definitions and References
+{% docs account_id %} 
+The identifier of the account associated 
+{% enddocs %}
 
 {% docs amount %}
 Monetary amount of 
 {% enddocs %}
 
+{% docs class_id %}
+Reference to the class associated 
+{% enddocs %}
+
+{% docs created_at %}
+Timestamp of the creation date 
+{% enddocs %}
+
 {% docs currency_id %}
-Reference to the currency
+Reference to the currency 
+{% enddocs %}
+
+{% docs customer_id %}
+Reference to the customer associated 
+{% enddocs %}
+
+{% docs department_id %}
+Reference to the department 
 {% enddocs %}
 
 {% docs id %}
 Unique identifier of the
+{% enddocs %}
+
+{% docs item_id %}
+Reference to the item 
 {% enddocs %}
 
 {% docs _fivetran_deleted %}

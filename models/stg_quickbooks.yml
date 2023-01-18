@@ -299,19 +299,19 @@ models:
       - name: amount
         description: Monetary amount of the credit memo line.
       - name: sales_item_account_id
-        description: Account reference for an item credit memo record.
+        description: "{{ doc('account_id') }} with the credited refund."
       - name: sales_item_class_id
-        description: Class reference for an item credit memo record.
+        description: "{{ doc('class_id') }} with the refunded item."
       - name: sales_item_item_id
-        description: Item reference for an item credit memo record.
+        description: "{{ doc('item_id') }} with the refunded item."
       - name: sales_item_quantity
         description: Quantity of item related to the credit memo line.
       - name: sales_item_unit_price
         description: Unit price of the item related to the credit memo line.
       - name: discount_account_id
-        description: Account reference for a discount credit memo record.
+        description: "{{ doc('account_id') }} with the income account used to track discounts."
       - name: discount_class_id
-        description: Class reference for a discount credit memo record.
+        description: "{{ doc('class_id') }} with the discount of the refunded item." 
       - name: description
         description: Description of the credit memo line.
 
