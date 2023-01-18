@@ -13,13 +13,10 @@ sources:
     tables:
       - name: account
         identifier: "{{ var('account_identifier', 'account') }}"
-        description: >
-          Table containing components of a Chart Of Accounts and is part of a ledger. It is used to record a total monetary
-          amount allocated against a specific use. Accounts are one of five basic types: asset, liability, revenue
-          (income), expenses, or equity.
+        description: "{{ doc('account_table') }}"  
         columns:
           - name: id
-            description: Unique identifier for an account.
+            description: "{{ doc('id') }} account."
           - name: account_number
             description: User-defined account number intended to identify the account within the Chart of Accounts.
           - name: sub_account
@@ -53,10 +50,10 @@ sources:
 
       - name: address
         identifier: "{{ var('address_identifier', 'address') }}"
-        description: Table containing address details.
+        description: "{{ doc('address_table') }}" 
         columns:
           - name: id
-            description: Unique identifier for an address.
+            description: "{{ doc('id') }} address."
           - name: city
             description: The city which the address is located.
           - name: country
@@ -70,10 +67,10 @@ sources:
 
       - name: bill_line
         identifier: "{{ var('bill_line_identifier', 'bill_line') }}"
-        description: Table containing distinct line items from bills within the `bill` table.
+        description: "{{ doc('bill_line_table') }}" 
         columns:
           - name: bill_id
-            description: The unique identifier of the parent bill record.
+            description: "{{ doc('id') }} parent bill record."
           - name: index
             description: Bill line index in reference to the parent bill.
           - name: account_expense_class_id
@@ -95,50 +92,50 @@ sources:
           - name: account_expense_tax_code_id
             description: The tax code id associated with the bill.
           - name: amount
-            description: Monetary amount of the bill line item.
+            description: "{{ doc('amount') }} the bill line item."
           - name: description
             description: Description of the bill line item.
 
       - name: bill_linked_txn
         identifier: "{{ var('bill_linked_txn_identifier', 'bill_linked_txn') }}"
-        description: Mapping table containing bill payment transactions linked to a bill.
+        description: "{{ doc('bill_linked_txn_table') }}" 
         columns:
           - name: bill_id
-            description: The unique identifier of the bill record.
+            description: "{{ doc('id') }} bill record."
           - name: index
             description: Index count of records from a single bill record associated with payment ids.
           - name: bill_payment_id
-            description: The unique identifier of the bill payment id record.
+            description: The "{{ doc('id') }} bill payment id record."
 
       - name: bill_payment_line
         identifier: "{{ var('bill_payment_line_identifier', 'bill_payment_line') }}"
-        description: Table containing individual line items of a bill payment, which are recorded within the `bill_payment` table.
+        description: "{{ doc('bill_payment_line_table') }}" 
         columns:
           - name: bill_payment_id
-            description: The unique identifier of the bill payment record.
+            description: "{{ doc('id') }} bill payment record."
           - name: index
             description: Index count of payments associated with the parent bill payment record.
           - name: amount
-            description: Monetary amount of the bill payment.
+            description: "{{ doc('amount') }} the bill payment."
           - name: bill_id
-            description: Unique identifier of the bill record associated with the bill payment.
+            description: "{{ doc('id') }} bill record associated with the bill payment."
           - name: deposit_id
-            description: Unique identifier of the deposit record associated with the bill payment.
+            description: "{{ doc('id') }} deposit record associated with the bill payment."
           - name: expense_id
-            description: Unique identifier of the purchase record associated with the bill payment.
+            description: "{{ doc('id') }} purchase record associated with the bill payment."
           - name: linked_bill_payment_id
-            description: Unique identifier of the bill record associated with the bill payment.
+            description: "{{ doc('id') }} bill record associated with the bill payment."
           - name: vendor_credit_id
-            description: Unique identifier of the vendor_credit record associated with the bill payment.
+            description: "{{ doc('id') }} vendor_credit record associated with the bill payment."
           - name: journal_entry_id
-            description: Unique identifier of the journal entry record associated with the bill payment.
+            description: "{{ doc('id') }} journal entry record associated with the bill payment."
 
       - name: bill_payment
         identifier: "{{ var('bill_payment_identifier', 'bill_payment') }}"
-        description: Table containing payment transactions bills that the business owner receives from a vendor for goods or services purchased from the vendor.
+        description: "{{ doc('bill_payment_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the bill payment.
+            description: "{{ doc('id') }} bill payment."
           - name: check_bank_account_id
             description: Account id of the account which the bill payment is credited. Only applicable if bill payment `pay_type` is of type check.
           - name: check_print_status
@@ -160,14 +157,14 @@ sources:
           - name: vendor_id
             description: Reference to the vendor for this transaction.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: bill
         identifier: "{{ var('bill_identifier', 'bill') }}"
-        description: Table containing AP transactions representing a request-for-payment from a third party for goods/services rendered, received, or both.
+        description: "{{ doc('bill_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the bill record.
+            description: "{{ doc('id') }} bill record."
           - name: balance
             description: The balance reflecting any payments made against the transaction.
           - name: doc_number
@@ -177,7 +174,7 @@ sources:
           - name: department_id
             description: Reference to the department the bill is linked with.
           - name: total_amount
-            description: Total monetary amount of all bill line items.
+            description: Total "{{ doc('amount') }} all bill line items."
           - name: vendor_id
             description: Reference to the vendor the bill is linked with.
           - name: due_date
@@ -191,7 +188,7 @@ sources:
           - name: private_note
             description: User entered, organization-private note about the transaction.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: bundle_item
         identifier: "{{ var('bundle_item_identifier', 'bundle_item') }}"
@@ -202,14 +199,14 @@ sources:
           - name: item_id
             description: Reference to the item which the bundle is mapped.
           - name: item_quantity
-            description: Total item quantity associated with the bunlde and item mapping.
+            description: Total item quantity associated with the bundle and item mapping.
 
       - name: bundle
         identifier: "{{ var('bundle_identifier', 'bundle') }}"
-        description: Table containing all bundles possible to be used within an invoice.
+        description: "{{ doc('bundle_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the bundle.
+            description: "{{ doc('id') }} bundle."
           - name: created_at
             description: Timestamp of the date which the bundle was created.
           - name: active
@@ -221,10 +218,10 @@ sources:
 
       - name: credit_card_payment_txn
         identifier: "{{ var('credit_card_payment_txn_identifier', 'credit_card_payment_txn') }}"
-        description: Table containing all credit card payment transactions.
+        description: "{{ doc('credit_card_payment_txn_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the credit card payment transaction.
+            description: "{{ doc('id') }} credit card payment transaction."
           - name: amount
             description: Total amount of money applied to the credit card payment transaction.
           - name: bank_account_id
@@ -244,14 +241,14 @@ sources:
 
       - name: credit_memo_line
         identifier: "{{ var('credit_memo_line_identifier', 'credit_memo_line') }}"
-        description: Table containing individual records of credit memos.
+        description: "{{ doc('credit_memo_line_table') }}" 
         columns:
           - name: credit_memo_id
-            description: Unique identifier of the credit memo record.
+            description: "{{ doc('id') }} credit memo record."
           - name: index
             description: Index count of records from a credit memo record.
           - name: amount
-            description: Monetary amount of the credit memo line.
+            description: "{{ doc('amount') }} the credit memo line."
           - name: sales_item_account_id
             description: Account reference for an item credit memo record.
           - name: sales_item_class_id
@@ -271,10 +268,10 @@ sources:
 
       - name: credit_memo
         identifier: "{{ var('credit_memo_identifier', 'credit_memo') }}"
-        description: Table containing credit memo records. A credit memo is a refund or credit of payment or part of a payment for goods or services that have been sold.
+        description: "{{ doc('credit_memo_table') }}" 
         columns:
           - name: id
-            description: Unique identifier for a credit memo.
+            description: "{{ doc('id') }} credit memo."
           - name: balance
             description: The balance reflecting any payments made against the transaction.
           - name: total_amount
@@ -294,14 +291,14 @@ sources:
           - name: transaction_date
             description: Timestamp of the date when the credit memo occurred.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}"
 
       - name: customer
         identifier: "{{ var('customer_identifier', 'customer') }}"
-        description: Table containing customers of which are consumers of the service or product that your business offers.
+        description: "{{ doc('customer_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the customer.
+            description: "{{ doc('id') }} customer."
           - name: active
             description: Boolean indicating whether it is currently enabled for use by QuickBooks.
           - name: balance
@@ -325,10 +322,10 @@ sources:
 
       - name: department
         identifier: "{{ var('department_identifier', 'department') }}"
-        description: Table containing records representing physical locations such as stores, and sales regions.
+        description: "{{ doc('department_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the department.
+            description: "{{ doc('id') }} department."
           - name: is_active
             description: Boolean indicating whether the department is currently active.
           - name: created_at
@@ -342,18 +339,18 @@ sources:
           - name: sub_department
             description: Boolean indicating whether the department is a sub department.
           - name: parent_department_id
-            description: Reference to the unique identifier of the parent department if sub_department = true.
+            description: "Reference to the {{ doc('id') }} parent department if sub_department = true."
 
       - name: deposit_line
         identifier: "{{ var('deposit_line_identifier', 'deposit_line') }}"
-        description: Table containing individual line items comprising the deposit.
+        description: "{{ doc('deposit_line_table') }}" 
         columns:
           - name: deposit_id
-            description: Unique identifier of the deposit record.
+            description: "{{ doc('id') }} deposit record."
           - name: index
             description: Index count of records associated with the deposit record.
           - name: amount
-            description: Monetary amount of the deposit line record.
+            description: "{{ doc('amount') }} the deposit line record."
           - name: description
             description: Description of the deposit line record.
           - name: deposit_class_id
@@ -365,10 +362,10 @@ sources:
 
       - name: deposit
         identifier: "{{ var('deposit_identifier', 'deposit') }}"
-        description: Table containing records of transactions that record on or more deposits of a customer payment or a new direct deposit.
+        description: "{{ doc('deposit_table') }}" 
         columns:
           - name: id
-            description: Unique identifier of the deposit.
+            description: "{{ doc('id') }} deposit."
           - name: account_id
             description: Identifies the account to be used for this deposit.
           - name: created_at
@@ -384,14 +381,14 @@ sources:
           - name: transaction_status
             description: Status of the deposit transaction.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: estimate
         identifier: "{{ var('estimate_identifier', 'estimate') }}"
-        description: Table containing estimates. An estimate represents a proposal for a financial transaction from a business to a customer for goods or services proposed to be sold, including proposed pricing.
+        description: "{{ doc('estimate_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the estimate.
+            description: "{{ doc('id') }} estimate."
           - name: class_id
             description: Reference to the class associated with the estimate record.
           - name: created_at
@@ -411,11 +408,11 @@ sources:
           - name: transaction_status
             description: Current status of the estimate.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: estimate_line
         identifier: "{{ var('estimate_line_identifier', 'estimate_line') }}"
-        description: Table containing line item records of an estimate.
+        description: "{{ doc('estimate_line_table') }}"
         columns:
           - name: estimate_id
             description: Reference to the unique estimate record.
@@ -442,11 +439,11 @@ sources:
           - name: account_id
             description: Reference to the account associated with the estimate line.
           - name: amount
-            description: Monetary amount of the estimate line.
+            description: "{{ doc('amount') }} the estimate line."
 
       - name: invoice_linked_txn
         identifier: "{{ var('invoice_linked_txn_identifier', 'invoice_linked_txn') }}"
-        description: Mapping table for invoices records to respective estimate and payment objects.
+        description: "{{ doc('invoice_linked_txn_table') }}"
         columns:
           - name: invoice_id
             description: Reference to the unique invoice.
@@ -459,14 +456,14 @@ sources:
 
       - name: invoice_line
         identifier: "{{ var('invoice_line_identifier', 'invoice_line') }}"
-        description: Table containing individual records from invoices.
+        description: "{{ doc('invoice_line_table') }}"
         columns:
           - name: invoice_id
-            description: Unique identifier of the invoice record.
+            description: "{{ doc('id') }} invoice record."
           - name: index
             description: Index count of records associated with the invoice record.
           - name: amount
-            description: Monetary amount of the invoice line record.
+            description: "{{ doc('amount') }} the invoice line record."
           - name: sales_item_account_id
             description: Account reference for an item invoice record.
           - name: sales_item_item_id
@@ -496,10 +493,10 @@ sources:
 
       - name: invoice_line_bundle
         identifier: "{{ var('invoice_line_bundle_identifier', 'invoice_line_bundle') }}"
-        description: Table containing lines of an invoice which were bundled.
+        description: "{{ doc('invoice_line_bundle_table') }}"
         columns:
           - name: invoice_id
-            description: Unique identifier of the invoice record.
+            description: "{{ doc('id') }} invoice record."
           - name: index
             description: Index count of records associated with the invoice bundle line.
           - name: invoice_line_index
@@ -525,10 +522,10 @@ sources:
 
       - name: invoice
         identifier: "{{ var('invoice_identifier', 'invoice') }}"
-        description: Table containing invoice records. An Invoice represents a sales form where the customer pays for a product or service later.
+        description: "{{ doc('invoice_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the invoice.
+            description: "{{ doc('id') }} invoice."
           - name: balance
             description: The balance reflecting any payments made against the transaction.
           - name: total_amount
@@ -558,14 +555,14 @@ sources:
           - name: class_id
             description: Reference to the class to which the invoice is associated with.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: item
         identifier: "{{ var('item_identifier', 'item') }}"
-        description: Table containing item records. An item is a thing that your company buys, sells, or re-sells, such as products and services.
+        description: "{{ doc('item_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the item.
+            description: "{{ doc('id') }} item."
           - name: active
             description: Boolean indicating whether the object is currently enabled for use by QuickBooks.
           - name: created_at
@@ -593,16 +590,16 @@ sources:
 
       - name: journal_entry_line
         identifier: "{{ var('journal_entry_line_identifier', 'journal_entry_line') }}"
-        description: Table containing individual line items of a transaction associated with a journal entry.
+        description: "{{ doc('journal_entry_line_table') }}"
         columns:
           - name: journal_entry_id
-            description: Unique identifier of the journal entry record.
+            description: "{{ doc('id') }} journal entry record."
           - name: index
             description: Index count of records associated with the journal entry record.
           - name: account_id
             description: Account id of the account which the journal entry is credited.
           - name: amount
-            description: Monetary amount of the journal entry line.
+            description: "{{ doc('amount') }} the journal entry line."
           - name: customer_id
             description: Customer id of the customer which the journal entry is credited.
           - name: department_id
@@ -620,10 +617,10 @@ sources:
 
       - name: journal_entry
         identifier: "{{ var('journal_entry_identifier', 'journal_entry') }}"
-        description: Table containing journal entry transactions.
+        description: "{{ doc('journal_entry_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the journal entry.
+            description: "{{ doc('id') }} journal entry."
           - name: adjustment
             description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
           - name: created_at
@@ -641,18 +638,18 @@ sources:
           - name: transaction_date
             description: Timestamp of the date when the journal entry was transacted.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: payment_line
         identifier: "{{ var('payment_line_identifier', 'payment_line') }}"
-        description: Table containing individual line items recorded within a payment.
+        description: "{{ doc('payment_line_table') }}"
         columns:
           - name: payment_id
-            description: Unique identifier of the payment record.
+            description: "{{ doc('id') }} payment record."
           - name: index
             description: Index count of records associated with the payment record.
           - name: amount
-            description: Monetary amount of the payment line.
+            description: "{{ doc('amount') }} the payment line."
           - name: journal_entry_id
             description: Journal entry reference associated with the payment.
           - name: deposit_id
@@ -664,10 +661,10 @@ sources:
 
       - name: payment
         identifier: "{{ var('payment_identifier', 'payment') }}"
-        description: Table containing all payment records. The payment can be applied for a particular customer against multiple Invoices and Credit Memos. It can also be created without any Invoice or Credit Memo, by just specifying an amount.
+        description: "{{ doc('payment_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the payment.
+            description: "{{ doc('id') }} payment."
           - name: unapplied_amount
             description: Indicates the amount that has not been applied to pay amounts owed for sales transactions.
           - name: total_amount
@@ -685,14 +682,14 @@ sources:
           - name: customer_id
             description: Reference to a customer or job.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: purchase_line
         identifier: "{{ var('purchase_line_identifier', 'purchase_line') }}"
-        description: Table containing individual line items of a transaction associated with a purchase.
+        description: "{{ doc('purchase_line_table') }}"
         columns:
           - name: purchase_id
-            description: Unique identifier of the purchase record.
+            description: "{{ doc('id') }} purchase record."
           - name: index
             description: Index count of records associated with the purchase record.
           - name: account_expense_account_id
@@ -710,16 +707,16 @@ sources:
           - name: item_expense_billable_status
             description: The billable status of the item based expense purchase line.
           - name: amount
-            description: Monetary amount of the purchase.
+            description: "{{ doc('amount') }} the purchase."
           - name: description
             description: User defined description of the purchase line.
 
       - name: purchase
         identifier: "{{ var('purchase_identifier', 'purchase') }}"
-        description: Table containing records of purchase expenses.
+        description: "{{ doc('purchase_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the purchase.
+            description: "{{ doc('id') }} purchase."
           - name: account_id
             description: Specifies the account reference to which this purchase is applied based on the PaymentType.
           - name: created_at
@@ -745,14 +742,14 @@ sources:
           - name: vendor_id
             description: Reference to the vendor for the purchase.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: purchase_order_line
         identifier: "{{ var('purchase_order_line_identifier', 'purchase_order_line') }}"
-        description: Table containing individual line items of a transaction associated with a purchase order.
+        description: "{{ doc('purchase_order_line_table') }}"
         columns:
           - name: purchase_order_id
-            description: Unique identifier of the purchase order record.
+            description: "{{ doc('id') }} purchase order record."
           - name: index
             description: Index count of records associated with the purchase order record.
           - name: account_expense_account_id
@@ -761,7 +758,7 @@ sources:
             description: The class reference associated with the account based expense purchase order line.
           - name: account_expense_billable_status
             description: Status of the purchase billable.
-          - name: account_expense_customer_id
+          - name: account_expense_
             description: The customer id associated with the account based purchase order line.
           - name: account_expense_tax_code_id
             description: Tax code reference associated to the purchase order.
@@ -772,13 +769,13 @@ sources:
           - name: item_expense_customer_id
             description: The customer id associated with the item based purchase order line.
           - name: amount
-            description: Monetary amount of the purchase.
+            description: "{{ doc('amount') }} the purchase."
           - name: description
             description: User defined description of the purchase line.
 
       - name: purchase_order_linked_txn
         identifier: "{{ var('purchase_order_linked_txn_identifier', 'purchase_order_linked_txn') }}"
-        description: Mapping table for purchase order records to respective bill and purchase objects.
+        description: "{{ doc('purchase_order_linked_txn_table') }}"
         columns:
           - name: purchase_order_id
             description: Reference to the unique purchase order.
@@ -793,10 +790,10 @@ sources:
 
       - name: purchase_order
         identifier: "{{ var('purchase_order_identifier', 'purchase_order') }}"
-        description: Table containing records of purchase orders (PO).
+        description: "{{ doc('purchase_order_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the purchase order.
+            description: "{{ doc('id') }} purchase order."
           - name: class_id
             description: Reference to the class which the purchase order is associated.
           - name: created_at
@@ -828,18 +825,18 @@ sources:
           - name: vendor_id
             description: Reference to the vendor for the purchase order.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: refund_receipt_line
         identifier: "{{ var('refund_receipt_line_identifier', 'refund_receipt_line') }}"
-        description: Table containing individual line items of a refund transaction.
+        description: "{{ doc('refund_receipt_line_table') }}"
         columns:
           - name: refund_id
-            description: Unique identifier of the refund record.
+            description: "{{ doc('id') }} refund record."
           - name: index
             description: Index count of records associated with the refund record.
           - name: amount
-            description: Monetary amount of the refund line.
+            description: "{{ doc('amount') }} the refund line."
           - name: description
             description: User defined description of the refund line.
           - name: discount_account_id
@@ -861,10 +858,10 @@ sources:
 
       - name: refund_receipt
         identifier: "{{ var('refund_receipt_identifier', 'refund_receipt') }}"
-        description: Table containing refunds to the customer for a product or service that was provided.
+        description: "{{ doc('refund_receipt_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the refund.
+            description: "{{ doc('id') }} refund."
           - name: balance
             description: The balance reflecting any payments made against the transaction.
           - name: total_amount
@@ -888,18 +885,18 @@ sources:
           - name: transaction_date
             description: Timestamp of the date in which the refund occurred.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: sales_receipt_line
         identifier: "{{ var('sales_receipt_line_identifier', 'sales_receipt_line') }}"
-        description: Table containing individual line items of a sales transaction.
+        description: "{{ doc('sales_receipt_line_table') }}"
         columns:
           - name: sales_receipt_id
-            description: Unique identifier of the sales record.
+            description: "{{ doc('id') }} sales record."
           - name: index
             description: Index count of records associated with the sales record.
           - name: amount
-            description: Monetary amount of the sales line.
+            description: "{{ doc('amount') }} the sales line."
           - name: description
             description: Description of the sales receipt line.
           - name: discount_account_id
@@ -921,10 +918,10 @@ sources:
 
       - name: sales_receipt
         identifier: "{{ var('sales_receipt_identifier', 'sales_receipt') }}"
-        description: Table containing sales receipts that are given to a customer. A sales receipt, payment is received as part of the sale of goods and services. The sales receipt specifies a deposit account where the customer's payment is deposited.
+        description: "{{ doc('sales_receipt_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the sales receipt.
+            description: "{{ doc('id') }} sales receipt."
           - name: balance
             description: The balance reflecting any payments made against the transaction.
           - name: total_amount
@@ -948,16 +945,16 @@ sources:
           - name: transaction_date
             description: Timestamp of the date which the sale occurred.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: transfer
         identifier: "{{ var('transfer_identifier', 'transfer') }}"
-        description: Table containing records of transfers. A Transfer represents a transaction where funds are moved between two accounts from the company's QuickBooks chart of accounts.
+        description: "{{ doc('transfer_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the transfer.
+            description: "{{ doc('id') }} transfer."
           - name: amount
-            description: Monetary amount of the transfer.
+            description: "{{ doc('amount') }} the transfer."
           - name: from_account_id
             description: Account id of the account which the transfer is from.
           - name: to_account_id
@@ -965,14 +962,14 @@ sources:
           - name: transaction_date
             description: Timestamp of the date which the transfer occurred.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: vendor_credit_line
         identifier: "{{ var('vendor_credit_line_identifier', 'vendor_credit_line') }}"
-        description: Table containing individual vendor credit line items.
+        description: "{{ doc('vendor_credit_line_table') }}"
         columns:
           - name: vendor_credit_id
-            description: Unique identifier of the vendor credit record.
+            description: "{{ doc('id') }} vendor credit record."
           - name: index
             description: Index count of records associated with the vendor credit record.
           - name: account_expense_account_id
@@ -998,16 +995,16 @@ sources:
           - name: item_expense_billable_status
             description: The billable status of the item based expense vendor credit line.
           - name: amount
-            description: Monetary amount of the vendor credit line.
+            description: "{{ doc('amount') }} the vendor credit line."
           - name: description
             description: Description of the vendor credit line.
 
       - name: vendor_credit
         identifier: "{{ var('vendor_credit_identifier', 'vendor_credit') }}"
-        description: Table containing all vendor credit records. A vendor credit is an accounts payable transaction that represents a refund or credit of payment for goods or services.
+        description: "{{ doc('vendor_credit_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the vendor credit.
+            description: "{{ doc('id') }} vendor credit."
           - name: balance
             description: The current amount of the vendor credit reflecting any adjustments to the original credit amount.
           - name: total_amount
@@ -1031,14 +1028,14 @@ sources:
           - name: vendor_id
             description: Reference to the vendor for this transaction.
           - name: _fivetran_deleted
-            description: Boolean created by Fivetran to indicate whether the record has been deleted.
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: vendor
         identifier: "{{ var('vendor_identifier', 'vendor') }}"
-        description: Table containing all vendor records. A vendor is the seller from whom your company purchases any service or product.
+        description: "{{ doc('vendor_table') }}"
         columns:
           - name: id
-            description: Unique identifier of the vendor.
+            description: "{{ doc('id') }} vendor."
           - name: account_number
             description: Name or number of the account associated with this vendor.
           - name: billing_address_id
