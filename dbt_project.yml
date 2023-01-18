@@ -66,6 +66,7 @@ vars:
     using_sales_receipt: true
     using_purchase_order: false
     using_credit_card_payment_txn: false
+    
 clean-targets:
 - target
 - dbt_modules

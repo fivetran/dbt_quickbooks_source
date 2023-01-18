@@ -11,6 +11,24 @@
 </p>
 
 ## QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
+
+# Table of Contents
+- [📣 What does this dbt package do?](https://github.com/fivetran/dbt_quickbooks_source/#-what-does-this-dbt-package-do)
+- [🎯 How do I use the dbt package?](https://github.com/fivetran/dbt_quickbooks_source/#-how-do-i-use-the-dbt-package) 
+    - [Step 1: Prerequisites](https://github.com/fivetran/dbt_quickbooks_source/#step-1-prerequisites)
+    - [Step 2: Install the package](https://github.com/fivetran/dbt_quickbooks_source/#step-2-install-the-package)
+    - [Step 3: Define database and schema variables](https://github.com/fivetran/dbt_quickbooks_source/#step-3-define-database-and-schema-variables)
+    - [Step 4: Enabling And Disabling Models](https://github.com/fivetran/dbt_quickbooks_source/#step-4-enabling-and-disabling-models)
+    - [(Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™](https://github.com/fivetran/dbt_quickbooks_source/#optional-step-5-orchestrate-your-models-with-fivetran-transformations-for-dbt-core)
+    - [Union Multiple QuickBooks Connectors](https://github.com/fivetran/dbt_quickbooks_source/#union-multiple-quickbooks-connectors)
+    - [Changing the Build Schema](https://github.com/fivetran/dbt_quickbooks_source/#changing-the-build-schema)
+    - [Change the source table references](https://github.com/fivetran/dbt_quickbooks_source/#change-the-source-table-references)
+- [🔍 Does this package have dependencies?](https://github.com/fivetran/dbt_quickbooks_source/#-does-this-package-have-dependencies)
+- [🙌 How is this package maintained and can I contribute?](https://github.com/fivetran/dbt_quickbooks_source/#-how-is-this-package-maintained-and-can-i-contribute)
+    - [Package Maintenance](https://github.com/fivetran/dbt_quickbooks_source/#package-maintenance)
+    - [Contributions](https://github.com/fivetran/dbt_quickbooks_source/#contributions)
+    - [🏪 Are there any resources available?](https://github.com/fivetran/dbt_quickbooks_source/#-are-there-any-resources-available)
+    
 # 📣 What does this dbt package do?
 - Materializes [QuickBooks staging tables](https://fivetran.github.io/dbt_quickbooks_source/#!/overview/quickbooks_source/models/?g_v=1&g_e=seeds) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/quickbooks#schemainformation). These staging tables clean, test, and prepare your QuickBooks data from
 from [Fivetran's connector](https://fivetran.com/docs/applications/quickbooks) for analysis by doing the following:
@@ -82,6 +100,7 @@ vars:
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
 </details>
 
+
 ### Union Multiple QuickBooks Connectors
 <details><summary>Expand for details</summary>
 If you have multiple QuickBooks connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `quickbooks_union_schemas` or `quickbooks_union_databases` variables:
@@ -118,15 +137,19 @@ If an individual source table has a different name than the package expects, add
 vars:
     quickbooks_<default_source_table_name>_identifier: your_table_name 
 ```
-
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
+
 ```yml
 packages:
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
+
+    - package: dbt-labs/dbt_utils
+      version: [">=1.0.0", "<2.0.0"]
 ```
+
 # 🙌 How is this package maintained and can I contribute?
 ## Package Maintenance
 The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend that you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/quickbooks_source/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_quickbooks_source/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
