@@ -1,5 +1,5 @@
 #  dbt_quickbooks_source v0.7.0
-## 🚨 Breaking Changes 🚨:
+## 🎉 🚨 Breaking Changes and New Feature 🚨 🎉:
 - Add union schema ability to run QuickBooks across a number of schemas. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
 ## 🎉 Additional Features
 - Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
