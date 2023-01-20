@@ -96,7 +96,7 @@ If you have multiple QuickBooks connectors in Fivetran and would like to use thi
 ...
 config-version: 2
 vars:
-  quickbooks_union_databases: ['quickbooks_us','quickbooks_ca'] # use this if the data is in different schemas/datasets of the same database/project
+  quickbooks_union_schemas: ['quickbooks_us','quickbooks_ca'] # use this if the data is in different schemas/datasets of the same database/project
   quickbooks_union_databases: ['quickbooks_us','quickbooks_ca'] # use this if the data is in different databases/projects but uses the same schema name
 
 
