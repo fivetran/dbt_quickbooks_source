@@ -25,22 +25,26 @@ fields as (
             )
         }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as address_id,
+        cast(id as {{ dbt.type_string() }}) as address_id,
         city,
         country,
         line_1 as address_1,
         line_2 as address_2,
-        postal_code
-
-        {{ fivetran_utils.source_relation() }}
-
+        postal_code,
+        source_relation
     from fields
 )
 

@@ -24,30 +24,34 @@ fields as (
                 staging_columns=get_bill_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
  
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as bill_id,
+        cast(id as {{ dbt.type_string() }}) as bill_id,
         balance,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         currency_id,
         department_id,
         due_date as due_date_at,
         transaction_date,
         exchange_rate,
-        cast(payable_account_id as {{ dbt_utils.type_string() }}) as payable_account_id,
+        cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         total_amount,
-        cast(vendor_id as {{ dbt_utils.type_string() }}) as vendor_id,
+        cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         private_note,
-        _fivetran_deleted
-
-        {{ fivetran_utils.source_relation() }}
-
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

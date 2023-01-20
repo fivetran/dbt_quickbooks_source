@@ -22,14 +22,20 @@ fields as (
             )
         }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as customer_id,
+        cast(id as {{ dbt.type_string() }}) as customer_id,
         active as is_active,
         balance,
         balance_with_jobs,
@@ -39,11 +45,9 @@ final as (
         currency_id,
         display_name,
         website,
-        taxable
+        taxable,
+        source_relation
 
-
-
-        {{ fivetran_utils.source_relation() }}
 
     from fields
 )

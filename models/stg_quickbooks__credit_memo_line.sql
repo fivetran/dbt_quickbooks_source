@@ -24,27 +24,32 @@ fields as (
                 staging_columns=get_credit_memo_line_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
     
     select 
-        cast(credit_memo_id as {{ dbt_utils.type_string() }}) as credit_memo_id,
+        cast(credit_memo_id as {{ dbt.type_string() }}) as credit_memo_id,
         index,
         amount,
-        cast(sales_item_account_id as {{ dbt_utils.type_string() }}) as sales_item_account_id,
-        cast(sales_item_item_id as {{ dbt_utils.type_string() }}) as sales_item_item_id,
+        cast(sales_item_account_id as {{ dbt.type_string() }}) as sales_item_account_id,
+        cast(sales_item_class_id as {{ dbt.type_string() }}) as sales_item_class_id,
+        cast(sales_item_item_id as {{ dbt.type_string() }}) as sales_item_item_id,
         sales_item_quantity,
         sales_item_unit_price,
-        cast(discount_account_id as {{ dbt_utils.type_string() }}) as discount_account_id,
-        discount_class_id,
-        description
-
-        {{ fivetran_utils.source_relation() }}
-
+        cast(discount_account_id as {{ dbt.type_string() }}) as discount_account_id,
+        cast(discount_class_id as {{ dbt.type_string() }}) as discount_class_id,
+        description,
+        source_relation
     from fields
 )
 

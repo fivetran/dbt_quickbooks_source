@@ -4,7 +4,7 @@ with base as (
 
 ),
 
-fields as (
+account as (
 
     select
         /*
@@ -19,17 +19,24 @@ fields as (
                 staging_columns=get_account_columns()
             )
         }}
-        {{ fivetran_utils.add_dbt_source_relation() }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_string() }}) as account_id,
-        cast(account_number as {{ dbt_utils.type_string() }}) as account_number,
+        cast(id as {{ dbt.type_string() }}) as account_id,
+        cast(account_number as {{ dbt.type_string() }}) as account_number,
         sub_account as is_sub_account,
-        cast(parent_account_id as {{ dbt_utils.type_string() }}) as parent_account_id,
+        cast(parent_account_id as {{ dbt.type_string() }}) as parent_account_id,
         name,
         account_type,
         account_sub_type,
@@ -41,12 +48,9 @@ final as (
         currency_id,
         description,
         fully_qualified_name,
-        updated_at
-
-
-        {{ fivetran_utils.source_relation() }}
-
-    from fields
+        updated_at,
+        source_relation
+    from account
 )
 
 select *

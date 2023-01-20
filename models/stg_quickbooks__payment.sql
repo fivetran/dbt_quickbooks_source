@@ -24,27 +24,31 @@ fields as (
                 staging_columns=get_payment_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as payment_id,
+        cast(id as {{ dbt.type_string() }}) as payment_id,
         unapplied_amount,
         total_amount,
         currency_id,
-        cast(receivable_account_id as {{ dbt_utils.type_string() }}) as receivable_account_id,
-        cast(deposit_to_account_id as {{ dbt_utils.type_string() }}) as deposit_to_account_id,
+        cast(receivable_account_id as {{ dbt.type_string() }}) as receivable_account_id,
+        cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         exchange_rate,
         transaction_date,
-        cast(customer_id as {{ dbt_utils.type_string() }}) as customer_id,
-        _fivetran_deleted
-
-        {{ fivetran_utils.source_relation() }}
-
+        cast(customer_id as {{ dbt.type_string() }}) as customer_id,
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

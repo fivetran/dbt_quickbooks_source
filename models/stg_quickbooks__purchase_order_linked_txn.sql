@@ -25,21 +25,25 @@ fields as (
             )
         }}
 
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
 
     select
-        cast(purchase_order_id as {{ dbt_utils.type_string() }}) as purchase_order_id,
-        cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
-        cast(purchase_id as {{ dbt_utils.type_string() }}) as purchase_id,
-        cast(vendor_credit_id as {{ dbt_utils.type_string() }}) as vendor_credit_id,
-        index
-
-        {{ fivetran_utils.source_relation() }}
-
+        cast(purchase_order_id as {{ dbt.type_string() }}) as purchase_order_id,
+        cast(bill_id as {{ dbt.type_string() }}) as bill_id,
+        cast(purchase_id as {{ dbt.type_string() }}) as purchase_id,
+        cast(vendor_credit_id as {{ dbt.type_string() }}) as vendor_credit_id,
+        index,
+        source_relation
     from fields
 )
 

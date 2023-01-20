@@ -24,16 +24,22 @@ fields as (
                 staging_columns=get_estimate_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as estimate_id,
-        class_id,
+        cast(id as {{ dbt.type_string() }}) as estimate_id,
+        cast(class_id as {{ dbt.type_string() }}) as class_id,
         created_at,
         currency_id,
         customer_id,
@@ -42,10 +48,8 @@ final as (
         total_amount,
         transaction_date,
         transaction_status,
-        _fivetran_deleted
-
-        {{ fivetran_utils.source_relation() }}
-
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

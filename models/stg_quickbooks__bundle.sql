@@ -23,22 +23,26 @@ fields as (
                 staging_columns=get_bundle_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_string() }}) as bundle_id,
+        cast(id as {{ dbt.type_string() }}) as bundle_id,
         created_at,
         active as is_active,
         fully_qualified_name,
-        updated_at
-
-
-        {{ fivetran_utils.source_relation() }}
+        updated_at,
+        source_relation
 
     from fields
 )

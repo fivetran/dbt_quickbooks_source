@@ -24,26 +24,30 @@ fields as (
                 staging_columns=get_bill_payment_line_columns()
             )
         }}
-        
-        {{ fivetran_utils.add_dbt_source_relation() }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+  
     from base
 ),
 
 final as (
     
     select 
-        cast(bill_payment_id as {{ dbt_utils.type_string() }}) as bill_payment_id,
+        cast(bill_payment_id as {{ dbt.type_string() }}) as bill_payment_id,
         index,
         amount,
-        cast(bill_id as {{ dbt_utils.type_string() }}) as bill_id,
+        cast(bill_id as {{ dbt.type_string() }}) as bill_id,
         deposit_id,
         expense_id,
         journal_entry_id,
         linked_bill_payment_id,
-        vendor_credit_id
-
-        {{ fivetran_utils.source_relation() }}
-
+        vendor_credit_id,
+        source_relation
     from fields
 )
 

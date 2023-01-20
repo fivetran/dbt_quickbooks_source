@@ -3,11 +3,13 @@
 
 {{
     fivetran_utils.union_data(
-        table_identifier='estimate',
-        database_variable='quickbooks_database',
-        schema_variable='quickbooks_schema',
+        table_identifier='estimate', 
+        database_variable='quickbooks_database', 
+        schema_variable='quickbooks_schema', 
         default_database=target.database,
         default_schema='quickbooks',
-        default_variable='estimate'
+        default_variable='estimate',
+        union_schema_variable='quickbooks_union_schemas',
+        union_database_variable='quickbooks_union_databases'
     )
 }}

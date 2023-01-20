@@ -25,26 +25,30 @@ fields as (
             )
         }}
 
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
 
     select
-        cast(id as {{ dbt_utils.type_string() }}) as journal_entry_id,
+        cast(id as {{ dbt.type_string() }}) as journal_entry_id,
         adjustment as is_adjustment,
         created_at,
         currency_id,
-        cast(doc_number as {{ dbt_utils.type_string() }}) as doc_number,
+        cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         exchange_rate,
         private_note,
         total_amount,
         transaction_date,
-        _fivetran_deleted
-
-        {{ fivetran_utils.source_relation() }}
-
+        _fivetran_deleted,
+        source_relation
     from fields
 )
 

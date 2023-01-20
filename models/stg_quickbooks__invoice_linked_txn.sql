@@ -24,21 +24,25 @@ fields as (
                 staging_columns=get_invoice_linked_txn_columns()
             )
         }}
+
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
     
     select 
-        cast(invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
-        cast(payment_id as {{ dbt_utils.type_string() }}) as payment_id,
-        cast(estimate_id as {{ dbt_utils.type_string() }}) as estimate_id,
-        index
-
-        {{ fivetran_utils.source_relation() }}
-
+        cast(invoice_id as {{ dbt.type_string() }}) as invoice_id,
+        cast(payment_id as {{ dbt.type_string() }}) as payment_id,
+        cast(estimate_id as {{ dbt.type_string() }}) as estimate_id,
+        index,
+        source_relation
     from fields
 )
 

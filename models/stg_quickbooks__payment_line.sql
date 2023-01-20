@@ -25,23 +25,27 @@ fields as (
             )
         }}
         
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ 
+            fivetran_utils.source_relation(
+                union_schema_variable='quickbooks_union_schemas', 
+                union_database_variable='quickbooks_union_databases'
+                ) 
+        }}
+
     from base
 ),
 
 final as (
     
     select 
-        cast(payment_id as {{ dbt_utils.type_string() }}) as payment_id,
+        cast(payment_id as {{ dbt.type_string() }}) as payment_id,
         index,
         amount,
         journal_entry_id,
         deposit_id,
-        cast(invoice_id as {{ dbt_utils.type_string() }}) as invoice_id,
-        credit_memo_id
-
-        {{ fivetran_utils.source_relation() }}
-
+        cast(invoice_id as {{ dbt.type_string() }}) as invoice_id,
+        credit_memo_id,
+        source_relation
     from fields
 )
 
