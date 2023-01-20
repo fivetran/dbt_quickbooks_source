@@ -24,6 +24,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -40,6 +41,9 @@ final as (
         sales_item_tax_code_id,
         sales_item_quantity,
         sales_item_unit_price 
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

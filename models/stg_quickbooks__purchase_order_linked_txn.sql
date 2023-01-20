@@ -25,6 +25,7 @@ fields as (
             )
         }}
 
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -36,6 +37,9 @@ final as (
         cast(purchase_id as {{ dbt_utils.type_string() }}) as purchase_id,
         cast(vendor_credit_id as {{ dbt_utils.type_string() }}) as vendor_credit_id,
         index
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

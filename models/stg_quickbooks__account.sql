@@ -4,7 +4,7 @@ with base as (
 
 ),
 
-account as (
+fields as (
 
     select
         /*
@@ -19,6 +19,7 @@ account as (
                 staging_columns=get_account_columns()
             )
         }}
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -42,7 +43,10 @@ final as (
         fully_qualified_name,
         updated_at
 
-    from base
+
+        {{ fivetran_utils.source_relation() }}
+
+    from fields
 )
 
 select *

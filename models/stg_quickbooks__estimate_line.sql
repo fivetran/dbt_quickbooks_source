@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -44,6 +45,9 @@ final as (
         quantity,
         account_id,
         amount
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

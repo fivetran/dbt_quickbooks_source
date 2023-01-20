@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -40,6 +41,9 @@ final as (
         journal_entry_id,
         linked_bill_payment_id,
         vendor_credit_id
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

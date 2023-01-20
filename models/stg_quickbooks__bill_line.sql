@@ -25,6 +25,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -43,6 +44,9 @@ final as (
         item_expense_billable_status,
         amount,
         description
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 

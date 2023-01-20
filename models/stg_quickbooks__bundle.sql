@@ -24,6 +24,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -35,6 +36,9 @@ final as (
         active as is_active,
         fully_qualified_name,
         updated_at
+
+
+        {{ fivetran_utils.source_relation() }}
 
     from fields
 )

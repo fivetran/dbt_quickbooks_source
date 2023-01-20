@@ -24,6 +24,7 @@ fields as (
             )
         }}
         
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
@@ -42,6 +43,9 @@ final as (
         cast(account_id as {{ dbt_utils.type_string() }}) as account_id,
         unit_price,
         invoice_line_index
+
+        {{ fivetran_utils.source_relation() }}
+
     from fields
 )
 
