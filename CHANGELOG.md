@@ -1,16 +1,15 @@
 #  dbt_quickbooks_source v0.7.0
 ## 🎉 🚨 Breaking Changes and New Feature 🚨 🎉:
 - Add union schema ability to run QuickBooks across a number of schemas. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26) and [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)) 
-
-Thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](https://github.com/fivetran/dbt_quickbooks_source/pull/26) that inspired this new feature! 
+    - Huge thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](https://github.com/fivetran/dbt_quickbooks_source/pull/26) to help integrate this feature! 
 ## 🎉 Additional Features
 - Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
 - Updated README to follow latest package standards. [#37](https://github.com/fivetran/dbt_quickbooks_source/pull/37)
 - Added `quickbooks_[source_table_name]_identifier` variables so it's easier to refer to source tables with different names. [#37](https://github.com/fivetran/dbt_quickbooks_source/pull/37)
 
 ## Under the Hood
-- Added unique tests because columns that were previously used for unique tests may now have duplicate fields across multiple sources, these columns are combined with the new `source_relation` column for unique tests and tested using the `dbt_utils.unique_combination_of_columns` macro. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
-- Included a source relation column. This distinguishes which source each field comes from, we added a new `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26))
+- Added unique tests because columns that were previously used for unique tests may now have duplicate fields across multiple sources, these columns are combined with the new `source_relation` column for unique tests and tested using the `dbt_utils.unique_combination_of_columns` macro. [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
+- Included a source relation column. This distinguishes which source each field comes from, we added a new `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro. [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
 
 ## Contibutors
 - [@ligfx](https://github.com/ligfx) [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
@@ -56,6 +55,8 @@ Thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](http
 ## Features
 - Addition of the `credit_card_payment_txn` (enabled/disabled using the `using_credit_card_payment_txn` variable) source as well as the accompanying staging models. This source includes all credit card payment transactions and will be used in downstream General Ledger generation to ensure accurate reporting of all transaction types. ([#29](https://github.com/fivetran/dbt_quickbooks_source/pull/29))
   >**Note**: the `credit_card_payment_txn` source and models are disabled by default. In order to enabled them, you will want to set the `using_credit_card_payment_txn` variable to `true` in your dbt_project.yml.
+
+## Under the Hood
 - A GitHub workflow has been added to ensure the dbt docs are regenerated before each merge to the `main` release branch. 
 
 # dbt_quickbooks_source v0.5.0
