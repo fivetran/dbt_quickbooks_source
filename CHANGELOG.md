@@ -1,10 +1,18 @@
 #  dbt_quickbooks_source v0.7.0
 ## 🎉 🚨 Breaking Changes and New Feature 🚨 🎉:
-- Add union schema ability to run QuickBooks across a number of schemas. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35). Thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](https://github.com/fivetran/dbt_quickbooks_source/pull/26) that inspired this new feature! 
+- Add union schema ability to run QuickBooks across a number of schemas. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26) and [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)) 
+    - Huge thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](https://github.com/fivetran/dbt_quickbooks_source/pull/26) to help integrate this feature! 
 ## 🎉 Additional Features
 - Addition of all `class_id` fields to relevant models to support adding classes upstream into your general ledger models. [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)
 - Updated README to follow latest package standards. [#37](https://github.com/fivetran/dbt_quickbooks_source/pull/37)
 - Added `quickbooks_[source_table_name]_identifier` variables so it's easier to refer to source tables with different names. [#37](https://github.com/fivetran/dbt_quickbooks_source/pull/37)
+
+## Under the Hood
+- Added unique tests because columns that were previously used for unique tests may now have duplicate fields across multiple sources, these columns are combined with the new `source_relation` column for unique tests and tested using the `dbt_utils.unique_combination_of_columns` macro. [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
+- Included a source relation column. This distinguishes which source each field comes from, we added a new `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro. [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
+
+## Contibutors
+- [@ligfx](https://github.com/ligfx) [#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26)
 
 # dbt_quickbooks_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
@@ -50,12 +58,14 @@
 
 ## Under the Hood
 - A GitHub workflow has been added to ensure the dbt docs are regenerated before each merge to the `main` release branch. 
+
 # dbt_quickbooks_source v0.5.0
 ## 🚨 Breaking Changes 🚨
 - It was discovered that IDs from the source tables can sometimes be strings. The previous build of the package interpreted all IDs as integers. To ensure the package operates as intended, the package has been updated to cast all IDs to the string datatype. If you were leveraging the end models in downstream analysis, this change could break your join conditions. Be sure to be aware of any join conditions you may have downstream before upgrading your QuickBooks package. ([#36](https://github.com/fivetran/dbt_quickbooks/pull/36)) ([#25](https://github.com/fivetran/dbt_quickbooks_source/pull/25)) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
 
 ## Contributors
 - [@evancole-untitled](https://github.com/evancole-untitled) ([#24](https://github.com/fivetran/dbt_quickbooks_source/pull/24))
+
 # dbt_quickbooks_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
