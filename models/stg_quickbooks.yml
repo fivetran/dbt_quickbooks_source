@@ -119,8 +119,6 @@ models:
         description: Index count of records from a single bill record associated with payment ids.
       - name: bill_payment_id
         description: "The {{ doc('id') }} bill payment id record."
-        tests:
-          - not_null
 
   - name: stg_quickbooks__bill_payment_line
     description: "{{ doc('bill_payment_line_table') }}"
