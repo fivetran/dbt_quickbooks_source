@@ -1,6 +1,6 @@
 # dbt_quickbooks_source v0.7.1
 ## 🎉 Feature Updates 🎉
-- Removed not-null test for `bill_payment_id` field in `stg_quickbooks__bill_linked_txn` to account for bills with empty bill payment values. [#41](https://github.com/fivetran/dbt_quickbooks_source/pull/41)
+- Removed not-null test for `bill_payment_id` field in `stg_quickbooks__bill_linked_txn` to account for bills with empty bill payment values. ([#41](https://github.com/fivetran/dbt_quickbooks_source/pull/41))
 
 # dbt_quickbooks_source v0.7.0
 ## 🎉 🚨 Breaking Changes and New Feature 🚨 🎉:
