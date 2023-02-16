@@ -1,4 +1,8 @@
-#  dbt_quickbooks_source v0.7.0
+# dbt_quickbooks_source v0.7.1
+## 🎉 Feature Updates 🎉
+- Removed not-null test for `bill_payment_id` field in `stg_quickbooks__bill_linked_txn` to account for bills with empty bill payment values. ([#41](https://github.com/fivetran/dbt_quickbooks_source/pull/41))
+
+# dbt_quickbooks_source v0.7.0
 ## 🎉 🚨 Breaking Changes and New Feature 🚨 🎉:
 - Add union schema ability to run QuickBooks across a number of schemas. ([#26](https://github.com/fivetran/dbt_quickbooks_source/pull/26) and [#35](https://github.com/fivetran/dbt_quickbooks_source/pull/35)) 
     - Huge thanks to [@ligfx](https://github.com/ligfx) for [putting in the hard work](https://github.com/fivetran/dbt_quickbooks_source/pull/26) to help integrate this feature! 
