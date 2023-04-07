@@ -1,4 +1,5 @@
 # dbt_quickbooks_source v0.7.2
+[PR #43](https://github.com/fivetran/dbt_quickbooks_source/pull/43) includes the following udpates:
 ## 🎉 Feature Updates 🎉
 - Addition of the `detail_type` field within the `stg_quickbooks__invoice_line` model. This field will help identify the type of invoice line in the context of the entire invoice.
 
