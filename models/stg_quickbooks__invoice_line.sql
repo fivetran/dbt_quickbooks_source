@@ -47,6 +47,7 @@ final as (
         sales_item_quantity,
         sales_item_unit_price,
         discount_account_id,
+        detail_type,
         cast(discount_class_id as {{ dbt.type_string() }}) as discount_class_id,
         description,
         quantity,
