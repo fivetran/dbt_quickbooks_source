@@ -52,6 +52,10 @@ vars:
     vendor_credit_line: "{{ source('quickbooks','vendor_credit_line') }}"
     vendor_credit: "{{ source('quickbooks','vendor_credit') }}"
     vendor: "{{ source('quickbooks','vendor') }}"
+    invoice_tax_line: "{{ source('quickbooks','invoice_tax_line') }}"
+    tax_rate: "{{ source('quickbooks','tax_rate') }}"
+    tax_agency: "{{ source('quickbooks','tax_agency') }}"
+
     using_address: true
     using_bill: true
     using_credit_memo: true

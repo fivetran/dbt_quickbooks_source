@@ -1056,3 +1056,82 @@ sources:
             description: Website url associated with the vendor.
           - name: vendor_1099
             description: Boolean indicating whether this vendor is an independent contractor; someone who is given a 1099-MISC form at the end of the year.
+      
+      - name: invoice_tax_line
+        identifier: "{{ var('quickbooks_invoice_tax_line_identifier', 'invoice_tax_line') }}"
+        description: >
+          This table contains information about tax lines on QuickBooks invoices.
+          It includes data such as the invoice ID, tax rate applied, and tax amount.
+        columns:
+          - name: invoice_id
+            description: The unique ID of the invoice.
+          - name: index
+            description: The index of the tax line on the invoice.
+          - name: amount
+            description: The total amount of tax applied on the invoice.
+          - name: tax_rate_id
+            description: The ID of the tax rate applied to the invoice.
+          - name: tax_percent
+            description: The percentage of the tax rate applied to the invoice.
+          - name: tax_inclusive_amount
+            description: The total amount of tax included in the invoice.
+          - name: net_amount_taxable
+            description: The taxable amount on which tax is applied.
+          - name: override_delta_amount
+            description: The difference between the calculated tax and the overridden tax.
+          - name: percent_based
+            description: A flag indicating whether the tax is a percentage-based tax.
+
+      - name: tax_agency
+        identifier: "{{ var('quickbooks_tax_agency_identifier', 'tax_agency') }}"
+        description: >
+          This table contains information about tax agencies in QuickBooks.
+          It includes data such as the ID, display name, and tax registration number.
+        columns:
+          - name: id
+            description: The unique ID of the tax agency.
+          - name: created_at
+            description: The timestamp when the tax agency was created.
+          - name: display_name
+            description: The name of the tax agency as displayed in QuickBooks.
+          - name: sync_token
+            description: A token used to identify the tax agency during synchronization.
+          - name: tax_registration_number
+            description: The registration number of the tax agency.
+          - name: tax_tracked_on_purchases
+            description: A flag indicating whether tax is tracked on purchases.
+          - name: tax_tracked_on_sales
+            description: A flag indicating whether tax is tracked on sales.
+          - name: updated_at
+            description: The timestamp when the tax agency was last updated.
+
+      - name: tax_rate
+        identifier: "{{ var('quickbooks_tax_rate_identifier', 'tax_rate') }}"
+        description: >
+          This table contains information about tax rates in QuickBooks.
+          It includes data such as the ID, name, and tax rate value.
+        columns:
+          - name: id
+            description: The unique ID of the tax rate.
+          - name: name
+            description: The name of the tax rate.
+          - name: active
+            description: A flag indicating whether the tax rate is active.
+          - name: created_at
+            description: The timestamp when the tax rate was created.
+          - name: description
+            description: A description of the tax rate.
+          - name: display_type
+            description: The type of display used for the tax rate.
+          - name: effective_tax_rate
+            description: The effective tax rate of the tax rate.
+          - name: rate_value
+            description: The value of the tax rate.
+          - name: special_tax_type
+            description: The type of special tax applied to the tax rate.
+          - name: sync_token
+            description: A token used to identify the tax rate during synchronization.
+          - name: tax_agency_id
+            description: The ID of the tax agency associated with the tax rate.
+          - name: updated_at
+            description: The timestamp when the tax rate was last updated.
