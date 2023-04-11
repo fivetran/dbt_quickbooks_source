@@ -46,7 +46,7 @@ final as (
         exchange_rate,
         created_at,
         cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         private_note,
         transaction_date,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
