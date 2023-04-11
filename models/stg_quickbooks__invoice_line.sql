@@ -8,7 +8,7 @@ with base as (
 
 ),
 
-fields as (
+fields as ( 
 
     select
         /*
