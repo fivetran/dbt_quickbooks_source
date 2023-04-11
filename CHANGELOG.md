@@ -1,4 +1,5 @@
 # dbt_quickbooks_source v0.8.0
+[PR #44](https://github.com/fivetran/dbt_quickbooks_source/pull/44) includes the following updates:
 ## Under the Hood
 - Casted the `department_id` within the following staging models to be of type string. This ensures downstream unions on this type are consistent and of the same type.
   - `stg_quickbooks__bill`
@@ -12,7 +13,7 @@
   - `stg_quickbooks__refund_receipt`
   - `stg_quickbooks__sales_receipt`
   - `stg_quickbooks__vendor_credit`
-  
+
 # dbt_quickbooks_source v0.7.1
 ## 🎉 Feature Updates 🎉
 - Removed not-null test for `bill_payment_id` field in `stg_quickbooks__bill_linked_txn` to account for bills with empty bill payment values. ([#41](https://github.com/fivetran/dbt_quickbooks_source/pull/41))
