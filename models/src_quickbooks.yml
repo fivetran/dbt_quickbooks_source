@@ -491,7 +491,7 @@ sources:
           - name: quantity
             description: Quantity of the item included on the invoice line.
           - name: detail_type
-            description: Individual line items of a transaction. Valid line types include SalesItemLine, GroupLine, DescriptionOnlyLine (also used for inline Subtotal lines), DiscountLine and SubTotalLine (used for the overall transaction).
+            description: Individual line items of a transaction. Valid line types include SalesItemLineDetail, DescriptionOnly (also used for inline Subtotal lines), DiscountLineDetail and SubTotalLineDetail (used for the overall transaction). FYI - Records synced prior to 11/2021 will have a null value.
 
       - name: invoice_line_bundle
         identifier: "{{ var('quickbooks_invoice_line_bundle_identifier', 'invoice_line_bundle') }}"
