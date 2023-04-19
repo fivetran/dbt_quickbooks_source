@@ -38,7 +38,7 @@ fields as (
 final as (
     
     select 
-        id as department_id,
+        cast(id as {{ dbt.type_string() }}) as department_id,
         active as is_active,
         created_at,
         updated_at,

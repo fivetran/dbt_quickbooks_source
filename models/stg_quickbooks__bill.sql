@@ -42,7 +42,7 @@ final as (
         balance,
         cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         currency_id,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         due_date as due_date_at,
         transaction_date,
         exchange_rate,
