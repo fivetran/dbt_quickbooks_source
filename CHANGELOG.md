@@ -7,6 +7,7 @@
   - `stg_quickbooks__credit_memo`
   - `stg_quickbooks__department`
   - `stg_quickbooks__deposit`
+  - `stg_quickbooks__estimate`
   - `stg_quickbooks__invoice`
   - `stg_quickbooks__journal_entry_line`
   - `stg_quickbooks__purchase`

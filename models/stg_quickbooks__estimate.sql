@@ -43,7 +43,7 @@ final as (
         created_at,
         currency_id,
         customer_id,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         due_date,
         total_amount,
         transaction_date,
