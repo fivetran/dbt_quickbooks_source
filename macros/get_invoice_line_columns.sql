@@ -14,6 +14,7 @@
     {"name": "discount_discount_percent", "datatype": dbt.type_float()},
     {"name": "discount_percent_based", "datatype": "boolean"},
     {"name": "discount_tax_code_id", "datatype": dbt.type_string()},
+    {"name": "detail_type", "datatype": dbt.type_string()},
     {"name": "index", "datatype": dbt.type_string()},
     {"name": "invoice_id", "datatype": dbt.type_string()},
     {"name": "item_id", "datatype": dbt.type_string()},

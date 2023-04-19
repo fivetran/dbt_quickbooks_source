@@ -1,4 +1,7 @@
 # dbt_quickbooks_source v0.8.0
+[PR #43](https://github.com/fivetran/dbt_quickbooks_source/pull/43) includes the following updates:
+## 🎉 Feature Updates 🎉
+- Addition of the `detail_type` field within the `stg_quickbooks__invoice_line` model. This field will help identify the type of invoice line in the context of the entire invoice.
 [PR #44](https://github.com/fivetran/dbt_quickbooks_source/pull/44) includes the following updates:
 ## Under the Hood
 - Casted the `department_id` within the following staging models to be of type string. This ensures downstream unions on this type are consistent and of the same type.
