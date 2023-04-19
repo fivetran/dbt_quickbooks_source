@@ -44,7 +44,7 @@ final as (
         credit,
         total_amount,
         payment_type,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         transaction_date,
