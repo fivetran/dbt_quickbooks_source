@@ -1,3 +1,9 @@
+# dbt_quickbooks_source v0.UPDATE.UPDATE
+
+ ## Under the Hood:
+
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
+- Updated the pull request [templates](/.github).
 # dbt_quickbooks_source v0.7.1
 ## 🎉 Feature Updates 🎉
 - Removed not-null test for `bill_payment_id` field in `stg_quickbooks__bill_linked_txn` to account for bills with empty bill payment values. ([#41](https://github.com/fivetran/dbt_quickbooks_source/pull/41))
