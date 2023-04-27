@@ -43,7 +43,7 @@ final as (
         cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         total_amount,
         currency_id,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         exchange_rate,
         transaction_date,

@@ -582,6 +582,8 @@ models:
         description: Reference to the item associated with the invoice line.
       - name: quantity
         description: Quantity of the item included on the invoice line.
+      - name: detail_type
+        description: Individual line items of a transaction. Valid line types include SalesItemLineDetail, DescriptionOnly (also used for inline Subtotal lines), DiscountLineDetail and SubTotalLineDetail (used for the overall transaction). FYI - Records synced prior to 11/2021 will have a null value.
 
   - name: stg_quickbooks__invoice_line_bundle
     description: "{{ doc('invoice_line_bundle_table') }}"
