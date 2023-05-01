@@ -45,7 +45,7 @@ final as (
         cast(class_id as {{ dbt.type_string() }}) as class_id,
         cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         created_at,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         currency_id,
         exchange_rate,

@@ -44,7 +44,7 @@ final as (
         cast(credit_card_account_id as {{ dbt.type_string() }}) as credit_card_account_id,
         exchange_rate,
         currency_id,
-        department_id,
+        cast(department_id as {{ dbt.type_string() }}) as department_id,
         pay_type,
         total_amount,
         transaction_date,
