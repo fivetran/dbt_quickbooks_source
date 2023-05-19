@@ -42,7 +42,10 @@ final as (
         currency_id,
         exchange_rate,
         credit,
-        total_amount,
+        case when coalesce(credit, false) 
+            then -1 * total_amount
+            else total_amount
+        end as total_amount,
         payment_type,
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
