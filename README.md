@@ -43,7 +43,7 @@ from [Fivetran's connector](https://fivetran.com/docs/applications/quickbooks) f
 To use this dbt package, you must have the following:
 
 - At least one Fivetran QuickBooks connector syncing data into your destination.
-- A **BigQuery**, **Snowflake**, **Redshift**, or **PostgreSQL** destination.
+- A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 ## Step 2: Install the package (skip if also using the `quickbooks` transformation package)
 If you are **not** using the [QuickBooks transformation package](https://github.com/fivetran/dbt_quickbooks), include the following `quickbooks_source` package version in your `packages.yml` file.
