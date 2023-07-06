@@ -1,6 +1,6 @@
 # dbt_quickbooks_source v0.9.1
 ## 🎉 Features
-- Added description for column `source_relation` to the documentation.
+- Added description for column `source_relation` to the documentation. ([#49](https://github.com/fivetran/dbt_quickbooks_source/pull/49))
 
 # dbt_quickbooks_source v0.9.0
 ## 🎉 Feature Update 🎉
