@@ -144,7 +144,7 @@ Table containing sales receipts that are given to a customer. A sales receipt, p
 {% enddocs %}
 
 {% docs source_relation %}
-The source of the record, if the unioning functionality is being used.
+The source of the record if the unioning functionality is being used. If not this field will be null. 
 {% enddocs %}
 
 {% docs transfer_table %}
