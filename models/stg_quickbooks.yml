@@ -121,6 +121,8 @@ models:
         description: "The {{ doc('id') }} bill record."
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: index
         description: Index count of records from a single bill record associated with payment ids.
       - name: bill_payment_id
@@ -241,6 +243,8 @@ models:
         description: Reference to the bundle table.
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: item_id
         description: Reference to the item which the bundle is mapped.
       - name: item_quantity
@@ -274,6 +278,8 @@ models:
     columns:
       - name: credit_card_payment_id
         description: "{{ doc('id') }} credit card payment transaction."
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: amount
         description: Total amount of money applied to the credit card payment transaction.
       - name: bank_account_id
@@ -404,6 +410,8 @@ models:
     columns:
       - name: department_id
         description: "{{ doc('id') }} department."
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: is_active
         description: Boolean indicating whether the department is currently active.
       - name: created_at
@@ -560,6 +568,8 @@ models:
         description: Reference to the unique invoice.
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: payment_id
         description: Reference to the respective payment object for the invoice.
       - name: estimate_id
@@ -751,6 +761,8 @@ models:
         description: "{{ doc('id') }} journal entry record."
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: index
         description: Index count of records associated with the journal entry record.
       - name: source_relation
@@ -993,6 +1005,8 @@ models:
         description: Reference to the unique purchase order.
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: bill_id
         description: Reference to the respective bill object for the purchase order.
       - name: purchase_id
@@ -1274,6 +1288,8 @@ models:
         description: "{{ doc('id') }} vendor credit."
         tests: 
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: balance
         description: The current amount of the vendor credit reflecting any adjustments to the original credit amount.
       - name: total_amount
