@@ -1,4 +1,4 @@
-# dbt_quickbooks_source v0.10.0
+# dbt_quickbooks_source v0.9.1
 ## 🚨 Breaking Changes 🚨:
 ## 🚘 Under the Hood
 - Updated partitioning in `stg_quickbooks__credit_card_payment_txn` to include `source_relation`.
