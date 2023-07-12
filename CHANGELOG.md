@@ -1,9 +1,8 @@
 # dbt_quickbooks_source v0.9.1
-## 🚨 Breaking Changes 🚨:
-## 🚘 Under the Hood
-- Updated partitioning in `stg_quickbooks__credit_card_payment_txn` to include `source_relation`.
 ## 🎉 Features
 - Added description for column `source_relation` to the documentation. ([#49](https://github.com/fivetran/dbt_quickbooks_source/pull/49))
+## 🚘 Under the Hood
+- Updated partitioning in `stg_quickbooks__credit_card_payment_txn` to include `source_relation`.
 
 # dbt_quickbooks_source v0.9.0
 ## 🎉 Feature Update 🎉
