@@ -143,6 +143,10 @@ Table containing individual line items of a sales transaction.
 Table containing sales receipts that are given to a customer. A sales receipt, payment is received as part of the sale of goods and services. The sales receipt specifies a deposit account where the customer's payment is deposited.
 {% enddocs %}
 
+{% docs source_relation %}
+The source of the record if the unioning functionality is being used. If not this field will be null. 
+{% enddocs %}
+
 {% docs transfer_table %}
 Table containing records of transfers. A Transfer represents a transaction where funds are moved between two accounts from the company's QuickBooks chart of accounts.
 {% enddocs %}

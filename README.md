@@ -102,7 +102,7 @@ config-version: 2
 vars:
   quickbooks_union_schemas: ['quickbooks_us','quickbooks_ca'] # use this if the data is in different schemas/datasets of the same database/project
   quickbooks_union_databases: ['quickbooks_us','quickbooks_ca'] # use this if the data is in different databases/projects but uses the same schema name
-
+```
 
 ### Changing the Build Schema
 By default this package will build the QuickBooks staging models within a schema titled (<target_schema> + `_quickbooks_staging`) in your target database. If this is not where you would like you QuickBooks staging data to be written to, add the following configuration to your `dbt_project.yml` file:
