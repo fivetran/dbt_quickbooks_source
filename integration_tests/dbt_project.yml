@@ -1,5 +1,5 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.9.1'
+version: '0.10.0'
 
 
 profile: 'integration_tests'
@@ -12,8 +12,10 @@ models:
       materialized: view
       
 vars:
+  using_credit_card_payment_txn: true
+  using_purchase_order: true
   quickbooks_source:
-    quickbooks_schema: quickbooks_source_integrations_tests
+    quickbooks_schema: quickbooks_source_integrations_tests_2
     quickbooks_account_identifier: "account_data"
     quickbooks_address_identifier: "address_data"
     quickbooks_bill_line_identifier: "bill_line_data"

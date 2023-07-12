@@ -39,7 +39,7 @@ final as (
         currency_id,
         transaction_date,
         _fivetran_deleted,
-        row_number() over (partition by id, updated_at order by source_relation, updated_at desc) = 1 as is_most_recent_record,
+        row_number() over (partition by id, updated_at, source_relation order by source_relation, updated_at desc) = 1 as is_most_recent_record,
         source_relation
     from fields
 )
