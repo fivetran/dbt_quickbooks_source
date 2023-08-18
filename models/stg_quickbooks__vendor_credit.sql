@@ -48,7 +48,7 @@ final as (
         cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         private_note,
-        transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} ) as transaction_date,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         _fivetran_deleted,
         source_relation

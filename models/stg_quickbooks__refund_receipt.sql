@@ -49,7 +49,7 @@ final as (
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         currency_id,
         exchange_rate,
-        transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} ) as transaction_date,
         _fivetran_deleted,
         source_relation
     from fields

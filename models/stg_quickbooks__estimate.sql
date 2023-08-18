@@ -44,9 +44,9 @@ final as (
         currency_id,
         customer_id,
         cast(department_id as {{ dbt.type_string() }}) as department_id,
-        due_date,
+        cast( {{ dbt.date_trunc('day', 'due_date') }} ) as due_date,
         total_amount,
-        transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} ) as transaction_date,
         transaction_status,
         _fivetran_deleted,
         source_relation
