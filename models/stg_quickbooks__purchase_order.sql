@@ -47,9 +47,9 @@ final as (
         total_amount,
         cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
-        cast( {{ dbt.date_trunc('day', 'transaction_date') }} ) as transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         status,
-        cast( {{ dbt.date_trunc('day', 'due_date') }} ) as due_date,
+        cast( {{ dbt.date_trunc('day', 'due_date') }} as date) as due_date, 
         _fivetran_deleted,
         source_relation
     from fields
