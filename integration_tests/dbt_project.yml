@@ -62,9 +62,26 @@ seeds:
   quickbooks_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
     +column_types:
-      transaction_date: timestamp
-      due_date: timestamp
-  
+      transaction_date: date
+      due_date: date
+    credit_memo_data:
+      +column_types:
+        transaction_date: timestamp
+    estimate_data:
+      +column_types:
+        transaction_date: timestamp
+    invoice_data:
+      +column_types:
+        due_date: timestamp
+    payment_data:
+      +column_types:
+        transaction_date: timestamp
+    purchase_data:
+      +column_types:
+        transaction_date: timestamp
+    purchase_order_data:
+      +column_types:
+        transaction_date: timestamp
 clean-targets:
 - target
 - dbt_modules
