@@ -73,6 +73,7 @@ seeds:
     invoice_data:
       +column_types:
         due_date: timestamp
+        transaction_date: timestamp
     payment_data:
       +column_types:
         transaction_date: timestamp
