@@ -64,25 +64,6 @@ seeds:
     +column_types:
       transaction_date: date
       due_date: date
-    credit_memo_data:
-      +column_types:
-        transaction_date: timestamp
-    estimate_data:
-      +column_types:
-        transaction_date: timestamp
-    invoice_data:
-      +column_types:
-        due_date: timestamp
-        transaction_date: timestamp
-    payment_data:
-      +column_types:
-        transaction_date: timestamp
-    purchase_data:
-      +column_types:
-        transaction_date: timestamp
-    purchase_order_data:
-      +column_types:
-        transaction_date: timestamp
 clean-targets:
 - target
 - dbt_modules
