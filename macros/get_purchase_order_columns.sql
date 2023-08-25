@@ -9,7 +9,7 @@
     {"name": "custom_customer_type", "datatype": dbt.type_string()},
     {"name": "custom_po_number", "datatype": dbt.type_string()},
     {"name": "doc_number", "datatype": dbt.type_string()},
-    {"name": "due_date", "datatype": dbt.type_timestamp()},
+    {"name": "due_date", "datatype": "date"},
     {"name": "exchange_rate", "datatype": dbt.type_float()},
     {"name": "global_tax_calculation", "datatype": dbt.type_string()},
     {"name": "id", "datatype": dbt.type_string()},
@@ -23,7 +23,7 @@
     {"name": "tax_code_id", "datatype": dbt.type_string()},
     {"name": "total_amount", "datatype": dbt.type_float()},
     {"name": "total_tax", "datatype": dbt.type_float()},
-    {"name": "transaction_date", "datatype": dbt.type_timestamp()},
+    {"name": "transaction_date", "datatype": "date"},
     {"name": "updated_at", "datatype": dbt.type_timestamp()},
     {"name": "vendor_address_id", "datatype": dbt.type_string()},
     {"name": "vendor_id", "datatype": dbt.type_string()}

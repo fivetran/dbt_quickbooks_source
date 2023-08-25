@@ -1,8 +1,12 @@
-# dbt_quickbooks_source v0.9.2
+# dbt_quickbooks_source v0.10.0
+
+## 🚨 Breaking Change 🚨 :
 [PR #51](https://github.com/fivetran/dbt_quickbooks_source/pull/51) includes the following updates:
 ## 🚘 Under the Hood
 - Explicitly casts *_date fields as `date` type (`due_date`, `transaction_date`). Previously, some fields were getting interpreted as timestamps while some were interpreted as dates, leading to errors downstream on joins.
 - Updated seed files to correct timestamp formats.
+
+This will be a breaking change to those who may still use the old timestamp formats, so please update your package version.
 
 # dbt_quickbooks_source v0.9.1
 [PR #49](https://github.com/fivetran/dbt_quickbooks_source/pull/49) includes the following updates:
