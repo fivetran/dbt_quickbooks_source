@@ -153,7 +153,7 @@ sources:
           - name: total_amount
             description: Indicates the total amount associated with this payment. This includes the total of all the payments from the payment line details.
           - name: transaction_date
-            description: Timestamp of the day the took place.
+            description: Date of the day the payment took place.
           - name: vendor_id
             description: Reference to the vendor for this transaction.
           - name: _fivetran_deleted
@@ -178,9 +178,9 @@ sources:
           - name: vendor_id
             description: Reference to the vendor the bill is linked with.
           - name: due_date
-            description: Timestamp of the date which the bill is due.
+            description: Date which the bill is due.
           - name: transaction_date
-            description: Timestamp of the date when the bill transaction occurred.
+            description: Date of the day when the bill transaction occurred.
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: payable_account_id
@@ -235,7 +235,7 @@ sources:
           - name: currency_id
             description: "{{ doc('currency_id') }} used for the credit card payment."
           - name: transaction_date
-            description: Date the credit card payment transaction took place.
+            description: Day the credit card payment transaction took place.
           - name: _fivetran_deleted
             description: Boolean indicating if the credit card payment was deleted.
 
@@ -289,7 +289,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
-            description: Timestamp of the date when the credit memo occurred.
+            description: Date of the day when the credit memo occurred.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}"
 
@@ -377,7 +377,7 @@ sources:
           - name: total_amount
             description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
           - name: transaction_date
-            description: Timestamp of the date which the deposit transaction occurred.
+            description: Date of the day which the deposit transaction occurred.
           - name: transaction_status
             description: Status of the deposit transaction.
           - name: _fivetran_deleted
@@ -400,11 +400,11 @@ sources:
           - name: department_id
             description: "{{ doc('department_id') }} associated with the estimate."
           - name: due_date
-            description: Timestamp of the date which the estimate is due.
+            description: Date which the estimate is due.
           - name: total_amount
             description: Total amount of all line items included in the estimate.
           - name: transaction_date
-            description: Timestamp of the date which the estimate occurred.
+            description: Date of the day which the estimate occurred.
           - name: transaction_status
             description: Current status of the estimate.
           - name: _fivetran_deleted
@@ -543,7 +543,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
-            description: Timestamp of the date which the deposit transaction occurred.
+            description: Date of the day which the deposit transaction occurred.
           - name: customer_id
             description: "{{ doc('customer_id') }} with the invoice."
           - name: billing_address_id
@@ -553,7 +553,7 @@ sources:
           - name: delivery_type
             description: How the invoice is delivered to the customer.
           - name: due_date
-            description: Timestamp of the date which the invoice payment is due.
+            description: Date which the invoice payment is due.
           - name: class_id
             description: "{{ doc('class_id') }} with the invoice."
           - name: _fivetran_deleted
@@ -638,7 +638,7 @@ sources:
           - name: total_amount
             description: The value of this field will always be set to zero.
           - name: transaction_date
-            description: Timestamp of the date when the journal entry was transacted.
+            description: Date of the day when the journal entry was transacted.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -680,7 +680,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
-            description: Timestamp of the date when the payment occurred.
+            description: Date of the day when the payment occurred.
           - name: customer_id
             description: "{{ doc('customer_id') }} with the payment."
           - name: _fivetran_deleted
@@ -736,7 +736,7 @@ sources:
           - name: customer_id
             description: "{{ doc('customer_id') }} with the purchase."
           - name: transaction_date
-            description: Timestamp of the date when the purchase occurred.
+            description: Date of the day when the purchase occurred.
           - name: total_amount
             description: Indicates the total amount of the transaction.
           - name: payment_type
@@ -807,7 +807,7 @@ sources:
           - name: doc_number
             description: Reference number for the transaction.
           - name: due_date
-            description: Timestamp of the date when the purchase order is due.
+            description: Date when the purchase order is due.
           - name: currency_id
             description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
           - name: exchange_rate
@@ -815,7 +815,7 @@ sources:
           - name: memo
             description: A message for the vendor. This text appears on the purchase order object sent to the vendor.
           - name: transaction_date
-            description: Timestamp of the date when the purchase order occurred.
+            description: Date of the day when the purchase order occurred.
           - name: total_amount
             description: Indicates the total amount of the transaction.
           - name: private_note
@@ -885,7 +885,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
-            description: Timestamp of the date in which the refund occurred.
+            description: Date of the day in which the refund occurred.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -945,7 +945,7 @@ sources:
           - name: exchange_rate
             description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: transaction_date
-            description: Timestamp of the date which the sale occurred.
+            description: Date of the day which the sale occurred.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -962,7 +962,7 @@ sources:
           - name: to_account_id
             description: "{{ doc('account_id') }} with where the transfer is to."
           - name: transaction_date
-            description: Timestamp of the date which the transfer occurred.
+            description: Date of the day which the transfer occurred.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
