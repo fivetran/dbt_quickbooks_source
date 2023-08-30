@@ -1,5 +1,5 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.9.1'
+version: '0.10.0'
 
 
 profile: 'integration_tests'
@@ -61,7 +61,9 @@ vars:
 seeds:
   quickbooks_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
-  
+    +column_types:
+      transaction_date: date
+      due_date: date
 clean-targets:
 - target
 - dbt_modules

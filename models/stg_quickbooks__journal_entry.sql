@@ -46,7 +46,7 @@ final as (
         exchange_rate,
         private_note,
         total_amount,
-        transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         _fivetran_deleted,
         source_relation
     from fields

@@ -28,7 +28,7 @@
     {"name": "reference_number", "datatype": dbt.type_string()},
     {"name": "sync_token", "datatype": dbt.type_string()},
     {"name": "total_amount", "datatype": dbt.type_float()},
-    {"name": "transaction_date", "datatype": dbt.type_timestamp()},
+    {"name": "transaction_date", "datatype": "date"},
     {"name": "transaction_source", "datatype": dbt.type_string()},
     {"name": "transaction_status", "datatype": dbt.type_string()},
     {"name": "unapplied_amount", "datatype": dbt.type_float()},

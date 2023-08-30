@@ -30,7 +30,7 @@
     {"name": "sync_token", "datatype": dbt.type_string()},
     {"name": "total_amount", "datatype": dbt.type_float()},
     {"name": "total_tax", "datatype": dbt.type_string()},
-    {"name": "transaction_date", "datatype": dbt.type_timestamp()},
+    {"name": "transaction_date", "datatype": "date"},
     {"name": "updated_at", "datatype": dbt.type_timestamp()}
 ] %}
 

@@ -16,7 +16,7 @@
     {"name": "delivery_type", "datatype": dbt.type_string()},
     {"name": "department_id", "datatype": dbt.type_string()},
     {"name": "doc_number", "datatype": dbt.type_string()},
-    {"name": "due_date", "datatype": dbt.type_timestamp()},
+    {"name": "due_date", "datatype": "date"},
     {"name": "email_status", "datatype": dbt.type_string()},
     {"name": "exchange_rate", "datatype": dbt.type_float()},
     {"name": "expiration_date", "datatype": dbt.type_timestamp()},
@@ -32,7 +32,7 @@
     {"name": "tax_code_id", "datatype": dbt.type_string()},
     {"name": "total_amount", "datatype": dbt.type_float()},
     {"name": "total_tax", "datatype": dbt.type_float()},
-    {"name": "transaction_date", "datatype": dbt.type_timestamp()},
+    {"name": "transaction_date", "datatype": "date"},
     {"name": "transaction_status", "datatype": dbt.type_string()},
     {"name": "updated_at", "datatype": dbt.type_timestamp()}
 ] %}

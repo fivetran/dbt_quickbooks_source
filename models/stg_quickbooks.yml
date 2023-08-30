@@ -191,7 +191,7 @@ models:
       - name: total_amount
         description: Indicates the total amount associated with this payment. This includes the total of all the payments from the payment line details.
       - name: transaction_date
-        description: Timestamp of the day the transaction took place.
+        description: Date of the day the transaction took place.
       - name: vendor_id
         description: Reference to the vendor for this transaction.
       - name: _fivetran_deleted
@@ -224,9 +224,9 @@ models:
       - name: vendor_id
         description: Reference to the vendor the bill is linked with.
       - name: due_date_at
-        description: Timestamp of the date which the bill is due.
+        description: Date which the bill is due.
       - name: transaction_date
-        description: Timestamp of the date when the bill transaction occurred.
+        description: Date when the bill transaction occurred.
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: payable_account_id
@@ -366,7 +366,7 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date when the credit memo occurred.
+        description: Date when the credit memo occurred.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -480,7 +480,7 @@ models:
       - name: total_amount
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
       - name: transaction_date
-        description: Timestamp of the date which the deposit transaction occurred.
+        description: Date which the deposit transaction occurred.
       - name: transaction_status
         description: Status of the deposit transaction.
       - name: _fivetran_deleted
@@ -511,11 +511,11 @@ models:
       - name: department_id
         description: Reference to the department associated with the estimate.
       - name: due_date
-        description: Timestamp of the date which the estimate is due.
+        description: Date which the estimate is due.
       - name: total_amount
         description: Total amount of all line items included in the estimate.
       - name: transaction_date
-        description: Timestamp of the date which the estimate occurred.
+        description: Date which the estimate occurred.
       - name: transaction_status
         description: Current status of the estimate.
       - name: _fivetran_deleted
@@ -693,7 +693,7 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date which the deposit transaction occurred.
+        description: Date which the deposit transaction occurred.
       - name: customer_id
         description: Customer reference is associated with the invoice.
       - name: billing_address_id
@@ -703,7 +703,7 @@ models:
       - name: delivery_type
         description: How the invoice is delivered to the customer.
       - name: due_date
-        description: Timestamp of the date which the invoice payment is due.
+        description: Date which the invoice payment is due.
       - name: class_id
         description: Reference to the class to which the invoice is associated with.
       - name: _fivetran_deleted
@@ -811,7 +811,7 @@ models:
       - name: total_amount
         description: The value of this field will always be set to zero.
       - name: transaction_date
-        description: Timestamp of the date when the journal entry was transacted.
+        description: Date when the journal entry was transacted.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -870,7 +870,7 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date when the payment occurred.
+        description: Date when the payment occurred.
       - name: customer_id
         description: Reference to a customer or job.
       - name: _fivetran_deleted
@@ -947,7 +947,7 @@ models:
       - name: customer_id
         description: Reference to the customer which the purchase is associated.
       - name: transaction_date
-        description: Timestamp of the date when the purchase occurred.
+        description: Date when the purchase occurred.
       - name: total_amount
         description: Indicates the total amount of the transaction.
       - name: payment_type
@@ -1037,13 +1037,13 @@ models:
       - name: doc_number
         description: Reference number for the transaction.
       - name: due_date
-        description: Timestamp of the date when the purchase order is due.
+        description: Date when the purchase order is due.
       - name: currency_id
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date when the purchase order occurred.
+        description: Date when the purchase order occurred.
       - name: total_amount
         description: Indicates the total amount of the transaction.
       - name: payable_account_id
@@ -1131,7 +1131,7 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date in which the refund occurred.
+        description: Date in which the refund occurred.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1208,7 +1208,7 @@ models:
       - name: exchange_rate
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
-        description: Timestamp of the date which the sale occurred.
+        description: Date which the sale occurred.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1233,7 +1233,7 @@ models:
       - name: to_account_id
         description: Account id of the account which the transfer is to.
       - name: transaction_date
-        description: Timestamp of the date which the transfer occurred.
+        description: Date which the transfer occurred.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 

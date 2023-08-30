@@ -37,7 +37,7 @@ final as (
         created_at,
         updated_at,
         currency_id,
-        transaction_date,
+        cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         _fivetran_deleted,
         row_number() over (partition by id, updated_at, source_relation order by source_relation, updated_at desc) = 1 as is_most_recent_record,
         source_relation
