@@ -43,7 +43,7 @@ final as (
         created_at,
         currency_id,
         cast(department_id as {{ dbt.type_string() }}) as department_id,
-        total_amount,
+        home_total_amount as total_amount,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         transaction_status,
         _fivetran_deleted,

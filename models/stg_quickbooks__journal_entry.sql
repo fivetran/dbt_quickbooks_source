@@ -45,7 +45,7 @@ final as (
         cast(doc_number as {{ dbt.type_string() }}) as doc_number,
         exchange_rate,
         private_note,
-        total_amount,
+        home_total_amount as total_amount,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         _fivetran_deleted,
         source_relation

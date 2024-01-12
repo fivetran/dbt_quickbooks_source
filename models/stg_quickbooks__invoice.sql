@@ -41,7 +41,7 @@ final as (
         cast(id as {{ dbt.type_string() }}) as invoice_id,
         balance,
         cast(doc_number as {{ dbt.type_string() }}) as doc_number,
-        total_amount,
+        home_total_amount as total_amount,
         currency_id,
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
