@@ -1,3 +1,10 @@
+# dbt_quickbooks_source v0.10.1
+
+## Feature Updates
+- Addition of the `global_tax_calculation` field within the following staging models:
+  - `stg_quickbooks__bill`
+  - `stg_quickbooks__invoice`
+
 # dbt_quickbooks_source v0.10.0
 
 ## 🚨 Breaking Change 🚨 :

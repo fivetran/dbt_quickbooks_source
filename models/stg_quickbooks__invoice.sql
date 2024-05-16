@@ -46,6 +46,7 @@ final as (
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast(deposit_to_account_id as {{ dbt.type_string() }}) as deposit_to_account_id,
         exchange_rate,
+        global_tax_calculation,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         cast(billing_address_id as {{ dbt.type_string() }}) as billing_address_id,

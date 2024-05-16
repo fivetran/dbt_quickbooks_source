@@ -46,6 +46,7 @@ final as (
         cast( {{ dbt.date_trunc('day', 'due_date') }} as date) as due_date_at, 
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         exchange_rate,
+        global_tax_calculation,
         cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         total_amount,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
