@@ -1,3 +1,7 @@
+# dbt_quickbooks_source v0.10.1
+## 🎉 Feature Update 🎉
+- Added `home_total_amount` into `stg_quickbooks__deposit` to support multicurrency in the [`dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks).
+
 # dbt_quickbooks_source v0.10.0
 
 ## 🚨 Breaking Change 🚨 :
