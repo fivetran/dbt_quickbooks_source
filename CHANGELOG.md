@@ -1,6 +1,8 @@
 # dbt_quickbooks_source v0.10.1
+[PR #53](https://github.com/fivetran/dbt_quickbooks_source/pull/53) introduces the following updates: 
+
 ## 🎉 Feature Update 🎉
-- Added `home_total_amount` into `stg_quickbooks__deposit` to support the new multicurrency feature in the [v0.14.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.13.0).
+- Added the `home_total_amount` field into the  `stg_quickbooks__deposit` model to support the new multicurrency feature in the [v0.14.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.14.0).
 
 ## 🚘 Under the Hood 🚘
 - Included auto-releaser GitHub Actions workflow to automate future releases.
