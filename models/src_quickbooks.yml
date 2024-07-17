@@ -380,6 +380,8 @@ sources:
             description: Date of the day which the deposit transaction occurred.
           - name: transaction_status
             description: Status of the deposit transaction.
+          - name: home_total_amount
+            description: Indicates the total amount of the transaction in the home currency. This includes the total of all the charges, allowances, and taxes.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
@@ -407,6 +409,8 @@ sources:
             description: Date of the day which the estimate occurred.
           - name: transaction_status
             description: Current status of the estimate.
+          - name: exchange_rate
+            description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 

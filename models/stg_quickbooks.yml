@@ -479,6 +479,8 @@ models:
         description: Reference to the currency in which all amounts on the associated transaction are expressed.
       - name: total_amount
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes.
+      - name: home_total_amount
+        description: Indicates the total amount of the transaction in the home currency. This includes the total of all the charges, allowances, and taxes.
       - name: transaction_date
         description: Date which the deposit transaction occurred.
       - name: transaction_status
@@ -518,6 +520,8 @@ models:
         description: Date which the estimate occurred.
       - name: transaction_status
         description: Current status of the estimate.
+      - name: exchange_rate
+        description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 

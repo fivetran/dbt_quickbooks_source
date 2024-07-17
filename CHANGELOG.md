@@ -2,12 +2,17 @@
 [PR #53](https://github.com/fivetran/dbt_quickbooks_source/pull/53) introduces the following updates: 
 
 ## 🎉 Feature Update 🎉
-- Added the `home_total_amount` field into the  `stg_quickbooks__deposit` model to support the new multicurrency feature in the [v0.14.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.14.0).
+- Added the following fields to support the new multicurrency feature in the [v0.14.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.14.0):
+  - `home_total_amount`, into `stg_quickbooks__deposit`.
+  - `exchange_rate`, into `stg_quickbooks__estimate`.
 
 ## 🚘 Under the Hood 🚘
 - Included auto-releaser GitHub Actions workflow to automate future releases.
 - Updated the maintainer PR template to resemble the most up to date format.
 - Removed the check docs GitHub Action as it is no longer necessary.
+
+## Documentation Update
+- Added `exchange_rate` and `home_total_amount` fields and descriptions into the relevant yml documents.
 
 # dbt_quickbooks_source v0.10.0
 
