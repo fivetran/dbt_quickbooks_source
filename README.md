@@ -16,15 +16,15 @@
 # QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
 
 ## Table of Contents
-- [ What does this dbt package do?](https://github.com/fivetran/dbt_quickbooks_source/#-what-does-this-dbt-package-do)
-- [ How do I use the dbt package?](https://github.com/fivetran/dbt_quickbooks_source/#-how-do-i-use-the-dbt-package)
+- [What does this dbt package do?](https://github.com/fivetran/dbt_quickbooks_source/#-what-does-this-dbt-package-do)
+- [How do I use the dbt package?](https://github.com/fivetran/dbt_quickbooks_source/#-how-do-i-use-the-dbt-package)
     - [Required steps](https://github.com/fivetran/dbt_quickbooks_source/#step-1-prerequisites)
     - [Additional options](https://github.com/fivetran/dbt_quickbooks_source/#optional-step-5-additional-configurations)
-- [ Does this package have dependencies?](https://github.com/fivetran/dbt_quickbooks_source/#-does-this-package-have-dependencies)
-- [ How is this package maintained and can I contribute?](https://github.com/fivetran/dbt_quickbooks_source/#-how-is-this-package-maintained-and-can-i-contribute)
+- [Does this package have dependencies?](https://github.com/fivetran/dbt_quickbooks_source/#-does-this-package-have-dependencies)
+- [How is this package maintained and can I contribute?](https://github.com/fivetran/dbt_quickbooks_source/#-how-is-this-package-maintained-and-can-i-contribute)
     - [Package Maintenance](https://github.com/fivetran/dbt_quickbooks_source/#package-maintenance)
     - [Contributions](https://github.com/fivetran/dbt_quickbooks_source/#contributions)
-- [ Are there any resources available?](https://github.com/fivetran/dbt_quickbooks_source/#-are-there-any-resources-available)
+- [Are there any resources available?](https://github.com/fivetran/dbt_quickbooks_source/#-are-there-any-resources-available)
 
 ## What does this dbt package do?
 <!--section="quickbooks_source_model"-->
