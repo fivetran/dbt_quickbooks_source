@@ -47,6 +47,8 @@ sources:
             description: Specifies the balance amount for the current Account sub accounts.
           - name: updated_at
             description: Timestamp of the date which the account was last updated.
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}" 
 
       - name: address
         identifier: "{{ var('quickbooks_address_identifier', 'address') }}"
@@ -215,6 +217,8 @@ sources:
             description: Full name given to the bundle.
           - name: updated_at
             description: Timestamp of the date when the bundle was last updated.
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"
 
       - name: credit_card_payment_txn
         identifier: "{{ var('quickbooks_credit_card_payment_txn_identifier', 'credit_card_payment_txn') }}"
@@ -319,6 +323,8 @@ sources:
             description: The website url associated with the customer.
           - name: taxable
             description: Boolean indicating whether the customer is taxable.
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"
 
       - name: department
         identifier: "{{ var('quickbooks_department_identifier', 'department') }}"
@@ -340,6 +346,8 @@ sources:
             description: Boolean indicating whether the department is a sub department.
           - name: parent_department_id
             description: "Reference to the {{ doc('id') }} parent department if sub_department = true."
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"
 
       - name: deposit_line
         identifier: "{{ var('quickbooks_deposit_line_identifier', 'deposit_line') }}"
@@ -593,6 +601,8 @@ sources:
             description: Classification that specifies the use of this item.
           - name: unit_price
             description: The monetary value of the service or product, as expressed in the home currency.
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"
 
       - name: journal_entry_line
         identifier: "{{ var('quickbooks_journal_entry_line_identifier', 'journal_entry_line') }}"
@@ -1062,3 +1072,5 @@ sources:
             description: Website url associated with the vendor.
           - name: vendor_1099
             description: Boolean indicating whether this vendor is an independent contractor; someone who is given a 1099-MISC form at the end of the year.
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"

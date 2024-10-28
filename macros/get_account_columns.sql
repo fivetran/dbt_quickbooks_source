@@ -20,7 +20,8 @@
     {"name": "sub_account", "datatype": "boolean"},
     {"name": "sync_token", "datatype": dbt.type_string()},
     {"name": "tax_code_id", "datatype": dbt.type_string()},
-    {"name": "updated_at", "datatype": dbt.type_timestamp()}
+    {"name": "updated_at", "datatype": dbt.type_timestamp()},
+    {"name": "_fivetran_deleted", "datatype": "boolean"}
 ] %}
 
 {{ return(columns) }}

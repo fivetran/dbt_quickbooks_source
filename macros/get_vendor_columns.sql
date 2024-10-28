@@ -28,7 +28,8 @@
     {"name": "title", "datatype": dbt.type_string()},
     {"name": "updated_at", "datatype": dbt.type_timestamp()},
     {"name": "vendor_1099", "datatype": "boolean"},
-    {"name": "web_url", "datatype": dbt.type_string()}
+    {"name": "web_url", "datatype": dbt.type_string()},
+    {"name": "_fivetran_deleted", "datatype": "boolean"}
 ] %}
 
 {{ return(columns) }}
