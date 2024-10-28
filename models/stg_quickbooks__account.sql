@@ -49,9 +49,12 @@ final as (
         description,
         fully_qualified_name,
         updated_at,
-        source_relation
+        source_relation,
+        _fivetran_deleted
+
     from account
 )
 
 select *
 from final
+where not coalesce(_fivetran_deleted, false)

@@ -42,9 +42,12 @@ final as (
         active as is_active,
         fully_qualified_name,
         updated_at,
-        source_relation
+        source_relation,
+        _fivetran_deleted
 
     from fields
 )
 
-select * from final
+select * 
+from final
+where not coalesce(_fivetran_deleted, false)

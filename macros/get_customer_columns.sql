@@ -40,7 +40,8 @@
     {"name": "taxable", "datatype": "boolean"},
     {"name": "title", "datatype": dbt.type_string()},
     {"name": "updated_at", "datatype": dbt.type_timestamp()},
-    {"name": "website", "datatype": dbt.type_string()}
+    {"name": "website", "datatype": dbt.type_string()},
+    {"name": "_fivetran_deleted", "datatype": "boolean"}
 ] %}
 
 {{ return(columns) }}
