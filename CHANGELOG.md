@@ -16,7 +16,7 @@
 - Added the `_fivetran_deleted` field to the above corresponding seed files in integration tests.
 
 ## Contibutors
-- [@brandonrf94](https://github.com/brandonrf94) [#56](https://github.com/fivetran/dbt_quickbooks_source/pull/56)
+- [@brandonrf94](https://github.com/brandonrf94) ([PR #56](https://github.com/fivetran/dbt_quickbooks_source/pull/56))
 
 # dbt_quickbooks_source v0.10.1
 [PR #53](https://github.com/fivetran/dbt_quickbooks_source/pull/53) introduces the following updates: 
