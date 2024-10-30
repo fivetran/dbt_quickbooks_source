@@ -47,10 +47,12 @@ final as (
         unit_price,
         inventory_start_date,
         cast(parent_item_id as {{ dbt.type_string() }}) as parent_item_id,
-        source_relation
+        source_relation,
+        _fivetran_deleted
 
     from fields
 )
 
 select * 
 from final
+where not coalesce(_fivetran_deleted, false)

@@ -13,7 +13,8 @@
     {"name": "sync_token", "datatype": dbt.type_string()},
     {"name": "taxable", "datatype": "boolean"},
     {"name": "unit_price", "datatype": dbt.type_float()},
-    {"name": "updated_at", "datatype": dbt.type_timestamp()}
+    {"name": "updated_at", "datatype": dbt.type_timestamp()},
+    {"name": "_fivetran_deleted", "datatype": "boolean"}
 ] %}
 
 {{ return(columns) }}

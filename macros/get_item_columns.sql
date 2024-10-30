@@ -28,7 +28,8 @@
     {"name": "track_quantity_on_hand", "datatype": "boolean"},
     {"name": "type", "datatype": dbt.type_string()},
     {"name": "unit_price", "datatype": dbt.type_float()},
-    {"name": "updated_at", "datatype": dbt.type_timestamp()}
+    {"name": "updated_at", "datatype": dbt.type_timestamp()},
+    {"name": "_fivetran_deleted", "datatype": "boolean"}
 ] %}
 
 {{ return(columns) }}
