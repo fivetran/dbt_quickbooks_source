@@ -1064,7 +1064,7 @@ sources:
           - name: transaction_date
             description: The date entered by the user when this transaction occurred.
           - name: updated_at
-            description: Timestamp of the date which the sales receipt was last updated.
+            description: Timestamp of the date which the vendor credit was last updated.
           - name: vendor_id
             description: Reference to the vendor for this transaction.
           - name: _fivetran_deleted
