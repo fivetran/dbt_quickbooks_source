@@ -53,6 +53,8 @@ final as (
         delivery_type,
         cast( {{ dbt.date_trunc('day', 'due_date') }} as date) as due_date, 
         cast(class_id as {{ dbt.type_string() }}) as class_id,
+        created_at,
+        updated_at,
         _fivetran_deleted,
         source_relation
     from fields

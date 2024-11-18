@@ -49,6 +49,7 @@ final as (
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         private_note,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        updated_at,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         _fivetran_deleted,
         source_relation

@@ -45,6 +45,8 @@ final as (
         cast(department_id as {{ dbt.type_string() }}) as department_id,
         cast( {{ dbt.date_trunc('day', 'due_date') }} as date) as due_date_at, 
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        created_at,
+        updated_at,
         exchange_rate,
         cast(payable_account_id as {{ dbt.type_string() }}) as payable_account_id,
         total_amount,

@@ -1,3 +1,11 @@
+# dbt_quickbooks_source v0.12.0
+[PR #58](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
+
+## Breaking Changes
+- We introduce the following new fields to help users gain greater granularity. 
+  - `created_at`: 
+  - `updated_at`: 
+
 # dbt_quickbooks_source v0.11.0
 [PR #57](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
 
