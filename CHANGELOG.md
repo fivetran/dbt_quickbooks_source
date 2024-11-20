@@ -1,11 +1,11 @@
 # dbt_quickbooks_source v0.11.1
 [PR #58](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
 
-## New Fields
-- We introduced these present fields that existed in these sources to their equivalent staging models. 
-  - `created_at`: `bill`, `credit_memo`, `invoice`
-  - `updated_at`: `bill`, `credit_memo`, `deposit`, `invoice`, `journal_entry`, `purchase`, `refund_receipt`, `sales_receipt`, `vendor_credit`
-- These fields are then being brought in downstream in the `dbt_quickbooks` package in the `quickbooks__general_ledger` model via the double entry transaction intermediate models. You can learn more about these changes in the [v0.17.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.17.0). 
+## Feature Updates
+- We introduced these pre-existing timestamp fields from these sources to their equivalent staging models to better analyze real-time transaction data: 
+  - `created_at`: `bill`, `bill_payment`, `credit_memo`, `invoice`, `payment`, `transfer`
+  - `updated_at`: `bill`, `bill_payment`, `credit_memo`, `deposit`, `invoice`, `journal_entry`, `payment`, `purchase`, `refund_receipt`, `sales_receipt`, `transfer`, `vendor_credit`
+- These new fields are then being brought in downstream in the `dbt_quickbooks` package in the `quickbooks__general_ledger` model via the double entry transaction intermediate models. You can learn more about these changes in the [v0.17.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.17.0). 
 
 # dbt_quickbooks_source v0.11.0
 [PR #57](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:

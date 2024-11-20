@@ -196,6 +196,10 @@ models:
         description: Date of the day the transaction took place.
       - name: vendor_id
         description: Reference to the vendor for this transaction.
+      - name: created_at
+        description: Timestamp of the date which the bill payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the bill payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -903,6 +907,10 @@ models:
         description: Date when the payment occurred.
       - name: customer_id
         description: Reference to a customer or job.
+      - name: created_at
+        description: Timestamp of the date which the payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1270,6 +1278,10 @@ models:
         description: Account id of the account which the transfer is to.
       - name: transaction_date
         description: Date which the transfer occurred.
+      - name: created_at
+        description: Timestamp of the date which the bill payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the bill payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
