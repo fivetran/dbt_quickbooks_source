@@ -828,6 +828,8 @@ models:
         description: "{{ doc('id') }} journal entry."
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: is_adjustment
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
       - name: created_at
