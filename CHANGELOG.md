@@ -6,7 +6,7 @@
   - `created_at`: `bill`, `bill_payment`, `credit_memo`, `invoice`, `payment`, `transfer`
   - `updated_at`: `bill`, `bill_payment`, `credit_memo`, `deposit`, `invoice`, `journal_entry`, `payment`, `purchase`, `refund_receipt`, `sales_receipt`, `transfer`, `vendor_credit`
 - These new fields are incorporated in the `dbt_quickbooks` package's `quickbooks__general_ledger` model via the `*_double_entry` intermediate models. You can learn more about these changes in the [v0.17.0 release of the `dbt_quickbooks` package](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.17.0).
-- As this introduces new columns to our staging models and changes our schema, this is breaking change. 
+- As this introduces new columns to our staging models and changes our schema, this is a breaking change. 
 
 # dbt_quickbooks_source v0.11.0
 [PR #57](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
