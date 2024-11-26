@@ -46,6 +46,7 @@ final as (
         total_amount,
         home_total_amount,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        updated_at,
         transaction_status,
         _fivetran_deleted,
         source_relation

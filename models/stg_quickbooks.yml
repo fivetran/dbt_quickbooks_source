@@ -196,6 +196,10 @@ models:
         description: Date of the day the transaction took place.
       - name: vendor_id
         description: Reference to the vendor for this transaction.
+      - name: created_at
+        description: Timestamp of the date which the bill payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the bill payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -235,6 +239,10 @@ models:
         description: Account id of the account which the bill is credited.
       - name: private_note
         description: User entered, organization-private note about the transaction.
+      - name: created_at
+        description: Timestamp of the date which the bill was created.
+      - name: updated_at
+        description: Timestamp of the date which the bill was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -371,6 +379,10 @@ models:
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
         description: Date when the credit memo occurred.
+      - name: created_at
+        description: Timestamp of the date which the credit memo was created.
+      - name: updated_at
+        description: Timestamp of the date which the credit memo was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -493,6 +505,8 @@ models:
         description: Date which the deposit transaction occurred.
       - name: transaction_status
         description: Status of the deposit transaction.
+      - name: updated_at
+        description: Timestamp of the date which the deposit was last updated.          
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -718,6 +732,10 @@ models:
         description: Date which the invoice payment is due.
       - name: class_id
         description: Reference to the class to which the invoice is associated with.
+      - name: created_at
+        description: Timestamp of the date which the invoice was created.
+      - name: updated_at
+        description: Timestamp of the date which the invoice was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -810,6 +828,8 @@ models:
         description: "{{ doc('id') }} journal entry."
         tests:
           - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: is_adjustment
         description: Indicates the total amount of the transaction. This includes the total of all the charges, allowances, and taxes. By default, this is recalculated by the system based on sub-items total and overridden.
       - name: created_at
@@ -826,6 +846,8 @@ models:
         description: The value of this field will always be set to zero.
       - name: transaction_date
         description: Date when the journal entry was transacted.
+      - name: updated_at
+        description: Timestamp of the date which the journal entry was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -887,6 +909,10 @@ models:
         description: Date when the payment occurred.
       - name: customer_id
         description: Reference to a customer or job.
+      - name: created_at
+        description: Timestamp of the date which the payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -971,6 +997,8 @@ models:
               values: ['Cash', 'Check', 'CreditCard']
       - name: vendor_id
         description: Reference to the vendor for the purchase.
+      - name: updated_at
+        description: Timestamp of the date which the purchase was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1146,6 +1174,8 @@ models:
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
         description: Date in which the refund occurred.
+      - name: updated_at
+        description: Timestamp of the date which the refund receipt was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1223,6 +1253,8 @@ models:
         description: The number of home currency units it takes to equal one unit of currency specified by currency_id.
       - name: transaction_date
         description: Date which the sale occurred.
+      - name: updated_at
+        description: Timestamp of the date which the sales receipt was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1248,6 +1280,10 @@ models:
         description: Account id of the account which the transfer is to.
       - name: transaction_date
         description: Date which the transfer occurred.
+      - name: created_at
+        description: Timestamp of the date which the bill payment was created.
+      - name: updated_at
+        description: Timestamp of the date which the bill payment was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
@@ -1326,6 +1362,8 @@ models:
         description: The date entered by the user when this transaction occurred.
       - name: vendor_id
         description: Reference to the vendor for this transaction.
+      - name: updated_at
+        description: Timestamp of the date which the vendor credit was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 

@@ -33,7 +33,7 @@ fields as (
 ),
 
 final as (
-     
+
     select 
         cast(id as {{ dbt.type_string() }}) as purchase_id,
         cast(account_id as {{ dbt.type_string() }}) as account_id,
@@ -48,6 +48,7 @@ final as (
         cast(customer_id as {{ dbt.type_string() }}) as customer_id,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        updated_at,
         _fivetran_deleted,
         source_relation
     from fields

@@ -47,6 +47,7 @@ final as (
         private_note,
         total_amount,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        updated_at,
         _fivetran_deleted,
         source_relation
     from fields

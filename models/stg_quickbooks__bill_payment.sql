@@ -49,6 +49,8 @@ final as (
         total_amount,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         cast(vendor_id as {{ dbt.type_string() }}) as vendor_id,
+        created_at,
+        updated_at,
         _fivetran_deleted,
         source_relation
     from fields

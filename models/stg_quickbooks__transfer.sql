@@ -43,6 +43,8 @@ final as (
         cast(from_account_id as {{ dbt.type_string() }}) as from_account_id,
         cast(to_account_id as {{ dbt.type_string() }}) as to_account_id,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
+        created_at,
+        updated_at,
         _fivetran_deleted,
         source_relation
     from fields
