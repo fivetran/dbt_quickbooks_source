@@ -1,3 +1,8 @@
+# dbt_quickbooks_source version.version
+
+## Documentation
+- Corrected references to connectors and connections in the README. ([#60](https://github.com/fivetran/dbt_quickbooks_source/pull/60))
+
 # dbt_quickbooks_source v0.12.0
 [PR #58](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
 

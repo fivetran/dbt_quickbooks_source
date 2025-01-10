@@ -42,7 +42,7 @@ from [Fivetran's connector](https://fivetran.com/docs/applications/quickbooks) f
 ### Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran QuickBooks connector syncing data into your destination.
+- At least one Fivetran QuickBooks connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 ### Step 2: Install the package (skip if also using the `quickbooks` transformation package)
@@ -65,7 +65,7 @@ vars:
 ```
 
 ### Step 4: Enabling/Disabling Models
-Your QuickBooks connector might not sync every table that this package expects. This package takes into consideration that not every QuickBooks account utilizes the same transactional tables.
+Your QuickBooks connection might not sync every table that this package expects. This package takes into consideration that not every QuickBooks account utilizes the same transactional tables.
 
 By default, most variables' values are assumed to be `true` (with exception of  `using_purchase_order` and `using_credit_card_payment_txn`). In other to enable or disable the relevant functionality in the package, you will need to add the relevant variables:
 
@@ -92,8 +92,8 @@ vars:
 ### (Optional) Step 5: Additional Configurations
 <details><summary>Expand for configurations</summary>
 
-#### Unioning Multiple QuickBooks Connectors
-If you have multiple QuickBooks connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set **either** (**note that you cannot use both**) the `quickbooks_union_schemas` or `quickbooks_union_databases` variables:
+#### Unioning Multiple QuickBooks Connections
+If you have multiple QuickBooks connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set **either** (**note that you cannot use both**) the `quickbooks_union_schemas` or `quickbooks_union_databases` variables:
 
 ```yml
 # dbt_project.yml
