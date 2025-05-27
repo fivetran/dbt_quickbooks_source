@@ -1,5 +1,5 @@
 name: 'quickbooks_source_integration_tests'
-version: '0.12.0'
+version: '0.12.1'
 
 
 profile: 'integration_tests'
@@ -7,9 +7,9 @@ config-version: 2
 
 models:
   quickbooks_source:
-    materialized: table
+    +materialized: table
     tmp:
-      materialized: view
+      +materialized: view
       
 vars:
   quickbooks_source:

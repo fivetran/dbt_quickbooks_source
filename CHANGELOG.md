@@ -1,7 +1,14 @@
-# dbt_quickbooks_source version.version
+# dbt_quickbooks_source v0.12.1
 
 ## Documentation
 - Corrected references to connectors and connections in the README. ([#60](https://github.com/fivetran/dbt_quickbooks_source/pull/60))
+
+## Under the Hood
+- Prepends `materialized` configs in the package's `dbt_project.yml` file with `+` to improve compatibility with the newer versions of dbt-core starting with v1.10.0. ([PR #62](https://github.com/fivetran/dbt_quickbooks_source/pull/62))
+- Updates the package maintainer pull request template. ([PR #63](https://github.com/fivetran/dbt_quickbooks_source/pull/63))
+
+## Contributors
+- [@b-per](https://github.com/b-per) ([PR #62](https://github.com/fivetran/dbt_quickbooks_source/pull/62))
 
 # dbt_quickbooks_source v0.12.0
 [PR #58](https://github.com/fivetran/dbt_quickbooks_source/pull/57) introduces the following updates:
