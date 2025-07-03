@@ -38,18 +38,18 @@ fields as (
 final as (
 
     select
-        _fivetran_synced,
+        id as tax_rate_id,
         active,
         created_at,
         description,
         display_type,
         effective_tax_rate,
-        id as tax_rate_id,
         name as tax_rate_name,
         rate_value,
         special_tax_type,
         sync_token,
-        tax_agency_id
+        tax_agency_id,
+        source_relation
     from fields
 )
 

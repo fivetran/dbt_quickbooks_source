@@ -37,19 +37,20 @@ fields as (
 final as (
 
     select
-        _fivetran_deleted,
-        _fivetran_synced,
+        invoice_id,
+        tax_rate_id,
         amount,
         index,
-        invoice_id,
         net_amount_taxable,
         override_delta_amount,
         percent_based,
         tax_inclusive_amount,
         tax_percent,
-        tax_rate_id
+        source_relation,
+        _fivetran_deleted
     from fields
 )
 
 select *
 from final
+where not coalesce(_fivetran_deleted, false)

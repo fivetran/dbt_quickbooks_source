@@ -37,15 +37,15 @@ fields as (
 final as (
 
     select
-        _fivetran_synced,
+        id as tax_agency_id,
         created_at,
         display_name,
-        id as tax_agency_id,
         sync_token,
         tax_registration_number,
         tax_tracked_on_purchases,
         tax_tracked_on_sales,
-        updated_at
+        updated_at,
+        source_relation
     from fields
 )
 

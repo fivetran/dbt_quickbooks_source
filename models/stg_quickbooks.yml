@@ -1297,11 +1297,11 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
-            - id
+            - tax_agency_id
             - source_relation
     columns:
-      - name: id
-        description: Unique identifier for the tax agency.
+      - name: tax_agency_id
+        description: "{{ doc('id') }} tax agency."
         tests:
           - not_null
       - name: source_relation
@@ -1324,11 +1324,11 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
-            - id
+            - tax_code_id
             - source_relation
     columns:
-      - name: id
-        description: Unique identifier for the tax code.
+      - name: tax_code_id
+        description: "{{ doc('id') }} tax code."
         tests:
           - not_null
       - name: source_relation
@@ -1354,11 +1354,11 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
-            - id
+            - tax_rate_id
             - source_relation
     columns:
-      - name: id
-        description: Unique identifier for the tax rate.
+      - name: tax_rate_id
+        description: "{{ doc('id') }} tax rate."
         tests:
           - not_null
       - name: source_relation

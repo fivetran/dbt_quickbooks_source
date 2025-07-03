@@ -37,16 +37,16 @@ fields as (
 final as (
 
     select
-        _fivetran_synced,
+        id as tax_code_id,
         active,
         created_at,
         description,
-        id as tax_code_id,
         name as tax_code_name,
         sync_token,
         tax_group,
         taxable,
-        updated_at
+        updated_at,
+        source_relation
     from fields
 )
 
