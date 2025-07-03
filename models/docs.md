@@ -87,6 +87,10 @@ Mapping table for invoices records to respective estimate and payment objects.
 Table containing invoice records. An Invoice represents a sales form where the customer pays for a product or service later.
 {% enddocs %}
 
+{% docs invoice_tax_line_table %}
+Table containing invoice tax line records. Each record represents a line-level tax entry associated with an invoice.
+{% enddocs %}
+
 {% docs item_table %}
 Table containing item records. An item is a thing that your company buys, sells, or re-sells, such as products and services.
 {% enddocs %}
@@ -145,6 +149,18 @@ Table containing sales receipts that are given to a customer. A sales receipt, p
 
 {% docs source_relation %}
 The source of the record if the unioning functionality is being used. If not this field will be null. 
+{% enddocs %}
+
+{% docs tax_agency_table %}
+Table containing tax agency records. A tax agency in QuickBooks represents a government or regulatory entity to which taxes are reported and remitted.
+{% enddocs %}
+
+{% docs tax_code_table %}
+Table containing tax code records. A tax code in QuickBooks is a grouping of one or more tax rates and is used to determine how tax is applied to transactions.
+{% enddocs %}
+
+{% docs tax_rate_table %}
+Table containing tax rate records. A tax rate in QuickBooks defines the percentage rate used to calculate tax for specific transactions.
 {% enddocs %}
 
 {% docs transfer_table %}

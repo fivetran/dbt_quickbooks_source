@@ -590,6 +590,33 @@ sources:
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
 
+      - name: invoice_tax_line
+        identifier: "{{ var('quickbooks_invoice_tax_line_identifier', 'invoice_tax_line') }}"
+        description: "{{ doc('invoice_tax_line_table') }}"
+        columns:
+          - name: invoice_id
+            description: The unique ID of the invoice associated with this tax line.
+          - name: tax_rate_id
+            description: The unique ID of the tax rate applied to this line.
+          - name: amount
+            description: The total amount of tax applied.
+          - name: tax_percent
+            description: The percentage rate used to calculate this tax.
+          - name: net_amount_taxable
+            description: The taxable portion of the invoice line amount.
+          - name: override_delta_amount
+            description: The amount that overrides the original tax calculation (if applicable).
+          - name: percent_based
+            description: Indicates whether the tax is calculated based on a percentage.
+          - name: tax_inclusive_amount
+            description: The amount including taxes, if the tax is inclusive.
+          - name: index
+            description: The position/index of the tax line within the invoice.
+          - name: _fivetran_deleted
+            description: Indicates whether the record has been soft-deleted by Fivetran.
+          - name: _fivetran_synced
+            description: Timestamp of when the record was last synced by Fivetran.
+
       - name: item
         identifier: "{{ var('quickbooks_item_identifier', 'item') }}"
         description: "{{ doc('item_table') }}"
@@ -993,6 +1020,80 @@ sources:
             description: Timestamp of the date which the sales receipt was last updated.
           - name: _fivetran_deleted
             description: "{{ doc('_fivetran_deleted') }}" 
+
+      - name: tax_agency
+        identifier: "{{ var('quickbooks_tax_agency_identifier', 'tax_agency') }}"
+        description: "{{ doc('tax_agency_table') }}"
+        columns:
+          - name: id
+            description: "{{ doc('id') }} tax agency."
+          - name: display_name
+            description: The display name of the tax agency.
+          - name: tax_registration_number
+            description: The official registration number assigned to the tax agency.
+          - name: tax_tracked_on_sales
+            description: Indicates whether tax is tracked on sales transactions for this agency.
+          - name: tax_tracked_on_purchases
+            description: Indicates whether tax is tracked on purchase transactions for this agency.
+          - name: created_at
+            description: The timestamp when the tax agency record was created in QuickBooks.
+          - name: updated_at
+            description: The timestamp when the tax agency record was last updated in QuickBooks.
+          - name: sync_token
+            description: The versioning token used to track updates to the tax agency record.
+          - name: _fivetran_synced
+            description: Timestamp of when the record was last synced by Fivetran.
+
+      - name: tax_code
+        identifier: "{{ var('quickbooks_tax_code_identifier', 'tax_code') }}"
+        description: "{{ doc('tax_code_table') }}"
+        columns:
+          - name: id
+            description: "{{ doc('id') }} tax code."
+          - name: name
+            description: The name of the tax code (e.g., 'Taxable', 'Non-Taxable').
+          - name: description
+            description: A description of the tax code's purpose or applicability.
+          - name: active
+            description: Indicates whether the tax code is currently in use.
+          - name: taxable
+            description: Indicates whether the tax code applies tax or is non-taxable.
+          - name: tax_rate_details
+            description: Nested details referencing tax rates associated with this code.
+          - name: created_at
+            description: The timestamp when the tax code was created.
+          - name: updated_at
+            description: The timestamp when the tax code was last updated.
+          - name: _fivetran_synced
+            description: Timestamp of when the record was last synced by Fivetran.
+
+
+      - name: tax_rate
+        identifier: "{{ var('quickbooks_tax_rate_identifier', 'tax_rate') }}"
+        description: "{{ doc('tax_rate_table') }}"
+        columns:
+          - name: id
+            description: "{{ doc('id') }} tax rate."
+          - name: name
+            description: The name of the tax rate (e.g., 'CA Sales Tax').
+          - name: rate_value
+            description: The percentage value of the tax rate.
+          - name: active
+            description: Indicates whether the tax rate is currently active.
+          - name: agency_id
+            description: The ID of the tax agency responsible for this tax rate.
+          - name: special_tax_type
+            description: Type of special tax, if applicable (e.g., zero-rated, exempt).
+          - name: display_type
+            description: Indicates whether the tax is inclusive or exclusive.
+          - name: effective_tax_rate
+            description: The actual effective rate used at time of transaction (if overridden).
+          - name: created_at
+            description: The timestamp when the tax rate record was created.
+          - name: updated_at
+            description: The timestamp when the tax rate record was last updated.
+          - name: _fivetran_synced
+            description: Timestamp of when the record was last synced by Fivetran.
 
       - name: transfer
         identifier: "{{ var('quickbooks_transfer_identifier', 'transfer') }}"

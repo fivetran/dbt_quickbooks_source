@@ -1,3 +1,6 @@
+# dbt_quickbooks_source v0.14.0-a1
+This is a pre-release to incorporate invoice tax lines into our end models. 
+
 # dbt_quickbooks_source v0.13.0
 
 [PR #64](https://github.com/fivetran/dbt_quickbooks_source/pull/64) includes the following updates:

@@ -739,6 +739,40 @@ models:
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+  - name: stg_quickbooks__invoice_tax_line
+    description: "{{ doc('invoice_tax_line_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - invoice_id
+            - index
+            - source_relation
+    columns:
+      - name: invoice_id
+        description: Unique identifier for the invoice this tax line is associated with.
+        tests:
+          - not_null
+      - name: index
+        description: The position of the tax line within the invoice.
+        tests:
+          - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: tax_rate_id
+        description: The unique identifier for the tax rate applied to this line.
+      - name: amount
+        description: The total amount of tax applied on the line.
+      - name: tax_percent
+        description: The percentage rate used for this tax line.
+      - name: net_amount_taxable
+        description: The portion of the invoice line that is taxable.
+      - name: override_delta_amount
+        description: The override adjustment amount applied to the tax.
+      - name: percent_based
+        description: Boolean indicating if tax is calculated as a percentage.
+      - name: tax_inclusive_amount
+        description: The tax-inclusive total amount.
+
   - name: stg_quickbooks__item
     description: "{{ doc('item_table') }}"
     tests:
@@ -1257,6 +1291,97 @@ models:
         description: Timestamp of the date which the sales receipt was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__tax_agency
+    description: "{{ doc('tax_agency_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - id
+            - source_relation
+    columns:
+      - name: id
+        description: Unique identifier for the tax agency.
+        tests:
+          - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: display_name
+        description: The name of the tax agency (e.g., IRS, CRA).
+      - name: tax_registration_number
+        description: Official registration number for the tax agency.
+      - name: tax_tracked_on_sales
+        description: Boolean indicating if tax is tracked on sales.
+      - name: tax_tracked_on_purchases
+        description: Boolean indicating if tax is tracked on purchases.
+      - name: created_at
+        description: Timestamp for when the tax agency was created in QuickBooks.
+      - name: updated_at
+        description: Timestamp for the last update of the tax agency record.
+
+  - name: stg_quickbooks__tax_code
+    description: "{{ doc('tax_code_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - id
+            - source_relation
+    columns:
+      - name: id
+        description: Unique identifier for the tax code.
+        tests:
+          - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: name
+        description: Name of the tax code (e.g., Taxable, Exempt).
+      - name: description
+        description: Description of the tax code’s purpose.
+      - name: active
+        description: Boolean indicating if the tax code is currently active.
+      - name: taxable
+        description: Boolean indicating whether the code is taxable.
+      - name: tax_rate_details
+        description: Nested tax rate information tied to this code.
+      - name: created_at
+        description: Timestamp for when the tax code was created.
+      - name: updated_at
+        description: Timestamp for the most recent update to the tax code.
+
+
+  - name: stg_quickbooks__tax_rate
+    description: "{{ doc('tax_rate_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - id
+            - source_relation
+    columns:
+      - name: id
+        description: Unique identifier for the tax rate.
+        tests:
+          - not_null
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: name
+        description: Name or label of the tax rate.
+      - name: rate_value
+        description: Percentage value of the tax rate.
+      - name: agency_id
+        description: ID of the tax agency responsible for this rate.
+      - name: active
+        description: Boolean indicating whether the tax rate is active.
+      - name: special_tax_type
+        description: Special designation for this rate, if applicable.
+      - name: display_type
+        description: Whether the tax is inclusive or exclusive.
+      - name: effective_tax_rate
+        description: The actual effective tax rate at the time of the transaction.
+      - name: created_at
+        description: Timestamp for when the tax rate was created.
+      - name: updated_at
+        description: Timestamp for when the tax rate was last updated.
+
 
   - name: stg_quickbooks__transfer
     description: "{{ doc('transfer_table') }}"
