@@ -52,3 +52,6 @@ final as (
         tax_agency_id
     from fields
 )
+
+select *
+from final

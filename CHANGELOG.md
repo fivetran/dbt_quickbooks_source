@@ -1,5 +1,25 @@
 # dbt_quickbooks_source v0.14.0-a1
-This is a pre-release to incorporate invoice tax lines into our end models. 
+[PR #65](https://github.com/fivetran/dbt_quickbooks_source/pull/65) is a pre-release that introduces the following updates. 
+
+## Schema Updates
+**8 new models -- 8 potential breaking changes**
+
+| Data Model                                                                                                                                               | Change Type | Old Name                     | New Name                                             | Notes                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `stg_quickbooks__invoice_tax_line`             |  New Staging Model |   |          | Source: `invoice_tax_line` table.    |
+| `stg_quickbooks__tax_agency`                  | New Staging Model |   |          | Source: `tax_agency`  table.     |
+| `stg_quickbooks__tax_code`                     | New Staging Model |   |          | Source: `tax_code` table.    |
+| `stg_quickbooks__tax_rate`                  | New Staging Model |   |          | Source: `tax_rate`  table.     |
+| `stg_quickbooks__invoice_tax_line_tmp`             |  New Temp Model |   |          | Source: `invoice_tax_line` table.    |
+| `stg_quickbooks__tax_agency_tmp`                  | New Temp Model |   |          | Source: `tax_agency`  table.     |
+| `stg_quickbooks__tax_code_tmp`                     | New Temp Model |   |          | Source: `tax_code` table.    |
+| `stg_quickbooks__tax_rate_tmp`                  | New Temp Model |   |          | Source: `tax_rate`  table.     |
+
+## Under the Hood
+- Created new seed files for the above source tables to test and validate new models work as expected.
+
+## Documentation Update
+- [Updated the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) to include the enable/disable variable configurations introduced in the above models. 
 
 # dbt_quickbooks_source v0.13.0
 

@@ -67,7 +67,7 @@ vars:
 ### Step 4: Enabling/Disabling Models
 Your QuickBooks connection might not sync every table that this package expects. This package takes into consideration that not every QuickBooks account utilizes the same transactional tables.
 
-By default, most variables' values are assumed to be `true` (with exception of  `using_purchase_order` and `using_credit_card_payment_txn`). In other to enable or disable the relevant functionality in the package, you will need to add the relevant variables:
+By default, most variables' values are assumed to be `true` (with exception of `using_purchase_order` and `using_credit_card_payment_txn`). In other to enable or disable the relevant functionality in the package, you will need to add the relevant variables:
 
 ```yml
 vars:
@@ -77,16 +77,20 @@ vars:
   using_department: false # disable if you don't have departments in QuickBooks
   using_deposit: false # disable if you don't have deposits in QuickBooks
   using_estimate: false # disable if you don't have estimates in QuickBooks
-  using_invoice: false # disable if you don't have estimates in QuickBooks
-  using_invoice_bundle: false # disable if you don't have estimates in QuickBooks
-  using_journal_entry: false # disable if you don't have estimates in QuickBooks
-  using_payment: false # disable if you don't have estimates in QuickBooks
-  using_refund_receipt: false # disable if you don't have estimates in QuickBooks
-  using_transfer: false # disable if you don't have estimates in QuickBooks
-  using_vendor_credit: false # disable if you don't have estimates in QuickBooks
-  using_sales_receipt: false # disable if you don't have estimates in QuickBooks
+  using_invoice: false # disable if you don't have invoices in QuickBooks
+  using_invoice_bundle: false # disable if you don't have invoice bundles in QuickBooks
+  using_journal_entry: false # disable if you don't have journal entries in QuickBooks
+  using_payment: false # disable if you don't have payments in QuickBooks
+  using_refund_receipt: false # disable if you don't have refund receipts in QuickBooks
+  using_transfer: false # disable if you don't have transfers in QuickBooks
+  using_vendor_credit: false # disable if you don't have vendor credits in QuickBooks
+  using_sales_receipt: false # disable if you don't have sales receipts in QuickBooks
   using_purchase_order: true # enable if you want to include purchase orders in your staging models
   using_credit_card_payment_txn: true # enable if you want to include credit card payment transactions in your staging models
+  using_tax_agency: false #disable if you don't have tax agencies in QuickBooks
+  using_tax_code: false #disable if you don't have tax codes in QuickBooks
+  using_tax_rate: false #disable if you don't have tax rates in QuickBooks
+  using_invoice_tax_line: false #disable if you don't have invoice tax lines in QuickBooks
 ``` 
 
 ### (Optional) Step 5: Additional Configurations
