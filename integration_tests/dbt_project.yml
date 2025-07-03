@@ -63,11 +63,63 @@ vars:
     using_credit_card_payment_txn: True
     
 seeds:
+  +docs:
+    show: false
   quickbooks_source_integration_tests:
     +quote_columns: "{{ true if target.type == 'redshift' else false }}"
-    +column_types:
-      transaction_date: date
-      due_date: date
+    bill_data:
+      +column_types:
+        transaction_date: date
+        due_date: date
+    bill_linked_txn_data:
+      +column_types:
+        transaction_date: date
+    bill_payment_data:
+      +column_types:
+        transaction_date: date
+    credit_card_payment_txn_data:
+      +column_types:
+        transaction_date: date
+    credit_memo_data:
+      +column_types:
+        transaction_date: date
+    deposit_data:
+      +column_types:
+        transaction_date: date
+    estimate_data:
+      +column_types:
+        transaction_date: date
+        due_date: date
+    invoice_data:
+      +column_types:
+        transaction_date: date
+        due_date: date
+    journal_entry_data:
+      +column_types:
+        transaction_date: date
+    payment_data:
+      +column_types:
+        transaction_date: date
+    purchase_data:
+      +column_types:
+        transaction_date: date
+    purchase_order_data:
+      +column_types:
+        transaction_date: date
+        due_date: date
+    refund_receipt_data:
+      +column_types:
+        transaction_date: date 
+    sales_receipt_data:
+      +column_types:
+        transaction_date: date
+    transfer_data:
+      +column_types:
+        transaction_date: date
+    vendor_credit_data:
+      +column_types:
+        transaction_date: date
+
 clean-targets:
 - target
 - dbt_modules
