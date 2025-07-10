@@ -38,7 +38,7 @@ fields as (
 final as (
 
     select
-        id as tax_rate_id,
+        cast(id as {{ dbt.type_string() }}) as tax_rate_id,
         active,
         created_at,
         description,
@@ -48,7 +48,7 @@ final as (
         rate_value,
         special_tax_type,
         sync_token,
-        tax_agency_id,
+        cast(tax_agency_id as {{ dbt.type_string() }}) as tax_agency_id,
         source_relation
     from fields
 )

@@ -37,7 +37,7 @@ fields as (
 final as (
 
     select
-        id as tax_agency_id,
+        cast(id as {{ dbt.type_string() }}) as tax_agency_id,
         created_at,
         display_name,
         sync_token,

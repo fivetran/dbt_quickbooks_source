@@ -37,8 +37,8 @@ fields as (
 final as (
 
     select
-        invoice_id,
-        tax_rate_id,
+        cast(invoice_id as {{ dbt.type_string() }}) as invoice_id,
+        cast(tax_rate_id as {{ dbt.type_string() }}) as tax_rate_id,
         amount,
         index,
         net_amount_taxable,

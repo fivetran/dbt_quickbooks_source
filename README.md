@@ -79,6 +79,7 @@ vars:
   using_estimate: false # disable if you don't have estimates in QuickBooks
   using_invoice: false # disable if you don't have invoices in QuickBooks
   using_invoice_bundle: false # disable if you don't have invoice bundles in QuickBooks
+  using_invoice_tax_line: false #disable if you don't have invoice tax lines in QuickBooks
   using_journal_entry: false # disable if you don't have journal entries in QuickBooks
   using_payment: false # disable if you don't have payments in QuickBooks
   using_refund_receipt: false # disable if you don't have refund receipts in QuickBooks
@@ -90,7 +91,6 @@ vars:
   using_tax_agency: false #disable if you don't have tax agencies in QuickBooks
   using_tax_code: false #disable if you don't have tax codes in QuickBooks
   using_tax_rate: false #disable if you don't have tax rates in QuickBooks
-  using_invoice_tax_line: false #disable if you don't have invoice tax lines in QuickBooks
 ``` 
 
 ### (Optional) Step 5: Additional Configurations
