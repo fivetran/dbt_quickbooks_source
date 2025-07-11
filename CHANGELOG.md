@@ -15,8 +15,13 @@
 | `stg_quickbooks__tax_code_tmp`                     | New Temp Model |   |          | Source: `tax_code` table.    |
 | `stg_quickbooks__tax_rate_tmp`                  | New Temp Model |   |          | Source: `tax_rate`  table.     |
 
+## Breaking Changes
+- This update incorporates invoice tax lines into the `int_quickbooks__invoice_double_entry` model. More details can be found in the [v0.21.0-a1 pre-release notes](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.21.0-a1) of `dbt_quickbooks`.
+
 ## Under the Hood
 - Created new seed files for the above source tables to test and validate new models work as expected.
+- Updated `run_models.sh` to execute for when the new variables are disabled. 
+- Updated `src_quickbooks.yml` with their default variable configurations.
 
 ## Documentation Update
 - [Updated the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) to include the enable/disable variable configurations introduced in the above models. 

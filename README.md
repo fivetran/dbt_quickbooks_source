@@ -1,4 +1,6 @@
-<p align="center">
+# QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_netsuite_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -12,8 +14,6 @@
         href="https://fivetran.com/docs/transformations/dbt/quickstart">
         <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
-
-# QuickBooks Source dbt Package ([Docs](https://fivetran.github.io/dbt_quickbooks_source/))
 
 ## Table of Contents
 - [What does this dbt package do?](https://github.com/fivetran/dbt_quickbooks_source/#-what-does-this-dbt-package-do)
@@ -52,7 +52,7 @@ If you are **not** using the [QuickBooks transformation package](https://github.
 ```yaml
 packages:
   - package: fivetran/quickbooks_source
-    version: [">=0.13.0", "<0.14.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: 0.14.0-a1 # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ### Step 3: Define database and schema variables

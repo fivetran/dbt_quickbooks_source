@@ -7,7 +7,7 @@
         schema_variable='quickbooks_schema', 
         default_database=target.database,
         default_schema='quickbooks',
-        default_variable='tax_code',
+        default_variable='tax_rate',
         union_schema_variable='quickbooks_union_schemas',
         union_database_variable='quickbooks_union_databases'
     )
