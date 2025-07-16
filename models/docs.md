@@ -88,7 +88,7 @@ Table containing invoice records. An Invoice represents a sales form where the c
 {% enddocs %}
 
 {% docs invoice_tax_line_table %}
-Table containing invoice tax line records. Each record represents a line-level tax entry associated with an invoice.
+Table containing line-level tax entries associated with invoices.
 {% enddocs %}
 
 {% docs item_table %}
@@ -103,6 +103,10 @@ Table containing individual line items of a transaction associated with a journa
 Table containing journal entry transactions.
 {% enddocs %}
 
+{% docs journal_entry_tax_line_table %}
+Table containing line-level tax entries associated with a journal entry.
+{% enddocs %}
+
 {% docs payment_line_table %}
 Table containing individual line items recorded within a payment.
 {% enddocs %}
@@ -113,6 +117,10 @@ Table containing all payment records. The payment can be applied for a particula
 
 {% docs purchase_line_table %}
 Table containing individual line items of a transaction associated with a purchase.
+{% enddocs %}
+
+{% docs purchase_tax_line_table %}
+Table containing line-level tax entries associated with purchases.
 {% enddocs %}
 
 {% docs purchase_order_line_table %}
@@ -139,12 +147,20 @@ Table containing individual line items of a refund transaction.
 Table containing refunds to the customer for a product or service that was provided.
 {% enddocs %}
 
+{% docs refund_receipt_tax_line_table %}
+Table containing line-level tax entries associated with refund receipts.
+{% enddocs %}
+
 {% docs sales_receipt_line_table %} 
 Table containing individual line items of a sales transaction.
 {% enddocs %}
 
 {% docs sales_receipt_table %}
 Table containing sales receipts that are given to a customer. A sales receipt, payment is received as part of the sale of goods and services. The sales receipt specifies a deposit account where the customer's payment is deposited.
+{% enddocs %}
+
+{% docs sales_receipt_tax_line_table %}
+Table containing line-level tax entries associated with sales receipts.
 {% enddocs %}
 
 {% docs source_relation %}
@@ -219,4 +235,36 @@ Reference to the item
 
 {% docs _fivetran_deleted %}
 Boolean created by Fivetran to indicate whether the record has been deleted.
+{% enddocs %}
+
+{% docs tax_rate_id %}
+The unique ID of the tax rate applied to this line.
+{% enddocs %}
+
+{% docs tax_percent %}
+The percentage rate used to calculate this tax.
+{% enddocs %}
+
+{% docs tax_index %}
+The position/index of the tax line within the
+{% enddocs %}
+
+{% docs tax_amount %}
+The total amount of tax applied.
+{% enddocs %}
+
+{% docs override_delta_amount %}
+The amount that overrides the original tax calculation (if applicable).
+{% enddocs %}
+
+{% docs percent_based %}
+Indicates whether the tax is calculated based on a percentage.
+{% enddocs %}
+
+{% docs tax_inclusive_amount %}
+The amount including taxes, if the tax is inclusive.
+{% enddocs %}
+
+{% docs net_amount_taxable %}
+The taxable portion of the 
 {% enddocs %}

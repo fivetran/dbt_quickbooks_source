@@ -749,29 +749,27 @@ models:
             - source_relation
     columns:
       - name: invoice_id
-        description: Unique identifier for the invoice this tax line is associated with.
+        description: "{{ doc('id') }} invoice associated with this tax line."
         tests:
           - not_null
       - name: index
-        description: The position of the tax line within the invoice.
+        description: "{{ doc('tax_index') }} invoice."
         tests:
           - not_null
-      - name: source_relation
-        description: "{{ doc('source_relation') }}"
       - name: tax_rate_id
-        description: The unique identifier for the tax rate applied to this line.
+        description: "{{ doc('tax_rate_id') }}" 
       - name: amount
-        description: The total amount of tax applied on the line.
+        description: "{{ doc('tax_amount') }}"
       - name: tax_percent
-        description: The percentage rate used for this tax line.
+        description: "{{ doc('tax_percent') }}" 
       - name: net_amount_taxable
-        description: The portion of the invoice line that is taxable.
+        description: "{{ doc('net_amount_taxable') }} invoice line amount."
       - name: override_delta_amount
-        description: The override adjustment amount applied to the tax.
+        description: "{{ doc('override_delta_amount') }}" 
       - name: percent_based
-        description: Boolean indicating if tax is calculated as a percentage.
+        description: "{{ doc('percent_based') }}" 
       - name: tax_inclusive_amount
-        description: The tax-inclusive total amount.
+        description: "{{ doc('tax_inclusive_amount') }}"
 
   - name: stg_quickbooks__item
     description: "{{ doc('item_table') }}"
@@ -884,6 +882,39 @@ models:
         description: Timestamp of the date which the journal entry was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__journal_entry_tax_line
+    description: "{{ doc('journal_entry_tax_line_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - journal_entry_id
+            - index
+            - source_relation
+    columns:
+      - name: journal_entry_id
+        description: "{{ doc('id') }} journal entry associated with this tax line."
+        tests:
+          - not_null
+      - name: index
+        description: "{{ doc('tax_index') }} journal entry."
+        tests:
+          - not_null
+      - name: tax_rate_id
+        description: "{{ doc('tax_rate_id') }}" 
+      - name: amount
+        description: "{{ doc('tax_amount') }}"
+      - name: tax_percent
+        description: "{{ doc('tax_percent') }}" 
+      - name: net_amount_taxable
+        description: "{{ doc('net_amount_taxable') }} journal entry line amount."
+      - name: override_delta_amount
+        description: "{{ doc('override_delta_amount') }}" 
+      - name: percent_based
+        description: "{{ doc('percent_based') }}" 
+      - name: tax_inclusive_amount
+        description: "{{ doc('tax_inclusive_amount') }}"
+
 
   - name: stg_quickbooks__payment_line
     description: "{{ doc('payment_line_table') }}"
@@ -1035,6 +1066,38 @@ models:
         description: Timestamp of the date which the purchase was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__purchase_tax_line
+    description: "{{ doc('purchase_tax_line_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - purchase_id
+            - index
+            - source_relation
+    columns:
+      - name: purchase_id
+        description: "{{ doc('id') }} purchase associated with this tax line."
+        tests:
+          - not_null
+      - name: index
+        description: "{{ doc('tax_index') }} purchase."
+        tests:
+          - not_null
+      - name: tax_rate_id
+        description: "{{ doc('tax_rate_id') }}" 
+      - name: amount
+        description: "{{ doc('tax_amount') }}"
+      - name: tax_percent
+        description: "{{ doc('tax_percent') }}" 
+      - name: net_amount_taxable
+        description: "{{ doc('net_amount_taxable') }} purchase line amount."
+      - name: override_delta_amount
+        description: "{{ doc('override_delta_amount') }}" 
+      - name: percent_based
+        description: "{{ doc('percent_based') }}" 
+      - name: tax_inclusive_amount
+        description: "{{ doc('tax_inclusive_amount') }}"
 
   - name: stg_quickbooks__purchase_order_line
     description: "{{ doc('purchase_order_line_table') }}"
@@ -1213,6 +1276,38 @@ models:
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
 
+  - name: stg_quickbooks__refund_receipt_tax_line
+    description: "{{ doc('refund_receipt_tax_line_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - refund_receipt_id
+            - index
+            - source_relation
+    columns:
+      - name: refund_receipt_id
+        description: "{{ doc('id') }} refund receipt associated with this tax line."
+        tests:
+          - not_null
+      - name: index
+        description: "{{ doc('tax_index') }} refund receipt."
+        tests:
+          - not_null
+      - name: tax_rate_id
+        description: "{{ doc('tax_rate_id') }}" 
+      - name: amount
+        description: "{{ doc('tax_amount') }}"
+      - name: tax_percent
+        description: "{{ doc('tax_percent') }}" 
+      - name: net_amount_taxable
+        description: "{{ doc('net_amount_taxable') }} refund receipt line amount."
+      - name: override_delta_amount
+        description: "{{ doc('override_delta_amount') }}" 
+      - name: percent_based
+        description: "{{ doc('percent_based') }}" 
+      - name: tax_inclusive_amount
+        description: "{{ doc('tax_inclusive_amount') }}"
+
   - name: stg_quickbooks__sales_receipt_line
     description: "{{ doc('sales_receipt_line_table') }}"
     tests:
@@ -1291,6 +1386,38 @@ models:
         description: Timestamp of the date which the sales receipt was last updated.
       - name: _fivetran_deleted
         description: Boolean created by Fivetran to indicate whether the record has been deleted.
+
+  - name: stg_quickbooks__sales_receipt_tax_line
+    description: "{{ doc('sales_receipt_tax_line_table') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - sales_receipt_id
+            - index
+            - source_relation
+    columns:
+      - name: sales_receipt_id
+        description: "{{ doc('id') }} sales receipt associated with this tax line."
+        tests:
+          - not_null
+      - name: index
+        description: "{{ doc('tax_index') }} sales receipt."
+        tests:
+          - not_null
+      - name: tax_rate_id
+        description: "{{ doc('tax_rate_id') }}" 
+      - name: amount
+        description: "{{ doc('tax_amount') }}"
+      - name: tax_percent
+        description: "{{ doc('tax_percent') }}" 
+      - name: net_amount_taxable
+        description: "{{ doc('net_amount_taxable') }} sales receipt line amount."
+      - name: override_delta_amount
+        description: "{{ doc('override_delta_amount') }}" 
+      - name: percent_based
+        description: "{{ doc('percent_based') }}" 
+      - name: tax_inclusive_amount
+        description: "{{ doc('tax_inclusive_amount') }}"
 
   - name: stg_quickbooks__tax_agency
     description: "{{ doc('tax_agency_table') }}"

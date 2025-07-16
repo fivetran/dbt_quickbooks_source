@@ -13,7 +13,7 @@ models:
       
 vars:
   quickbooks_source:
-    quickbooks_schema: quickbooks_source_integration_tests_1
+    quickbooks_schema: zz_dbt_avinash_seed
     quickbooks_account_identifier: "account_data"
     quickbooks_address_identifier: "address_data"
     quickbooks_bill_line_identifier: "bill_line_data"
@@ -40,17 +40,21 @@ vars:
     quickbooks_item_identifier: "item_data"
     quickbooks_journal_entry_line_identifier: "journal_entry_line_data"
     quickbooks_journal_entry_identifier: "journal_entry_data"
+    quickbooks_journal_entry_tax_line_identifier: "journal_entry_tax_line_data"
     quickbooks_payment_identifier: "payment_data"
     quickbooks_payment_line_identifier: "payment_line_data"
     quickbooks_purchase_line_identifier: "purchase_line_data"
+    quickbooks_purchase_identifier: "purchase_data"
+    quickbooks_purchase_tax_line_identifier: "purchase_tax_line_data"
     quickbooks_purchase_order_identifier: "purchase_order_data"
     quickbooks_purchase_order_line_identifier: "purchase_order_line_data"
     quickbooks_purchase_order_linked_txn_identifier: "purchase_order_linked_txn_data"
-    quickbooks_purchase_identifier: "purchase_data"
     quickbooks_refund_receipt_line_identifier: "refund_receipt_line_data"
     quickbooks_refund_receipt_identifier: "refund_receipt_data"
+    quickbooks_refund_receipt_tax_line_identifier: "refund_receipt_tax_line_data"
     quickbooks_sales_receipt_line_identifier: "sales_receipt_line_data"
     quickbooks_sales_receipt_identifier: "sales_receipt_data"
+    quickbooks_sales_receipt_tax_line_identifier: "sales_receipt_tax_line_data"
     quickbooks_tax_agency_identifier: "tax_agency_data"
     quickbooks_tax_code_identifier: "tax_code_data"
     quickbooks_tax_rate_identifier: "tax_rate_data"
@@ -100,9 +104,26 @@ seeds:
       +column_types:
         transaction_date: date
         due_date: date
+    invoice_tax_line_data:
+      +column_types:
+        amount: float
+        net_amount_taxable: float
+        override_delta_amount: float
+        tax_inclusive_amount: float
+        tax_percent: float
     journal_entry_data:
       +column_types:
-        transaction_date: date
+        transaction_date: date 
+        total_amount: float
+        exchange_rate: float
+        total_tax: float
+    journal_entry_tax_line_data:
+      +column_types:
+        amount: float
+        net_amount_taxable: float
+        override_delta_amount: float
+        tax_inclusive_amount: float
+        tax_percent: float
     payment_data:
       +column_types:
         transaction_date: date
@@ -114,16 +135,37 @@ seeds:
       +column_types:
         item_expense_billable_status: "{{ 'varchar(100)' if target.name in ('redshift', 'postgres') else 'string' }}"
         account_expense_account_id: "{{ 'int64' if target.name == 'bigquery' else 'bigint' }}"
+    purchase_tax_line_data:
+      +column_types:
+        amount: float
+        net_amount_taxable: float
+        override_delta_amount: float
+        tax_inclusive_amount: float
+        tax_percent: float
     purchase_order_data:
       +column_types:
         transaction_date: date
         due_date: date
     refund_receipt_data:
       +column_types:
-        transaction_date: date 
+        transaction_date: date
+    refund_receipt_tax_line_data:
+      +column_types:
+        amount: float
+        net_amount_taxable: float
+        override_delta_amount: float
+        tax_inclusive_amount: float
+        tax_percent: float
     sales_receipt_data:
       +column_types:
         transaction_date: date
+    sales_receipt_tax_line_data:
+      +column_types:
+        amount: float
+        net_amount_taxable: float
+        override_delta_amount: float
+        tax_inclusive_amount: float
+        tax_percent: float
     transfer_data:
       +column_types:
         transaction_date: date
