@@ -1,4 +1,4 @@
-{{ config(enabled=var('using_tax_code', True)) }}
+{{ config(enabled=var('using_tax_code', False)) }}
 
 {{
     fivetran_utils.union_data(

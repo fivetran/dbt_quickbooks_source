@@ -10,9 +10,6 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
-    <a alt="Fivetran Quickstart Compatible"
-        href="https://fivetran.com/docs/transformations/dbt/quickstart">
-        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## Table of Contents
@@ -79,7 +76,6 @@ vars:
   using_estimate: false # disable if you don't have estimates in QuickBooks
   using_invoice: false # disable if you don't have invoices in QuickBooks
   using_invoice_bundle: false # disable if you don't have invoice bundles in QuickBooks
-  using_invoice_tax_line: false #disable if you don't have invoice tax lines in QuickBooks
   using_journal_entry: false # disable if you don't have journal entries in QuickBooks
   using_payment: false # disable if you don't have payments in QuickBooks
   using_refund_receipt: false # disable if you don't have refund receipts in QuickBooks
@@ -88,9 +84,14 @@ vars:
   using_sales_receipt: false # disable if you don't have sales receipts in QuickBooks
   using_purchase_order: true # enable if you want to include purchase orders in your staging models
   using_credit_card_payment_txn: true # enable if you want to include credit card payment transactions in your staging models
-  using_tax_agency: false #disable if you don't have tax agencies in QuickBooks
-  using_tax_code: false #disable if you don't have tax codes in QuickBooks
-  using_tax_rate: false #disable if you don't have tax rates in QuickBooks
+  using_invoice_tax_line: true #enable if you have invoice tax lines in QuickBooks
+  using_journal_entry_tax_line: true # enable if you have journal entry tax lines in QuickBooks
+  using_purchase_tax_line: true # enable if you have purchase tax lines in QuickBooks
+  using_refund_receipt_tax_line: true # enable if you have refund receipt tax lines in QuickBooks
+  using_sales_receipt_tax_line: true # enable if you have sales receipt tax lines in QuickBooks
+  using_tax_agency: true #enable if you have tax agencies in QuickBooks
+  using_tax_code: true #enable if you have tax codes in QuickBooks
+  using_tax_rate: true #enable if you have tax rates in QuickBooks
 ``` 
 
 ### (Optional) Step 5: Additional Configurations

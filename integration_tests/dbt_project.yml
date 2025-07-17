@@ -66,7 +66,15 @@ vars:
     # For docs generation  
     using_purchase_order: True
     using_credit_card_payment_txn: True
-    
+    using_invoice_tax_line: True
+    using_journal_entry_tax_line: True
+    using_purchase_tax_line: True
+    using_refund_receipt_tax_line: True
+    using_sales_receipt_tax_line: True
+    using_tax_agency: True
+    using_tax_code: True
+    using_tax_rate: True
+
 seeds:
   +docs:
     show: false

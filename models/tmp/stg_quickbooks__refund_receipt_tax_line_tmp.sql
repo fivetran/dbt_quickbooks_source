@@ -1,4 +1,4 @@
-{{ config(enabled=var('using_refund_receipt_tax_line', True)) }}
+{{ config(enabled=var('using_refund_receipt_tax_line', False)) }}
 
 {{
     fivetran_utils.union_data(
