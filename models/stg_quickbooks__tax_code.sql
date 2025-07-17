@@ -1,5 +1,5 @@
 --To disable this model, set the using_tax_code variable within your dbt_project.yml file to False.
-{{ config(enabled=var('using_tax_code', True)) }}
+{{ config(enabled=var('using_tax_code', False)) }}
 
 with base as (
 

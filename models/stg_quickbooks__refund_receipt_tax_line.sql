@@ -1,5 +1,5 @@
 --To disable this model, set the using_refund_receipt_tax_line variable within your dbt_project.yml file to False.
-{{ config(enabled=var('using_refund_receipt_tax_line', True)) }}
+{{ config(enabled=var('using_refund_receipt_tax_line', False)) }}
 
 with base as (
 

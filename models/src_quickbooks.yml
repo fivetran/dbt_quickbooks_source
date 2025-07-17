@@ -634,7 +634,7 @@ sources:
         identifier: "{{ var('quickbooks_invoice_tax_line_identifier', 'invoice_tax_line') }}"
         description: "{{ doc('invoice_tax_line_table') }}"
         config:
-          enabled: "{{ var('using_invoice_tax_line', true) }}"
+          enabled: "{{ var('using_invoice_tax_line', false) }}"
         columns:
           - name: invoice_id
             description: "{{ doc('id') }} invoice associated with this tax line."
@@ -752,7 +752,7 @@ sources:
         identifier: "{{ var('quickbooks_journal_entry_tax_line_identifier', 'journal_entry_tax_line') }}"
         description: "{{ doc('journal_entry_tax_line_table') }}"
         config:
-          enabled: "{{ var('using_journal_entry_tax_line', true) }}"
+          enabled: "{{ var('using_journal_entry_tax_line', false) }}"
         columns:
           - name: journal_entry_id
             description: "{{ doc('id') }} journal entry associated with this tax line."
@@ -893,7 +893,7 @@ sources:
         identifier: "{{ var('quickbooks_purchase_tax_line_identifier', 'purchase_tax_line') }}"
         description: "{{ doc('purchase_tax_line_table') }}"
         config:
-          enabled: "{{ var('using_purchase_tax_line', true) }}"
+          enabled: "{{ var('using_purchase_tax_line', false) }}"
         columns:
           - name: purchase_id
             description: "{{ doc('id') }} purchase associated with this tax line."
@@ -1073,7 +1073,7 @@ sources:
         identifier: "{{ var('quickbooks_refund_receipt_tax_line_identifier', 'refund_receipt_tax_line') }}"
         description: "{{ doc('refund_receipt_tax_line_table') }}"
         config:
-          enabled: "{{ var('using_refund_receipt_tax_line', true) }}"
+          enabled: "{{ var('using_refund_receipt_tax_line', false) }}"
         columns:
           - name: refund_receipt_id
             description: "{{ doc('id') }} refund receipt associated with this tax line."
@@ -1166,7 +1166,7 @@ sources:
         identifier: "{{ var('quickbooks_sales_receipt_tax_line_identifier', 'sales_receipt_tax_line') }}"
         description: "{{ doc('sales_receipt_tax_line_table') }}"
         config:
-          enabled: "{{ var('using_sales_receipt_tax_line', true) }}"
+          enabled: "{{ var('using_sales_receipt_tax_line', false) }}"
         columns:
           - name: sales_receipt_id
             description: "{{ doc('id') }} sales receipt associated with this tax line."
@@ -1193,7 +1193,7 @@ sources:
         identifier: "{{ var('quickbooks_tax_agency_identifier', 'tax_agency') }}"
         description: "{{ doc('tax_agency_table') }}"
         config:
-          enabled: "{{ var('using_tax_agency', true) }}"
+          enabled: "{{ var('using_tax_agency', false) }}"
         columns:
           - name: id
             description: "{{ doc('id') }} tax agency."
@@ -1216,7 +1216,7 @@ sources:
         identifier: "{{ var('quickbooks_tax_code_identifier', 'tax_code') }}"
         description: "{{ doc('tax_code_table') }}"
         config:
-          enabled: "{{ var('using_tax_code', true) }}"
+          enabled: "{{ var('using_tax_code', false) }}"
         columns:
           - name: id
             description: "{{ doc('id') }} tax code."
@@ -1240,7 +1240,7 @@ sources:
         identifier: "{{ var('quickbooks_tax_rate_identifier', 'tax_rate') }}"
         description: "{{ doc('tax_rate_table') }}"
         config:
-          enabled: "{{ var('using_tax_rate', true) }}"
+          enabled: "{{ var('using_tax_rate', false) }}"
         columns:
           - name: id
             description: "{{ doc('id') }} tax rate."

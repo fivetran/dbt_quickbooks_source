@@ -25,12 +25,13 @@
 
 ## Breaking Changes
 - This update incorporates tax lines into our double entry models to provide more comprehensive reporting. More details can be found in the [v0.21.0-a1 pre-release notes](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.21.0-a1) of `dbt_quickbooks`.
-- All these new models have variables that are set to false by default. You can enable them in the `dbt_project.yml`; [see the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) for more details.
+- All these new models have variables that are set to false by default. You can enable them in the `dbt_project.yml`; [see the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) for more details about how to configure these variables.
 
 ## Under the Hood
 - Created new seed files for the above source tables to test and validate new models work as expected.
 - Updated `run_models.sh` to execute for when the new variables are disabled. 
 - Updated `src_quickbooks.yml` with their default variable configurations. 
+- Removed redundant default variable configs from the `dbt_project.yml`.
 
 # dbt_quickbooks_source v0.13.0
 

@@ -150,6 +150,10 @@ seeds:
         override_delta_amount: float
         tax_inclusive_amount: float
         tax_percent: float
+    purchase_data:
+      +column_types:
+        credit: "{{ 'boolean' if target.name in ('snowflake', 'spark', 'databricks') else 'bool' }}"
+        transaction_date: date
     purchase_order_data:
       +column_types:
         transaction_date: date
