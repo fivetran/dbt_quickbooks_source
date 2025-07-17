@@ -1,3 +1,6 @@
+--To enable this model, set the using_purchase_tax_line variable within your dbt_project.yml file to True.
+{{ config(enabled=var('using_purchase_tax_line', True)) }}
+
 {{
     fivetran_utils.union_data(
         table_identifier='purchase_tax_line', 
