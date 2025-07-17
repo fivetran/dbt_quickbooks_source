@@ -1,5 +1,5 @@
 --To disable this model, set the using_journal_entry variable within your dbt_project.yml file to False.
-{{ config(enabled=var('using_journal_entry', True)) }}
+{{ config(enabled=var('using_journal_entry_tax_line', True)) }}
 
 {{
     fivetran_utils.union_data(
