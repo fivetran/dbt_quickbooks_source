@@ -40,7 +40,7 @@ final as (
         cast(purchase_id as {{ dbt.type_string() }}) as purchase_id,
         cast(tax_rate_id as {{ dbt.type_string() }}) as tax_rate_id,
         amount,
-        cast(index as {{ dbt.type_string() }}) as index,
+        index,
         net_amount_taxable,
         override_delta_amount,
         percent_based,
