@@ -40,7 +40,7 @@ final as (
         cast(sales_receipt_id as {{ dbt.type_string() }}) as sales_receipt_id,
         cast(tax_rate_id as {{ dbt.type_string() }}) as tax_rate_id,
         amount,
-        index,
+        cast(index as {{ dbt.type_string() }}) as index,
         net_amount_taxable,
         override_delta_amount,
         percent_based,
