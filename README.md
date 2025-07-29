@@ -88,9 +88,8 @@ vars:
   using_sales_receipt: false # disable if you don't have sales receipts in QuickBooks
   using_purchase_order: true # enable if you want to include purchase orders in your staging models
   using_credit_card_payment_txn: true # enable if you want to include credit card payment transactions in your staging models
-  using_tax_agency: false #disable if you don't have tax agencies in QuickBooks
-  using_tax_code: false #disable if you don't have tax codes in QuickBooks
-  using_tax_rate: false #disable if you don't have tax rates in QuickBooks
+  using_tax_agency: true #enable if you have tax agencies in QuickBooks
+  using_tax_rate: true #enable if you have tax rates in QuickBooks
 ``` 
 
 ### (Optional) Step 5: Additional Configurations

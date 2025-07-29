@@ -2,21 +2,16 @@
 [PR #65](https://github.com/fivetran/dbt_quickbooks_source/pull/65) is a pre-release that introduces the following updates. 
 
 ## Schema Updates
-**8 new models -- 8 potential breaking changes**
+**6 new models -- 6 potential breaking changes**
 
 | Data Model                                                                                                                                               | Change Type | Old Name                     | New Name                                             | Notes                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `stg_quickbooks__invoice_tax_line`             |  New Staging Model |   |          | Source: `invoice_tax_line` table.    |
-| `stg_quickbooks__tax_agency`                  | New Staging Model |   |          | Source: `tax_agency`  table.     |
-| `stg_quickbooks__tax_code`                     | New Staging Model |   |          | Source: `tax_code` table.    |
-| `stg_quickbooks__tax_rate`                  | New Staging Model |   |          | Source: `tax_rate`  table.     |
-| `stg_quickbooks__invoice_tax_line_tmp`             |  New Temp Model |   |          | Source: `invoice_tax_line` table.    |
-| `stg_quickbooks__tax_agency_tmp`                  | New Temp Model |   |          | Source: `tax_agency`  table.     |
-| `stg_quickbooks__tax_code_tmp`                     | New Temp Model |   |          | Source: `tax_code` table.    |
-| `stg_quickbooks__tax_rate_tmp`                  | New Temp Model |   |          | Source: `tax_rate`  table.     |
-
-## Breaking Changes
-- This update incorporates invoice tax lines into the `int_quickbooks__invoice_double_entry` model. More details can be found in the [v0.21.0-a1 pre-release notes](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.21.0-a1) of `dbt_quickbooks`.
+| [`stg_quickbooks__invoice_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__invoice_tax_line)             |  New Staging Model |   |          | Source: `invoice_tax_line` table. Enabled by default, leverage `using_invoice_tax_line` variable in `dbt_project.yml` to disable.  |
+| [`stg_quickbooks__tax_agency`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_agency)                  | New Staging Model |   |          | Source: `tax_agency` table. Disabled by default, leverage `using_tax_agency` variable in `dbt_project.yml` to enable.   |
+| [`stg_quickbooks__tax_rate`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_rate)                 | New Staging Model |   |          | Source: `tax_rate`  table. Disabled by default, leverage `using_tax_rate` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)   |
+| [`stg_quickbooks__invoice_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__invoice_tax_line_tmp)               |  New Temp Model |   |          | Source: `invoice_tax_line` table. Enabled by default, leverage `using_invoice_tax_line` variable in `dbt_project.yml` to disable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__tax_agency_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_agency_tmp)                  | New Temp Model |   |          | Source: `tax_agency` table. Disabled by default, leverage `using_tax_agency` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__tax_rate_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_rate_tmp)                  | New Temp Model |   |          | Source: `tax_rate`  table. Disabled by default, leverage `using_tax_rate` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)   |
 
 ## Under the Hood
 - Created new seed files for the above source tables to test and validate new models work as expected.
