@@ -1,4 +1,4 @@
---To disable this model, set the using_tax_code variable within your dbt_project.yml file to False.
+--To enable this model, set the using_tax_rate variable within your dbt_project.yml file to True.
 {{ config(enabled=var('using_tax_rate', False)) }}
 
 

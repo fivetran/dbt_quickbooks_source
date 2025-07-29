@@ -90,7 +90,6 @@ vars:
   using_refund_receipt_tax_line: true # enable if you have refund receipt tax lines in QuickBooks
   using_sales_receipt_tax_line: true # enable if you have sales receipt tax lines in QuickBooks
   using_tax_agency: true #enable if you have tax agencies in QuickBooks
-  using_tax_code: true #enable if you have tax codes in QuickBooks
   using_tax_rate: true #enable if you have tax rates in QuickBooks
 ``` 
 

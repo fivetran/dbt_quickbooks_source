@@ -55,7 +55,6 @@ vars:
     sales_receipt: "{{ source('quickbooks','sales_receipt') }}"
     sales_receipt_tax_line: "{{ source('quickbooks','sales_receipt_tax_line') }}"    
     tax_agency: "{{ source('quickbooks','tax_agency') }}"
-    tax_code: "{{ source('quickbooks','tax_code') }}"
     tax_rate: "{{ source('quickbooks','tax_rate') }}"
     transfer: "{{ source('quickbooks','transfer') }}"
     vendor_credit_line: "{{ source('quickbooks','vendor_credit_line') }}"

@@ -1212,30 +1212,6 @@ sources:
           - name: sync_token
             description: The versioning token used to track updates to the tax agency record.
 
-      - name: tax_code
-        identifier: "{{ var('quickbooks_tax_code_identifier', 'tax_code') }}"
-        description: "{{ doc('tax_code_table') }}"
-        config:
-          enabled: "{{ var('using_tax_code', false) }}"
-        columns:
-          - name: id
-            description: "{{ doc('id') }} tax code."
-          - name: name
-            description: The name of the tax code (e.g., 'Taxable', 'Non-Taxable').
-          - name: description
-            description: A description of the tax code's purpose or applicability.
-          - name: active
-            description: Indicates whether the tax code is currently in use.
-          - name: taxable
-            description: Indicates whether the tax code applies tax or is non-taxable.
-          - name: tax_rate_details
-            description: Nested details referencing tax rates associated with this code.
-          - name: created_at
-            description: The timestamp when the tax code was created.
-          - name: updated_at
-            description: The timestamp when the tax code was last updated.
-
-
       - name: tax_rate
         identifier: "{{ var('quickbooks_tax_rate_identifier', 'tax_rate') }}"
         description: "{{ doc('tax_rate_table') }}"

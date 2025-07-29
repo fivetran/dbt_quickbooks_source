@@ -1,37 +1,35 @@
 # dbt_quickbooks_source v0.14.0-a1
 [PR #66](https://github.com/fivetran/dbt_quickbooks_source/pull/66) is a pre-release that introduces the following updates. 
 
-## Schema Updates
-**16 new models -- 16 potential breaking changes**
+## Schema Updates 
+**14 new models -- 14 potential breaking changes**
 
 | Data Model                                                                                                                                               | Change Type | Old Name                     | New Name                                             | Notes                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `stg_quickbooks__invoice_tax_line`             |  New Staging Model |   |          | Source: `invoice_tax_line` table.    |
-| `stg_quickbooks__journal_entry_tax_line`             |  New Staging Model |   |          | Source: `journal_entry_tax_line` table.    |
-| `stg_quickbooks__purchase_tax_line`             |  New Staging Model |   |          | Source: `purchase_tax_line` table.    |
-| `stg_quickbooks__refund_receipt_tax_line`             |  New Staging Model |   |          | Source: `refund_receipt_tax_line` table.    |
-| `stg_quickbooks__sales_receipt_tax_line`             |  New Staging Model |   |          | Source: `sales_receipt_tax_line` table.    |
-| `stg_quickbooks__tax_agency`                  | New Staging Model |   |          | Source: `tax_agency`  table.     |
-| `stg_quickbooks__tax_code`                     | New Staging Model |   |          | Source: `tax_code` table.    |
-| `stg_quickbooks__tax_rate`                  | New Staging Model |   |          | Source: `tax_rate`  table.     |
-| `stg_quickbooks__invoice_tax_line_tmp`             |  New Temp Model |   |          | Source: `invoice_tax_line` table.    |
-| `stg_quickbooks__journal_entry_tax_line_tmp`             |  New Temp Model |   |          | Source: `journal_entry_tax_line` table.    |
-| `stg_quickbooks__purchase_tax_line_tmp`             |  New Temp Model |   |          | Source: `purchase_tax_line` table.    |
-| `stg_quickbooks__refund_receipt_tax_line_tmp`             |  New Temp Model |   |          | Source: `refund_receipt_tax_line` table.    |
-| `stg_quickbooks__sales_receipt_tax_line_tmp`             |  New Temp Model |   |          | Source: `sales_receipt_tax_line` table.    |
-| `stg_quickbooks__tax_agency_tmp`                  | New Temp Model |   |          | Source: `tax_agency`  table.     |
-| `stg_quickbooks__tax_code_tmp`                     | New Temp Model |   |          | Source: `tax_code` table.    |
-| `stg_quickbooks__tax_rate_tmp`                  | New Temp Model |   |          | Source: `tax_rate`  table.     |
-
-## Breaking Changes
-- This update incorporates tax lines into our double entry models to provide more comprehensive reporting. More details can be found in the [v0.21.0-a1 pre-release notes](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.21.0-a1) of `dbt_quickbooks`.
-- All these new models have variables that are set to false by default. You can enable them in the `dbt_project.yml`; [see the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) for more details about how to configure these variables.
+| [`stg_quickbooks__invoice_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__invoice_tax_line)             |  New Staging Model |   |          | Source: `invoice_tax_line` table. Disabled by default, leverage `using_invoice_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.) |
+| [`stg_quickbooks__journal_entry_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__journal_entry_tax_line)         |  New Staging Model |   |          | Source: `journal_entry_tax_line` table.  Disabled by default, leverage `using_journal_entry_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__purchase_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__purchase_tax_line)             |  New Staging Model |   |          | Source: `purchase_tax_line` table.  Disabled by default, leverage `using_purchase_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)    |
+| [`stg_quickbooks__refund_receipt_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__refund_receipt_tax_line)             |  New Staging Model |   |          |  Source: `refund_receipt_tax_line` table.  Disabled by default, leverage `using_refund_receipt_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)    |
+| [`stg_quickbooks__sales_receipt_tax_line`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__sales_receipt_tax_line)             |  New Staging Model |   |          | Source: `sales_receipt_tax_line` table.  Disabled by default, leverage `using_sales_receipt_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)     |
+| [`stg_quickbooks__tax_agency`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_agency)                  | New Staging Model |   |          | Source: `tax_agency` table. Disabled by default, leverage `using_tax_agency` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)   |
+| [`stg_quickbooks__tax_rate`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_rate)                 | New Staging Model |   |          | Source: `tax_rate`  table. Disabled by default, leverage `using_tax_rate` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)   |
+| [`stg_quickbooks__invoice_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__invoice_tax_line_tmp)               |  New Temp Model |   |          | Source: `invoice_tax_line` table. Enabled by default, leverage `using_invoice_tax_line` variable in `dbt_project.yml` to disable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__journal_entry_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__journal_entry_tax_line_tmp)              |  New Temp Model |   |          | Source: `journal_entry_tax_line` table. Disabled by default, leverage `using_journal_entry_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)     |
+| [`stg_quickbooks__purchase_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__purchase_tax_line_tmp)               |  New Temp Model |   |          | Source: `purchase_tax_line` table. Disabled by default, leverage `using_purchase_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__refund_receipt_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__refund_receipt_tax_line_tmp)              |  New Temp Model |   |          | Source: `refund_receipt_tax_line` table.  Disabled by default, leverage `using_refund_receipt_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)    |
+| [`stg_quickbooks__sales_receipt_tax_line_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__sales_receipt_tax_line_tmp)            |  New Temp Model |   |          | Source: `sales_receipt_tax_line` table.  Disabled by default, leverage `using_sales_receipt_tax_line` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)       |
+| [`stg_quickbooks__tax_agency_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_agency_tmp)                  | New Temp Model |   |          | Source: `tax_agency` table. Disabled by default, leverage `using_tax_agency` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)  |
+| [`stg_quickbooks__tax_rate_tmp`](https://fivetran.github.io/dbt_quickbooks_source/#!/model/model.quickbooks_source.stg_quickbooks__tax_rate_tmp)                  | New Temp Model |   |          | Source: `tax_rate` table. Disabled by default, leverage `using_tax_rate` variable in `dbt_project.yml` to enable. (This will be dynamically handled for Quickstart users.)   |
 
 ## Under the Hood
 - Created new seed files for the above source tables to test and validate new models work as expected.
 - Updated `run_models.sh` to execute for when the new variables are disabled. 
 - Updated `src_quickbooks.yml` with their default variable configurations. 
 - Removed redundant default variable configs from the `dbt_project.yml`.
+
+
+## Documentation Update
+- [Updated the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) to include the enable/disable variable configurations introduced in the above models. 
 
 # dbt_quickbooks_source v0.13.0
 

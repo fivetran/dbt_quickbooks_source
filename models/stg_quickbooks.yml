@@ -1446,36 +1446,6 @@ models:
       - name: updated_at
         description: Timestamp for the last update of the tax agency record.
 
-  - name: stg_quickbooks__tax_code
-    description: "{{ doc('tax_code_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - tax_code_id
-            - source_relation
-    columns:
-      - name: tax_code_id
-        description: "{{ doc('id') }} tax code."
-        tests:
-          - not_null
-      - name: source_relation
-        description: "{{ doc('source_relation') }}"
-      - name: name
-        description: Name of the tax code (e.g., Taxable, Exempt).
-      - name: description
-        description: Description of the tax code’s purpose.
-      - name: active
-        description: Boolean indicating if the tax code is currently active.
-      - name: taxable
-        description: Boolean indicating whether the code is taxable.
-      - name: tax_rate_details
-        description: Nested tax rate information tied to this code.
-      - name: created_at
-        description: Timestamp for when the tax code was created.
-      - name: updated_at
-        description: Timestamp for the most recent update to the tax code.
-
-
   - name: stg_quickbooks__tax_rate
     description: "{{ doc('tax_rate_table') }}"
     tests:
