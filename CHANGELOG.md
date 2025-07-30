@@ -23,7 +23,7 @@
 
 ## Under the Hood
 - Created new seed files for the above source tables to test and validate new models work as expected.
-- Updated `run_models.sh` to execute for when the new variables are disabled. 
+- Updated `run_models.sh` to execute for when the new variables are enabled. 
 - Updated `src_quickbooks.yml` with their default variable configurations. 
 - Removed redundant default variable configs from the `dbt_project.yml`.
 
