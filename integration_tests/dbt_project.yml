@@ -63,16 +63,15 @@ vars:
     quickbooks_vendor_identifier: "vendor_data"
 
     # # For docs generation  
-    # using_purchase_order: True
-    # using_credit_card_payment_txn: True
-    # using_invoice_tax_line: True
-    # using_journal_entry_tax_line: True
-    # using_purchase_tax_line: True
-    # using_refund_receipt_tax_line: True
-    # using_sales_receipt_tax_line: True
-    # using_tax_agency: True
-    # using_tax_code: True
-    # using_tax_rate: True
+    # using_purchase_order: true # @docs-include 
+    # using_credit_card_payment_txn: true # @docs-include 
+    # using_invoice_tax_line: true # @docs-include 
+    # using_journal_entry_tax_line: true # @docs-include s
+    # using_purchase_tax_line: true # @docs-include 
+    # using_refund_receipt_tax_line: true # @docs-include 
+    # using_sales_receipt_tax_line: true # @docs-include 
+    # using_tax_agency: true # @docs-include 
+    # using_tax_rate: true # @docs-include 
 
 seeds:
   +docs:
