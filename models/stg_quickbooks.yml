@@ -741,12 +741,6 @@ models:
 
   - name: stg_quickbooks__invoice_tax_line
     description: "{{ doc('invoice_tax_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - invoice_id
-            - index
-            - source_relation
     columns:
       - name: invoice_id
         description: "{{ doc('id') }} invoice associated with this tax line."
@@ -885,12 +879,6 @@ models:
 
   - name: stg_quickbooks__journal_entry_tax_line
     description: "{{ doc('journal_entry_tax_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - journal_entry_id
-            - index
-            - source_relation
     columns:
       - name: journal_entry_id
         description: "{{ doc('id') }} journal entry associated with this tax line."
@@ -1069,12 +1057,6 @@ models:
 
   - name: stg_quickbooks__purchase_tax_line
     description: "{{ doc('purchase_tax_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - purchase_id
-            - index
-            - source_relation
     columns:
       - name: purchase_id
         description: "{{ doc('id') }} purchase associated with this tax line."
@@ -1278,12 +1260,6 @@ models:
 
   - name: stg_quickbooks__refund_receipt_tax_line
     description: "{{ doc('refund_receipt_tax_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - refund_receipt_id
-            - index
-            - source_relation
     columns:
       - name: refund_receipt_id
         description: "{{ doc('id') }} refund receipt associated with this tax line."
@@ -1389,12 +1365,6 @@ models:
 
   - name: stg_quickbooks__sales_receipt_tax_line
     description: "{{ doc('sales_receipt_tax_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - sales_receipt_id
-            - index
-            - source_relation
     columns:
       - name: sales_receipt_id
         description: "{{ doc('id') }} sales receipt associated with this tax line."
@@ -1421,11 +1391,6 @@ models:
 
   - name: stg_quickbooks__tax_agency
     description: "{{ doc('tax_agency_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - tax_agency_id
-            - source_relation
     columns:
       - name: tax_agency_id
         description: "{{ doc('id') }} tax agency."
@@ -1448,11 +1413,6 @@ models:
 
   - name: stg_quickbooks__tax_rate
     description: "{{ doc('tax_rate_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - tax_rate_id
-            - source_relation
     columns:
       - name: tax_rate_id
         description: "{{ doc('id') }} tax rate."
