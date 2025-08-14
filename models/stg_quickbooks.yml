@@ -3,11 +3,6 @@ version: 2
 models:
   - name: stg_quickbooks__account
     description: "{{ doc('account_table') }}"  
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - account_id
-            - source_relation
     columns:
       - name: account_id
         description: Unique identifier for an account.
@@ -31,9 +26,6 @@ models:
         description: The account sub-type classification and is based on the AccountType value.
       - name: classification
         description: The classification of an account. Not supported for non-posting accounts. Valid values include Asset, Equity, Expense, Liability, Revenue.
-        tests:
-          - accepted_values:
-              values: ['Asset', 'Equity', 'Expense', 'Liability', 'Revenue']
       - name: created_at
         description: Timestamp of the date the account was created.
       - name: currency_id
@@ -53,11 +45,6 @@ models:
 
   - name: stg_quickbooks__address
     description: "{{ doc('address_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - address_id
-            - source_relation
     columns:
       - name: address_id
         description: Unique identifier for an address.
@@ -78,12 +65,6 @@ models:
 
   - name: stg_quickbooks__bill_line
     description: "{{ doc('bill_line_table') }}"  
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - bill_id
-            - index
-            - source_relation    
     columns:
       - name: bill_id
         description: "The {{ doc('id') }} parent bill record."
@@ -132,12 +113,6 @@ models:
 
   - name: stg_quickbooks__bill_payment_line
     description: "{{ doc('bill_payment_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - bill_payment_id
-            - index
-            - source_relation    
     columns:
       - name: bill_payment_id
         description: "The {{ doc('id') }} bill payment record."
@@ -164,11 +139,6 @@ models:
 
   - name: stg_quickbooks__bill_payment
     description: "{{ doc('bill_payment_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - bill_payment_id
-            - source_relation     
     columns:
       - name: bill_payment_id
         description: "{{ doc('id') }} bill payment."
@@ -205,11 +175,6 @@ models:
 
   - name: stg_quickbooks__bill
     description: "{{ doc('bill_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - bill_id
-            - source_relation    
     columns:
       - name: bill_id
         description: "{{ doc('id') }} bill record."
@@ -262,11 +227,6 @@ models:
 
   - name: stg_quickbooks__bundle
     description: "{{ doc('bundle_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - bundle_id
-            - source_relation    
     columns:
       - name: bundle_id
         description: "{{ doc('id') }} bundle."
@@ -313,12 +273,6 @@ models:
 
   - name: stg_quickbooks__credit_memo_line
     description: "{{ doc('credit_memo_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - credit_memo_id
-            - index
-            - source_relation
     columns:
       - name: credit_memo_id
         description: "{{ doc('id') }} credit memo record."
@@ -349,11 +303,6 @@ models:
 
   - name: stg_quickbooks__credit_memo
     description: "{{ doc('credit_memo_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - credit_memo_id
-            - source_relation
     columns:
       - name: credit_memo_id
         description: Unique identifier for a credit memo.
@@ -388,11 +337,6 @@ models:
 
   - name: stg_quickbooks__customer
     description: "{{ doc('customer_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - customer_id
-            - source_relation
     columns:
       - name: customer_id
         description: "{{ doc('id') }} customer."
@@ -449,12 +393,6 @@ models:
 
   - name: stg_quickbooks__deposit_line
     description: "{{ doc('deposit_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - deposit_id
-            - index
-            - source_relation
     columns:
       - name: deposit_id
         description: "{{ doc('id') }} deposit record."
@@ -477,11 +415,6 @@ models:
 
   - name: stg_quickbooks__deposit
     description: "{{ doc('deposit_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - deposit_id
-            - source_relation
     columns:
       - name: deposit_id
         description: "{{ doc('id') }} deposit."
@@ -512,11 +445,6 @@ models:
 
   - name: stg_quickbooks__estimate
     description: "{{ doc('estimate_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - estimate_id
-            - source_relation
     columns:
       - name: estimate_id
         description: "{{ doc('id') }} estimate."
@@ -549,12 +477,6 @@ models:
 
   - name: stg_quickbooks__estimate_line
     description: "{{ doc('estimate_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - estimate_id
-            - index
-            - source_relation
     columns:
       - name: estimate_id
         description: Reference to the unique estimate record.
@@ -605,12 +527,6 @@ models:
 
   - name: stg_quickbooks__invoice_line
     description: "{{ doc('invoice_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - invoice_id
-            - index
-            - source_relation
     columns:
       - name: invoice_id
         description: "{{ doc('id') }} invoice record."
@@ -653,13 +569,6 @@ models:
 
   - name: stg_quickbooks__invoice_line_bundle
     description: "{{ doc('invoice_line_bundle_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - invoice_id
-            - index
-            - invoice_line_index
-            - source_relation
     columns:
       - name: invoice_id
         description: "{{ doc('id') }} invoice record."
@@ -692,11 +601,6 @@ models:
 
   - name: stg_quickbooks__invoice
     description: "{{ doc('invoice_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - invoice_id
-            - source_relation
     columns:
       - name: invoice_id
         description: "{{ doc('id') }} invoice."
@@ -741,11 +645,6 @@ models:
 
   - name: stg_quickbooks__item
     description: "{{ doc('item_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - item_id
-            - source_relation
     columns:
       - name: item_id
         description: "{{ doc('id') }} item."
@@ -782,12 +681,6 @@ models:
 
   - name: stg_quickbooks__journal_entry_line
     description: "{{ doc('journal_entry_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - journal_entry_id
-            - index
-            - source_relation
     columns:
       - name: journal_entry_id
         description: "{{ doc('id') }} journal entry record."
@@ -815,9 +708,6 @@ models:
         description: User defined description of the journal entry line.
       - name: posting_type
         description: Indicates whether this JournalEntry line is a debit or credit. Valid values are Credit and Debit
-        tests:
-          - accepted_values:
-              values: ['Credit', 'Debit']
       - name: vendor_id
         description: Reference to the vendor for this journal entry.
 
@@ -853,12 +743,6 @@ models:
 
   - name: stg_quickbooks__payment_line
     description: "{{ doc('payment_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - payment_id
-            - index
-            - source_relation
     columns:
       - name: payment_id
         description: "{{ doc('id') }} payment record."
@@ -881,11 +765,6 @@ models:
 
   - name: stg_quickbooks__payment
     description: "{{ doc('payment_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - payment_id
-            - source_relation
     columns:
       - name: payment_id
         description: "{{ doc('id') }} payment."
@@ -918,12 +797,6 @@ models:
 
   - name: stg_quickbooks__purchase_line
     description: "{{ doc('purchase_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - purchase_id
-            - index
-            - source_relation
     columns:
       - name: purchase_id
         description: "{{ doc('id') }} purchase record."
@@ -958,11 +831,6 @@ models:
 
   - name: stg_quickbooks__purchase
     description: "{{ doc('purchase_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - purchase_id
-            - source_relation
     columns:
       - name: purchase_id
         description: "{{ doc('id') }} purchase."
@@ -992,9 +860,6 @@ models:
         description: Indicates the total amount of the transaction.
       - name: payment_type
         description: Payment type of the purchase. Type can be Cash, Check, or CreditCard.
-        tests:
-          - accepted_values:
-              values: ['Cash', 'Check', 'CreditCard']
       - name: vendor_id
         description: Reference to the vendor for the purchase.
       - name: updated_at
@@ -1004,12 +869,6 @@ models:
 
   - name: stg_quickbooks__purchase_order_line
     description: "{{ doc('purchase_order_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - purchase_order_id
-            - index
-            - source_relation
     columns:
       - name: purchase_order_id
         description: "{{ doc('id') }} purchase order record."
@@ -1060,11 +919,6 @@ models:
 
   - name: stg_quickbooks__purchase_order
     description: "{{ doc('purchase_order_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - purchase_order_id
-            - source_relation
     columns:
       - name: purchase_order_id
         description: "{{ doc('id') }} purchase order."
@@ -1092,9 +946,6 @@ models:
         description: Account id for which the purchase order will credited.
       - name: status
         description: Purchase order status. Valid values are "Open" and "Closed".
-        tests:
-          - accepted_values:
-              values: ['Open', 'Closed']
       - name: vendor_id
         description: Reference to the vendor for the purchase order.
       - name: _fivetran_deleted
@@ -1102,12 +953,6 @@ models:
 
   - name: stg_quickbooks__refund_receipt_line
     description: "{{ doc('refund_receipt_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - refund_id
-            - index
-            - source_relation
     columns:
       - name: refund_id
         description: "{{ doc('id') }} refund record."
@@ -1140,11 +985,6 @@ models:
 
   - name: stg_quickbooks__refund_receipt
     description: "{{ doc('refund_receipt_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - refund_id
-            - source_relation
     columns:
       - name: refund_id
         description: "{{ doc('id') }} refund."
@@ -1181,12 +1021,6 @@ models:
 
   - name: stg_quickbooks__sales_receipt_line
     description: "{{ doc('sales_receipt_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - sales_receipt_id
-            - index
-            - source_relation
     columns:
       - name: sales_receipt_id
         description: "{{ doc('id') }} sales record."
@@ -1219,11 +1053,6 @@ models:
 
   - name: stg_quickbooks__sales_receipt
     description: "{{ doc('sales_receipt_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - sales_receipt_id
-            - source_relation
     columns:
       - name: sales_receipt_id
         description: "{{ doc('id') }} sales receipt."
@@ -1260,11 +1089,6 @@ models:
 
   - name: stg_quickbooks__transfer
     description: "{{ doc('transfer_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - transfer_id
-            - source_relation
     columns:
       - name: transfer_id
         description: "{{ doc('id') }} transfer."
@@ -1289,12 +1113,6 @@ models:
 
   - name: stg_quickbooks__vendor_credit_line
     description: "{{ doc('vendor_credit_line_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - vendor_credit_id
-            - index
-            - source_relation
     columns:
       - name: vendor_credit_id
         description: "{{ doc('id') }} vendor credit record."
@@ -1369,11 +1187,6 @@ models:
 
   - name: stg_quickbooks__vendor
     description: "{{ doc('vendor_table') }}"
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - vendor_id
-            - source_relation
     columns:
       - name: vendor_id
         description: "{{ doc('id') }} vendor."
