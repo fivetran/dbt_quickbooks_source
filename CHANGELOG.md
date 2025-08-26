@@ -1,4 +1,4 @@
-# dbt_quickbooks_source v0.14.0-a1
+# dbt_quickbooks_source v0.15.0-a1
 [PR #66](https://github.com/fivetran/dbt_quickbooks_source/pull/66) is a pre-release that introduces the following updates. 
 
 ## Schema Updates 
@@ -41,6 +41,19 @@
   - Standardized Quickstart-compatible badge set
   - Left-aligned and positioned below the H1 title.
 - Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
+# dbt_quickbooks_source v0.14.0
+[PR #70](https://github.com/fivetran/dbt_quickbooks_source/pull/70) includes the following updates:
+
+### dbt Fusion Compatibility Updates
+- Updated package to maintain compatibility with dbt-core versions both before and after v1.10.6, which introduced a breaking change to multi-argument test syntax (e.g., `unique_combination_of_columns`).
+- Temporarily removed unsupported tests to avoid errors and ensure smoother upgrades across different dbt-core versions. These tests will be reintroduced once a safe migration path is available.
+  - Removed all `dbt_utils.unique_combination_of_columns` tests.
+  - Removed all `accepted_values` tests.
+  - Moved `loaded_at_field: _fivetran_synced` under the `config:` block in `src_quickbooks_source.yml`.
+
+### Under the Hood
+- Updated conditions in `.github/workflows/auto-release.yml`.
+- Added `.github/workflows/generate-docs.yml`.
 
 # dbt_quickbooks_source v0.13.0
 

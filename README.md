@@ -49,7 +49,7 @@ If you are **not** using the [QuickBooks transformation package](https://github.
 ```yaml
 packages:
   - package: fivetran/quickbooks_source
-    version: 0.14.0-a1 # we recommend using ranges to capture non-breaking changes automatically
+    version: 0.15.0-a1 # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ### Step 3: Define database and schema variables
