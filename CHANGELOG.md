@@ -30,17 +30,6 @@
 ## Documentation Update
 - [Updated the README](https://github.com/fivetran/dbt_quickbooks_source/blob/main/README.md#step-4-enablingdisabling-models) to include the enable/disable variable configurations introduced in the above models. 
 
-### Under the Hood - July 2025 Updates
-[PR #67](https://github.com/fivetran/dbt_quickbooks_source/pull/67) is incorporated into this pre-release and it includes the following updates:
-- Updated conditions in `.github/workflows/auto-release.yml`.
-- Added `.github/workflows/generate-docs.yml`.
-- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
-- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
-- Updated `maintainer_pull_request_template.md` with improved checklist.
-- Refreshed README tag block:
-  - Standardized Quickstart-compatible badge set
-  - Left-aligned and positioned below the H1 title.
-- Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
 # dbt_quickbooks_source v0.14.0
 [PR #70](https://github.com/fivetran/dbt_quickbooks_source/pull/70) includes the following updates:
 
