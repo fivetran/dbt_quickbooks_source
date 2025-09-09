@@ -44,6 +44,8 @@ final as (
         cast(to_account_id as {{ dbt.type_string() }}) as to_account_id,
         cast( {{ dbt.date_trunc('day', 'transaction_date') }} as date) as transaction_date,
         created_at,
+        currency_id,
+        exchange_rate,
         updated_at,
         _fivetran_deleted,
         source_relation

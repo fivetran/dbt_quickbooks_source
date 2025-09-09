@@ -9,6 +9,7 @@
     {"name": "created_at", "datatype": dbt.type_timestamp()},
     {"name": "credit_card_account_id", "datatype": dbt.type_string()},
     {"name": "currency_id", "datatype": dbt.type_string()},
+    {"name": "exchange_rate", "datatype": dbt.type_float()},
     {"name": "sync_token", "datatype": dbt.type_string()},
     {"name": "transaction_date", "datatype": "date"},
     {"name": "updated_at", "datatype": dbt.type_timestamp()}

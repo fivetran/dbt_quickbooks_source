@@ -1,3 +1,19 @@
+# dbt_quickbooks_source v0.14.1
+[PR #72](https://github.com/fivetran/dbt_quickbooks_source/pull/72) includes the following updates:
+
+## Schema Updates
+
+| Data Model                                                                                                                                               | Change Type | Old Name                     | New Name                                             | Notes                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `stg_quickbooks__credit_card_payment_txn`             | New columns |   |  `exchange_rate`        |  Adds multicurrency support for credit card payment transactions.   |
+| `stg_quickbooks__transfer`                             | New columns |   |  `currency_id`, `exchange_rate`        |   Adds multicurrency support for transfers.   |
+
+
+## Bug Fixes
+- Added currency and exchange rate fields for transfers and credit card payment transactions to complete support for Quickbooks multicurrency. 
+- This will ensure accurate calculations in the downstream transform `quickbooks__general_ledger` model for multicurrency accounts leveraging these transactions. [See the v0.22.1 release of `dbt_quickbooks` for more details](https://github.com/fivetran/dbt_quickbooks/releases/tag/v0.22.1).
+
+
 # dbt_quickbooks_source v0.14.0
 [PR #70](https://github.com/fivetran/dbt_quickbooks_source/pull/70) includes the following updates:
 

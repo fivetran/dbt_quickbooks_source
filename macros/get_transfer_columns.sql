@@ -5,6 +5,8 @@
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "amount", "datatype": dbt.type_float()},
     {"name": "created_at", "datatype": dbt.type_timestamp()},
+    {"name": "currency_id", "datatype": dbt.type_string()},
+    {"name": "exchange_rate", "datatype": dbt.type_float()},
     {"name": "from_account_id", "datatype": dbt.type_string()},
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "private_note", "datatype": dbt.type_string()},
