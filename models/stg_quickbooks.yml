@@ -266,8 +266,6 @@ models:
         description: Reference to the currency used for the credit card payment.
       - name: transaction_date
         description: Date the credit card payment transaction took place.
-      - name: currency_id
-        description: "{{ doc('currency_id') }} in which all amounts on the associated transaction are expressed."
       - name: exchange_rate
         description: "{{ doc('exchange_rate') }}" 
       - name: _fivetran_deleted
