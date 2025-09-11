@@ -204,3 +204,7 @@ Reference to the item
 {% docs _fivetran_deleted %}
 Boolean created by Fivetran to indicate whether the record has been deleted.
 {% enddocs %}
+
+{% docs exchange_rate %}
+The number of home currency units it takes to equal one unit of currency specified by `currency_id`.
+{% enddocs %}
